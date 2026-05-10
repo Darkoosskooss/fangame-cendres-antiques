@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guide de la Route 5 | Pokémon Cendres Antiques. Dresseurs, Pokémon sauvages, objets cachés et secrets de la piste dorée du désert." />
+  <meta name="robots" content="index, follow" />
+  <title>Route 5 | Guide Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --lapis:       #1B3A6B;
+      --turquoise:   #2AADA4;
+      --green:       #4CAF50;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--sand); color: var(--text-main); font-family: var(--font-body); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    img, table, video { max-width: 100%; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: linear-gradient(180deg, rgba(10,8,3,.97), rgba(10,8,3,.85)); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    header nav { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: .88rem; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+    .nav-logo-sub  { font-family: var(--font-heading); font-size: .74rem; color: var(--text-muted); letter-spacing: .35em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a { font-family: var(--font-heading); font-size: .88rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); position: relative; padding-bottom: 4px; transition: color var(--transition); }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    /* ═══════════════════════════════════════════
+       BURGER BUTTON
+    ════════════════════════════════════════════ */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .burger-line {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--gold-light);
+      border-radius: 1px;
+      transform-origin: center;
+      transition: transform .25s ease,
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV OVERLAY
+    ════════════════════════════════════════════ */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus {
+      color: var(--gold-light);
+      background: rgba(201,151,58,.05);
+    }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 92px 2rem 0;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+    }
+    .breadcrumb nav { height: auto; padding: 1rem 0; justify-content: flex-start; gap: .5rem; max-width: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb a, .breadcrumb span {
+      font-family: var(--font-heading); font-size: .74rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb .sep { opacity: .4; }
+    .breadcrumb .current { color: var(--gold-light); }
+
+    /* ZONE HERO BANNER */
+    .zone-banner {
+      max-width: 1100px; margin: 1rem auto 0; padding: 0 2rem; width: 100%;
+    }
+    .zone-banner-inner {
+      border-radius: 6px; overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      background: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #2E200A 100%);
+      min-height: 260px;
+      display: flex; align-items: flex-end;
+    }
+    .zone-banner-inner::before {
+      content: '🐫​​';
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      font-size: 8rem; opacity: .12; pointer-events: none;
+    }
+    .zone-banner-inner::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(10,8,3,.85) 30%, transparent 80%);
+    }
+    .banner-content {
+      position: relative; z-index: 2;
+      padding: 2.5rem;
+    }
+    .banner-tags { display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .btag {
+      font-family: var(--font-heading); font-size: .68rem; letter-spacing: .2em;
+      text-transform: uppercase; padding: .2rem .7rem; border-radius: 2px; border: 1px solid;
+    }
+    .btag-zone    { color: var(--turquoise); border-color: rgba(42,173,164,.4); background: rgba(42,173,164,.08); }
+    .btag-type    { color: #4CAF50; border-color: rgba(76,175,80,.3); background: rgba(76,175,80,.06); }
+    .banner-content h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .5rem; line-height: 1.1;
+    }
+    .banner-content p { color: var(--text-muted); font-size: 1.06rem; max-width: 500px; }
+
+    /* QUICK STATS */
+    .zone-stats {
+      max-width: 1100px; margin: 1.5rem auto 0; padding: 0 2rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .stat-box {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1rem 1.2rem;
+      display: flex; flex-direction: column; gap: .3rem;
+    }
+    .stat-label {
+      font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .stat-value { font-family: var(--font-heading); font-size: 1.12rem; color: var(--gold-light); font-weight: 700; }
+
+    /* LAYOUT */
+    main { width: 100%; }
+    .zone-layout {
+      max-width: 1100px; margin: 2.5rem auto 0; padding: 0 2rem 6rem;
+      display: grid; grid-template-columns: 1fr 280px; gap: 2.5rem; align-items: start;
+    }
+
+    /* ARTICLE CONTENT */
+    .zone-content { animation: fadeUp .6s ease both; min-width: 0; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .zone-content h2 {
+      font-family: var(--font-heading); font-size: .88rem; font-weight: 700;
+      letter-spacing: .35em; text-transform: uppercase; color: var(--gold);
+      margin: 2.5rem 0 1.2rem; display: flex; align-items: center; gap: .8rem;
+    }
+    .zone-content h2::before { content: '✦'; font-size: .84rem; color: var(--turquoise); }
+    .zone-content h2::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,151,58,.3), transparent); }
+
+    .zone-content h3 {
+      font-family: var(--font-heading); font-size: .92rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold-pale);
+      margin: 1.8rem 0 .8rem; padding-left: .8rem;
+      border-left: 2px solid var(--gold);
+    }
+
+    .zone-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem; overflow-wrap: break-word; word-break: break-word; }
+    .zone-content strong { color: var(--gold-light); font-weight: 400; }
+
+    /* TIP BOX */
+    .tip-box {
+      background: rgba(42,173,164,.06); border: 1px solid rgba(42,173,164,.25);
+      border-left: 3px solid var(--turquoise); border-radius: 2px;
+      padding: 1rem 1.2rem; margin: 1.5rem 0;
+    }
+    .tip-box .tip-label {
+      font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--turquoise); margin-bottom: .4rem; display: block;
+    }
+    .tip-box p { color: rgba(240,232,208,.75); font-size: 1rem; margin: 0; }
+
+    .warn-box {
+      background: rgba(201,151,58,.05); border: 1px solid rgba(201,151,58,.25);
+      border-left: 3px solid var(--gold); border-radius: 2px;
+      padding: 1rem 1.2rem; margin: 1.5rem 0;
+    }
+    .warn-box .tip-label { color: var(--gold); }
+
+    /* TABLE — Pokémon rencontrables */
+    .poke-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+    .poke-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .trainer-card > div:first-of-type { overflow-x: auto; min-width: 0; }
+    .poke-table thead tr { border-bottom: 1px solid rgba(201,151,58,.3); }
+    .poke-table th {
+      font-family: var(--font-heading); font-size: .7rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--gold); padding: .7rem .8rem; text-align: left;
+    }
+    .poke-table td { font-size: .96rem; color: var(--text-muted); padding: .65rem .8rem; border-bottom: 1px solid rgba(255,255,255,.04); vertical-align: middle; }
+    .poke-table tr:hover td { background: rgba(201,151,58,.03); color: var(--text-main); }
+    .poke-name { color: var(--gold-pale); font-family: var(--font-heading); font-size: .92rem; }
+    .sprite-wrap {
+      width: 70px; height: 70px; margin: 0 auto;
+      background: rgba(255,255,255,.03); border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: border-color .35s;
+    }
+    .poke-table tr:hover .sprite-wrap { border-color: rgba(201,151,58,.4); }
+    .sprite-wrap img {
+      width: 70px; height: 70px;
+      image-rendering: pixelated;
+      object-fit: contain;
+    }
+    .type-badge {
+      display: inline-block; padding: .15rem .5rem; border-radius: 2px;
+      font-family: var(--font-heading); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .t-vol    { background: #83aff1;  color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-foudre    { background: #f5ab3d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-poison  { background: #b292f7; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-eau  { background: #4596ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-sol  { background: #c99457; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-insect  { background: #9bc337; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-feu  { background: #ee9474; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-metal  { background: #c2c6d1; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ombre  { background: #5f626d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ame  { background: #9b96ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-combat  { background: #ea8383; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-granit  { background: #8b5a4a; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-divin  { background: #e981a4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-dragon  { background: #7c88f3; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-gel  { background: #51c4c8; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-esprit  { background: #dd7db4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-normal    { background: #c3b5b2;  color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-plante    { background: #28bc75;  color: #1d170b; border: 1px solid var(--gold-pale); }
+    .rate-badge {
+      display: inline-block; font-size: .78rem; font-weight: 700;
+      color: var(--gold); background: rgba(201,151,58,.1); border-radius: 2px; padding: .1rem .4rem;
+    }
+
+    /* TABLE Objets */
+    .item-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin: 1rem 0 1.5rem; }
+    .item-row {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 3px; padding: .7rem 1rem; transition: border-color var(--transition);
+    }
+    .item-row:hover { border-color: rgba(201,151,58,.4); }
+    .item-icon { font-size: 1.5rem; min-width: 2rem; text-align: center; }
+    .item-info { flex: 1; }
+    .item-name { font-family: var(--font-heading); font-size: .92rem; color: var(--gold-pale); }
+    .item-location { font-size: .96rem; color: var(--text-muted); }
+    .item-qty { font-family: var(--font-heading); font-size: .88rem; color: var(--turquoise); white-space: nowrap; }
+
+    /* DRESSEURS */
+    .trainer-list { display: flex; flex-direction: column; gap: 1rem; margin: 1rem 0 1.5rem; }
+    .trainer-card {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border); border-radius: 4px;
+      padding: 1.2rem 1.4rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem; align-items: center;
+      transition: all var(--transition); overflow: hidden;
+    }
+    .trainer-card > * { min-width: 0; }
+    .trainer-card:hover { border-color: rgba(201,151,58,.4); background: rgba(201,151,58,.03); }
+    .trainer-icon { font-size: 2.2rem; }
+    .trainer-role { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--turquoise); margin-bottom: .2rem; }
+    .trainer-name { font-family: var(--font-heading); font-size: 1rem; color: var(--gold-pale); margin-bottom: .3rem; }
+    .trainer-team { font-size: .96rem; color: var(--text-muted); }
+    .trainer-reward { text-align: right; }
+    .reward-label { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .2rem; }
+    .reward-val { font-family: var(--font-heading); font-size: 1rem; color: var(--gold); }
+
+    /* PNJ */
+    .npc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+    .npc-card {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.2rem; transition: all var(--transition);
+    }
+    .npc-card:hover { border-color: rgba(201,151,58,.4); transform: translateY(-2px); }
+    .npc-role { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--turquoise); margin-bottom: .4rem; }
+    .npc-name { font-family: var(--font-heading); font-size: 1rem; color: var(--gold-pale); margin-bottom: .5rem; }
+    .npc-desc { font-size: .94rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* SIDEBAR */
+    .zone-sidebar { animation: fadeUp .6s .15s ease both; min-width: 0; }
+    .sidebar-widget {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; margin-bottom: 1.2rem;
+    }
+    .widget-header {
+      background: rgba(201,151,58,.06); border-bottom: 1px solid var(--border);
+      padding: .9rem 1.2rem;
+    }
+    .widget-header h3 {
+      font-family: var(--font-heading); font-size: .8rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+    }
+    .widget-body { padding: 1.2rem; }
+    .widget-body ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .widget-body ul li { font-size: .96rem; color: var(--text-muted); display: flex; align-items: center; gap: .5rem; }
+    .widget-body ul li::before { content: '𓆑'; color: var(--gold); font-size: .88rem; }
+    .nav-widget ul li a {
+      font-family: var(--font-heading); font-size: .8rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-muted); display: flex;
+      align-items: center; gap: .5rem; padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.04); transition: color var(--transition);
+    }
+    .nav-widget ul li:last-child a { border-bottom: none; }
+    .nav-widget ul li a:hover { color: var(--gold); }
+    .nav-widget ul li a .nw-num { color: var(--turquoise); font-size: .72rem; min-width: 18px; }
+    .nav-widget ul li a::before { display: none; }
+    .nav-widget ul li a .arrow { margin-left: auto; opacity: .4; }
+
+    /* PREV/NEXT */
+    .zone-nav {
+      max-width: 1100px; margin: 0 auto 2rem; padding: 0 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .zone-nav-btn {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem;
+      transition: all var(--transition);
+    }
+    .zone-nav-btn:hover { border-color: rgba(201,151,58,.4); background: rgba(201,151,58,.04); }
+    .zone-nav-btn.next { justify-content: flex-end; text-align: right; }
+    .zone-nav-btn .nav-arrow { font-size: 1.7rem; color: var(--gold); opacity: .5; }
+    .zone-nav-btn .nav-info { flex: 1; }
+    .zone-nav-btn .nav-label { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .2rem; }
+    .zone-nav-btn .nav-title { font-family: var(--font-heading); font-size: .94rem; color: var(--gold-pale); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: .9rem; color: rgba(168,144,96,.4); }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — 860px
+    ════════════════════════════════════════════ */
+    @media (max-width: 860px) {
+      .zone-stats   { grid-template-columns: repeat(2, 1fr); }
+      .zone-layout  { grid-template-columns: 1fr; gap: 2rem; }
+      .zone-sidebar { order: -1; }
+      .zone-nav     { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — 768px (burger actif)
+    ════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .burger     { display: flex; }
+      .nav-links  { display: none; }
+      .mobile-nav { display: flex; }
+      header nav { padding: 0 1.2rem; }
+
+      .nav-logo-main { letter-spacing: .1em; font-size: .82rem; }
+      .nav-logo-sub  { letter-spacing: .18em; font-size: .7rem; }
+
+      .breadcrumb { padding: 88px 1.2rem 0; }
+      .zone-banner { padding: 0 1.2rem; margin-top: .8rem; }
+      .zone-banner-inner { min-height: 200px; }
+      .zone-banner-inner::before { font-size: 5rem; right: 3%; }
+      .banner-content { padding: 1.8rem 1.5rem; }
+      .banner-content h1 { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+      .banner-content p  { font-size: .96rem; max-width: 100%; }
+
+      .zone-stats { margin: 1rem auto 0; padding: 0 1.2rem; }
+      .zone-layout { margin: 1.5rem auto 0; padding: 0 1.2rem 4rem; }
+
+      .trainer-card {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto;
+      }
+      .trainer-reward { grid-column: 2; text-align: left; }
+
+      .trainer-card > div:first-of-type {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+      }
+
+      .zone-nav { padding: 0 1.2rem; margin-bottom: 1.5rem; }
+
+      .footer-bottom { flex-direction: column; gap: .4rem; text-align: center; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — 600px
+    ════════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .zone-stats { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+
+      .poke-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+      .poke-table { min-width: 320px; }
+
+      .npc-grid { grid-template-columns: 1fr; }
+
+      .zone-nav-btn { justify-content: space-between; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — 480px
+    ════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .zone-stats { grid-template-columns: 1fr 1fr; gap: .6rem; }
+      .stat-box   { padding: .8rem 1rem; }
+
+      .banner-content { padding: 1.4rem 1.2rem; }
+      .zone-banner-inner::before { display: none; }
+
+      .trainer-card { grid-template-columns: 1fr; }
+      .trainer-icon { display: none; }
+      .trainer-reward { text-align: left; grid-column: 1; }
+
+      .item-row { gap: .7rem; }
+      .item-qty { flex-basis: 100%; padding-left: calc(2rem + .7rem); }
+
+      .zone-nav-btn { padding: .85rem 1rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — 360px
+    ════════════════════════════════════════════ */
+    @media (max-width: 360px) {
+      .zone-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigation principale">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-main">Cendres Antiques</span>
+        <span class="nav-logo-sub">Pokémon Fangame</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="guide.html" class="active">Guide</a></li>
+        <li><a href="pokemon.html">Pokémon</a></li>
+        <li><a href="objets.html">Objets</a></li>
+        <li><a href="evolutions.html">Évolutions</a></li>
+      </ul>
+
+      <!-- Burger button (mobile) -->
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile navigation overlay -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Menu de navigation mobile">
+    <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+    <ul role="list">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <nav aria-label="Fil d'ariane">
+      <a href="index.html">Accueil</a>
+      <span class="sep"> › </span>
+      <a href="guide.html">Guide</a>
+      <span class="sep"> › </span>
+      <span class="current">Route 5</span>
+    </nav>
+  </div>
+
+  <!-- BANNER -->
+  <div class="zone-banner">
+    <div class="zone-banner-inner">
+      <div class="banner-content">
+        <div class="banner-tags">
+          <span class="btag btag-zone">Zone 14</span>
+          <span class="btag btag-type">Route</span>
+        </div>
+        <h1>Route 5</h1>
+        <p>Une route qui fait le lien entre le village Papyris, la route 4 et la ville de Thèba</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="zone-stats" role="region" aria-label="Informations sur la zone">
+    <div class="stat-box"><span class="stat-label">Type de zone</span><span class="stat-value">🐫​ Route</span></div>
+    <div class="stat-box"><span class="stat-label">Pokémon sauvages</span><span class="stat-value">5 espèces</span></div>
+    <div class="stat-box"><span class="stat-label">Objets trouvables</span><span class="stat-value">3 objets</span></div>
+    <div class="stat-box"><span class="stat-label">Dresseurs</span><span class="stat-value">2 combats</span></div>
+  </div>
+
+  <main>
+    <div class="zone-layout">
+
+      <article class="zone-content" aria-labelledby="zone-title">
+
+        <!-- h2 — Introduction -->
+        <h2 id="zone-title">Présentation de la Route</h2>
+        <p>
+          Cette route en plein désert se trouve au milieu du <strong>Village Papyris</strong>, de la <strong>Route 4</strong> et de la <strong>capitale Thèba</strong>. 
+          Des <strong>colonnes mystérieuses</strong> et abîmées se trouvent au milieu de cette route.
+        </p>
+
+        <!-- h2 — Pokémon rencontrables -->
+        <h2>Pokémon Rencontrables</h2>
+        <p>De <strong>nouveaux Pokémon</strong> intéressants se trouvent dans les zones sableuses de la route.</p>
+
+        <table class="poke-table" aria-label="Pokémon rencontrables sur la Route 5">
+          <thead>
+            <tr>
+              <th>Pokémon</th>
+              <th>Image</th>
+              <th>Type</th>
+              <th>Taux</th>
+              <th>Niv.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="poke-name">Mascaïman</span></td>
+              <td>
+                <div class="sprite-wrap">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/551.png"
+                      alt="Mascaïman" loading="lazy"
+                      onerror="this.style.display='none'" />
+                </div>
+              </td>
+              <td><span class="type-badge t-sol">Sol</span></td>
+              <td><span class="rate-badge">25%</span></td>
+              <td>15 - 17</td>
+            </tr>
+            <tr>
+              <td><span class="poke-name">Hippopotas</span></td>
+              <td>
+                <div class="sprite-wrap">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png"
+                      alt="Hippopotas" loading="lazy"
+                      onerror="this.style.display='none'" />
+                </div>
+              </td>
+              <td><span class="type-badge t-sol">Sol</span></td>
+              <td><span class="rate-badge">25%</span></td>
+              <td>15 - 17</td>
+            </tr>
+            <tr>
+              <td><span class="poke-name">Galvaran</span></td>
+              <td>
+                <div class="sprite-wrap">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/694.png"
+                      alt="Galvaran" loading="lazy"
+                      onerror="this.style.display='none'" />
+                </div>
+              </td>
+              <td><span class="type-badge t-foudre">Foudre</span> <span class="type-badge t-sol">Sol</span></td>
+              <td><span class="rate-badge">20%</span></td>
+              <td>16 - 18</td>
+            </tr>
+            <tr>
+              <td><span class="poke-name">Abra</span></td>
+              <td>
+                <div class="sprite-wrap">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png"
+                      alt="Abra" loading="lazy"
+                      onerror="this.style.display='none'" />
+                </div>
+              </td>
+              <td><span class="type-badge t-esprit">Esprit</span></td>
+              <td><span class="rate-badge">20%</span></td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td><span class="poke-name">Scarabrute</span></td>
+              <td>
+                <div class="sprite-wrap">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png"
+                      alt="Scarabrute" loading="lazy"
+                      onerror="this.style.display='none'" />
+                </div>
+              </td>
+              <td><span class="type-badge t-insect">Insect</span> <span class="type-badge t-ombre">Ombre</span></td>
+              <td><span class="rate-badge">10%</span></td>
+              <td>16 - 18</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- h2 — Dresseurs -->
+        <h2>Dresseurs à Affronter</h2>
+        <p>Peu de dresseurs sont présents sur la route mais attention ils sont suffisants forts pour vous tenir tête.</p>
+
+        <div class="trainer-list" aria-label="Liste des dresseurs">
+
+          <div class="trainer-card">
+            <span class="trainer-icon">🎒</span>
+            <div>
+              <h3>Voyageur Draïlu</h3>
+              <div class="poke-table-wrap">
+              <table class="poke-table" aria-label="Équipe du Voyageur Draïlu">
+                <thead>
+                  <tr>
+                    <th>Pokémon</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Niv.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="poke-name">Farfuret</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png"
+                            alt="Farfuret" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-ombre">Ombre</span></td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Mangriff</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/335.png"
+                            alt="Mangriff" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-normal">Normal</span></td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Massko</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/253.png"
+                            alt="Massko" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-plante">Plante</span></td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Grotichon</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/499.png"
+                            alt="Grotichon" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-feu">Feu</span> <span class="type-badge t-combat">Combat</span></td>
+                    <td>20</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="trainer-reward">
+              <p class="reward-label">Récompense</p>
+              <p class="reward-val">40 P$</p>
+            </div>
+          </div>
+
+          <div class="trainer-card">
+            <span class="trainer-icon">⏳​</span>
+            <div>
+              <h3>Vieil homme Kiunus</h3>
+              <div class="poke-table-wrap">
+              <table class="poke-table" aria-label="Équipe du Vieil homme Kiunus">
+                <thead>
+                  <tr>
+                    <th>Pokémon</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Niv.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="poke-name">Magicarpe</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png"
+                            alt="Magicarpe" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-eau">Eau</span></td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Miaouss</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png"
+                            alt="Miaouss" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-normal">Normal</span></td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Braisillon</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png"
+                            alt="Braisillon" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-feu">Feu</span> <span class="type-badge t-vol">Vol</span></td>
+                    <td>19</td>
+                  </tr>
+                  <tr>
+                    <td><span class="poke-name">Migalos</span></td>
+                    <td>
+                      <div class="sprite-wrap">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png"
+                            alt="Migalos" loading="lazy"
+                            onerror="this.style.display='none'" />
+                      </div>
+                    </td>
+                    <td><span class="type-badge t-insect">Insect</span> <span class="type-badge t-poison">Poison</span></td>
+                    <td>21</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="trainer-reward">
+              <p class="reward-label">Récompense</p>
+              <p class="reward-val">42 P$</p>
+            </div>
+          </div>
+        
+        <!-- h2 — Objets -->
+        <h2>Objets</h2>
+        <p>Quelques objets ramassables sont visibles sur la route.</p>
+
+        <ul class="item-list" aria-label="Objets trouvables sur la Route 5">
+          <li class="item-row">
+            <span class="item-icon">🔴</span>
+            <div class="item-info">
+              <div class="item-name">Poké Ball</div>
+              <div class="item-location">Visible au Nord-Est de la Route</div>
+            </div>
+            <span class="item-qty">× 1</span>
+          </li>
+          <li class="item-row">
+            <span class="item-icon">🧃</span>
+            <div class="item-info">
+              <div class="item-name">Jus de Datte</div>
+              <div class="item-location">Visible proche des colonnes</div>
+            </div>
+            <span class="item-qty">× 1</span>
+          </li>
+          <li class="item-row">
+            <span class="item-icon">💊</span>
+            <div class="item-info">
+              <div class="item-name">Poudre Soin</div>
+              <div class="item-location">Visible au Sud-Est de la route</div>
+            </div>
+            <span class="item-qty">× 1</span>
+          </li>
+        </ul>
+
+        <!-- h2 — Progression -->
+        <h2>Traverser la Route</h2>
+
+        <h3>Chemin Principal</h3>
+        <p>Suivez le chemin principal vers le Sud pour retrouver la <strong>capitale</strong> de la région : <strong>Thèba</strong>, ville des <strong>esprits</strong>.</p>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="zone-sidebar" aria-label="Navigation et infos rapides">
+        <div class="sidebar-widget">
+          <div class="widget-header"><h3>🗺️ Zones du Guide</h3></div>
+          <div class="widget-body nav-widget">
+            <ul>
+              <li><a href="guide-ouasis.html"><span class="nw-num">01</span> Ouasis <span class="arrow">›</span></a></li>
+              <li><a href="guide-route1.html"><span class="nw-num">02</span> Route 1 <span class="arrow">›</span></a></li>
+              <li><a href="guide-papyris.html"><span class="nw-num">03</span> Papyris <span class="arrow">›</span></a></li>
+              <li><a href="guide-route2.html"><span class="nw-num">04</span> Route 2 <span class="arrow">›</span></a></li>
+              <li><a href="guide-isara.html"><span class="nw-num">05</span> Isara <span class="arrow">›</span></a></li>
+              <li><a href="guide-rivesobek.html"><span class="nw-num">06</span> Rive Sobek <span class="arrow">›</span></a></li>
+              <li><a href="guide-thurae.html"><span class="nw-num">07</span> Carrière Thurae <span class="arrow">›</span></a></li>
+              <li><a href="guide-route3.html"><span class="nw-num">08</span> Route 3 <span class="arrow">›</span></a></li>
+              <li><a href="guide-peramaris.html"><span class="nw-num">09</span> Peramaris <span class="arrow">›</span></a></li>
+              <li><a href="guide-ilekheperet.html"><span class="nw-num">10</span> Île Kheperet <span class="arrow">›</span></a></li>
+              <li><a href="guide-ilesokaris.html"><span class="nw-num">11</span> Île Sokaris <span class="arrow">›</span></a></li>
+              <li><a href="guide-route4.html"><span class="nw-num">12</span> Route 4 <span class="arrow">›</span></a></li>
+              <li><a href="guide-obelisk.html"><span class="nw-num">13</span> Obelisk <span class="arrow">›</span></a></li>
+              <li><a href="guide-route5.html" style="color:var(--gold)"><span class="nw-num">14</span> Route 5 <span class="arrow">◈</span></a></li>
+              <li><a href="guide-theba.html"><span class="nw-num">15</span> Thèba <span class="arrow">›</span></a></li>
+              <li><a href="guide-granos.html"><span class="nw-num">16</span> Carrière Granos <span class="arrow">›</span></a></li>
+              <li><a href="guide-route6.html"><span class="nw-num">17</span> Route 6 <span class="arrow">›</span></a></li>
+              <li><a href="guide-tourmysterieuse.html"><span class="nw-num">18</span> Tour Mystérieuse <span class="arrow">›</span></a></li>
+              <li><a href="guide-perankh.html"><span class="nw-num">19</span> Ruines Per-Ankh <span class="arrow">›</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <div class="widget-header"><h3>✦ À ne pas rater</h3></div>
+          <div class="widget-body">
+            <ul>
+              <li>Objets visibles</li>
+              <li>Les Dresseurs robustes</li>
+              <li>Les Pokémon sauvages intéressants</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- PREV/NEXT -->
+    <nav class="zone-nav" aria-label="Navigation entre zones">
+      <a href="guide-obelisk.html" class="zone-nav-btn prev">
+        <span class="nav-arrow">‹</span>
+        <div class="nav-info">
+          <p class="nav-label">Zone précédente</p>
+          <p class="nav-title">← Obelisk</p>
+        </div>
+      </a>
+      <a href="guide-theba.html" class="zone-nav-btn next">
+        <div class="nav-info">
+          <p class="nav-label">Zone suivante</p>
+          <p class="nav-title">Thèba →</p>
+        </div>
+        <span class="nav-arrow">›</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2026 Cendres Antiques | Fangame</p>
+      <p>Pokémon © Nintendo / Game Freak / The Pokémon Company</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Burger Menu ── */
+    const burger    = document.querySelector('.burger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileLinks = mobileNav.querySelectorAll('a');
+
+    function openMenu() {
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Fermer le menu');
+      mobileNav.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
+      mobileNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', () => {
+      const isOpen = burger.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+
+    /* ── Wrapping tables pour scroll mobile ── */
+    document.querySelectorAll('.poke-table').forEach(table => {
+      if (!table.closest('.poke-table-wrap')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'poke-table-wrap';
+        table.parentNode.insertBefore(wrap, table);
+        wrap.appendChild(table);
+      }
+    });
+  </script>
+
+</body>
+</html>
