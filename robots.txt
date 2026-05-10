@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://darkoosskooss.github.io/fangame-cendres-antiques/sitemap.xml
