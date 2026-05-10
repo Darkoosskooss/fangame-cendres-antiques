@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Codex de Khemis | Liste complète des Pokémon de la région de Khemis dans Pokémon Cendres Antiques." />
+  <meta name="robots" content="index, follow" />
+  <title>Pokémon | Codex de Khemis | Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* TYPE BADGES */
+    .t-vol     { background: #83aff1; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-foudre  { background: #f5ab3d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-poison  { background: #b292f7; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-eau     { background: #4596ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-sol     { background: #c99457; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-insect  { background: #9bc337; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-feu     { background: #ee9474; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-metal   { background: #c2c6d1; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ombre   { background: #5f626d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ame     { background: #9b96ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-combat  { background: #ea8383; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-granit  { background: #8b5a4a; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-divin   { background: #e981a4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-dragon  { background: #7c88f3; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-gel     { background: #51c4c8; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-esprit  { background: #dd7db4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-normal  { background: #c3b5b2; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-plante  { background: #28bc75; color: #1d170b; border: 1px solid var(--gold-pale); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-main {
+      font-family: var(--font-display);
+      font-size: .88rem;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      color: var(--text-muted);
+      letter-spacing: .35em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 15% 20%, rgba(27,58,107,.18) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓆓';
+      position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 540px; margin: 0 auto; font-size: 1.06rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── CODEX COUNTER ── */
+    .codex-stats {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .cstat {
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; padding: .8rem 1.4rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .cstat-val { font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-light); font-weight: 700; }
+    .cstat-label { font-family: var(--font-heading); font-size: .76rem; letter-spacing: .25em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      max-width: 1300px; margin: 1.5rem auto 0; padding: 0 2rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    }
+    .search-box {
+      position: relative; flex: 1; min-width: 200px;
+    }
+    .search-box input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-box input:focus { border-color: rgba(201,151,58,.5); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.06rem; pointer-events: none; }
+
+    .filter-group { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: var(--font-heading); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase; padding: .45rem .9rem;
+      border-radius: 3px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.02); color: var(--text-muted);
+      cursor: pointer; transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(201,151,58,.1); border-color: rgba(201,151,58,.5); color: var(--gold-light);
+    }
+    .filter-btn.active { box-shadow: 0 0 0 1px rgba(201,151,58,.3); }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem 6rem;
+    }
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 4px;
+    }
+    .count-label {
+      font-family: var(--font-heading); font-size: .74rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
+    }
+    .count-label span { color: var(--gold); }
+
+    table {
+      width: 100%; min-width: 520px; border-collapse: collapse;
+      background: rgba(255,255,255,.01);
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    thead tr {
+      background: rgba(201,151,58,.07);
+      border-bottom: 1px solid rgba(201,151,58,.25);
+    }
+    th {
+      font-family: var(--font-heading); font-size: .74rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      padding: .9rem 1rem; text-align: left; white-space: nowrap;
+    }
+    th.center { text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      transition: background var(--transition);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(201,151,58,.04); }
+    tbody tr.hidden { display: none; }
+
+    td { padding: .6rem 1rem; vertical-align: middle; }
+    td.center { text-align: center; }
+
+    /* Numéro */
+    .dex-num {
+      font-family: var(--font-heading); font-size: .82rem; color: var(--text-muted);
+      letter-spacing: .1em; white-space: nowrap;
+    }
+
+    /* Sprite */
+    .sprite-cell { width: 64px; }
+    .sprite-wrap {
+      width: 56px; height: 56px; margin: 0 auto;
+      background: rgba(255,255,255,.03); border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: border-color var(--transition);
+    }
+    tbody tr:hover .sprite-wrap { border-color: rgba(201,151,58,.4); }
+    .sprite-wrap img {
+      width: 52px; height: 52px;
+      image-rendering: pixelated;
+      object-fit: contain;
+    }
+    .sprite-placeholder {
+      font-size: 1.6rem; opacity: .35;
+    }
+
+    /* Nom français */
+    .poke-fr {
+      font-family: var(--font-heading); font-size: .96rem;
+      color: var(--gold-pale); font-weight: 600; white-space: nowrap;
+    }
+
+    /* Nom anglais */
+    .poke-en {
+      font-size: .88rem; color: var(--text-muted); font-style: italic; white-space: nowrap;
+    }
+
+    /* Type badges */
+    .type-cell { white-space: nowrap; }
+    .tb {
+      display: inline-block; padding: .18rem .55rem; border-radius: 3px;
+      font-family: var(--font-heading); font-size: .65rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-right: .3rem;
+    }
+
+    /* Rareté */
+    .rarity-badge {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: var(--font-heading); font-size: .64rem; letter-spacing: .15em;
+      text-transform: uppercase; padding: .2rem .6rem; border-radius: 3px;
+      white-space: nowrap; border: 1px solid;
+    }
+    .rarity-common     { color: var(--text-muted); border-color: rgba(168,144,96,.25); background: rgba(168,144,96,.05); }
+    .rarity-semi-legen { color: #9b96ed; border-color: rgba(155,150,237,.35); background: rgba(155,150,237,.08); }
+    .rarity-legen      { color: var(--gold-light); border-color: rgba(232,192,106,.4); background: rgba(232,192,106,.07); }
+    .rarity-legen-reg  { color: #ee9474; border-color: rgba(238,148,116,.4); background: rgba(238,148,116,.08); }
+
+    /* ── SECTION DIVIDERS in table ── */
+    tr.section-row td {
+      padding: .4rem 1rem;
+      background: rgba(201,151,58,.05);
+      border-top: 1px solid rgba(201,151,58,.2);
+      border-bottom: 1px solid rgba(201,151,58,.15);
+    }
+    .section-label {
+      font-family: var(--font-heading); font-size: .76rem; font-weight: 700;
+      letter-spacing: .4em; text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .section-label::before { content: '𓂋'; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ── BURGER MENU ── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 3px;
+      transition: background var(--transition);
+      z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+    .burger-line {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1),
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus { color: var(--gold-light); background: rgba(201,151,58,.05); }
+    .mobile-nav ul a.active { color: var(--gold); }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1340px) {
+      .codex-stats,
+      .filters-bar,
+      .table-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.5rem; }
+      th { font-size: .68rem; letter-spacing: .2em; padding: .8rem .75rem; }
+      td { padding: .55rem .75rem; }
+      .poke-fr { font-size: .88rem; }
+      .poke-en { font-size: .8rem; }
+      .tb { font-size: .6rem; padding: .15rem .45rem; }
+      .rarity-badge { font-size: .6rem; padding: .18rem .5rem; }
+    }
+
+    @media (max-width: 768px) {
+      /* Burger */
+      .burger     { display: flex; }
+      .nav-links  { display: none; }
+      .mobile-nav { display: flex; }
+      nav         { padding: 0 1.2rem; }
+
+      /* Hero */
+      .page-hero  { padding: 110px 1rem 36px; }
+      .page-hero h1 { font-size: clamp(1.6rem, 7vw, 2.8rem); }
+      .page-hero p  { font-size: .95rem; padding: 0 .5rem; }
+
+      /* Stats */
+      .codex-stats {
+        padding: 0 1rem;
+        gap: .6rem;
+      }
+      .cstat { padding: .6rem 1rem; }
+      .cstat-val  { font-size: 1.15rem; }
+      .cstat-label { font-size: .68rem; }
+
+      /* Filters */
+      .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1rem;
+        gap: .75rem;
+      }
+      .search-box { min-width: unset; }
+      .filter-group { gap: .4rem; }
+      .filter-btn { font-size: .62rem; padding: .4rem .7rem; }
+
+      /* Table wrapper */
+      .table-wrap { padding: 0 1rem 4rem; margin-top: 1.2rem; }
+
+      /* Table size reduction */
+      th { font-size: .62rem; letter-spacing: .12em; padding: .7rem .6rem; }
+      td { padding: .5rem .6rem; }
+      .sprite-wrap { width: 44px; height: 44px; }
+      .sprite-wrap img { width: 40px; height: 40px; }
+      .sprite-cell { width: 52px; }
+      .poke-fr { font-size: .84rem; }
+      .poke-en { font-size: .75rem; }
+      .rarity-badge { font-size: .58rem; padding: .15rem .45rem; }
+
+      /* Footer pleine largeur */
+      footer { width: 100%; }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem 1rem;
+        gap: .5rem;
+      }
+      .footer-bottom p { font-size: .8rem; }
+    }
+
+    @media (max-width: 480px) {
+      th:nth-child(4), td:nth-child(4) { display: none; }
+      td { padding: .4rem .45rem; }
+      th { padding: .6rem .45rem; font-size: .58rem; }
+      .codex-stats { flex-direction: column; }
+      .cstat { width: 100%; }
+      .sprite-wrap { width: 36px; height: 36px; }
+      .sprite-wrap img { width: 32px; height: 32px; }
+      .sprite-cell { width: 42px; }
+      .tb { font-size: .55rem; padding: .12rem .35rem; margin-right: .2rem; }
+      .rarity-badge { font-size: .55rem; padding: .12rem .38rem; }
+      .dex-num { font-size: .72rem; }
+      .poke-fr { font-size: .8rem; }
+      .section-label { font-size: .68rem; letter-spacing: .25em; }
+    }
+
+    @media (max-width: 360px) {
+      th:last-child, td:last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html" class="active">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+
+    <!-- Burger button (mobile) -->
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html" class="active">Pokémon</a></li>
+    <li><a href="objets.html">Objets</a></li>
+    <li><a href="evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Région de Khemis ✦</p>
+  <h1>Codex de Khemis</h1>
+  <p>Tous les Pokémon rencontrables dans la région de Khemis, des créatures ordinaires aux dieux légendaires.</p>
+</div>
+
+<!-- STATS -->
+<div class="codex-stats">
+  <div class="cstat"><span class="cstat-val">230</span><span class="cstat-label">Pokémon au total</span></div>
+  <div class="cstat"><span class="cstat-val">3</span><span class="cstat-label">Semi-Légendaires</span></div>
+  <div class="cstat"><span class="cstat-val">16</span><span class="cstat-label">Légendaires</span></div>
+  <a href="types.html"><div class="cstat"><span class="cstat-val">18</span><span class="cstat-label">Types disponibles</span></div></a>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher un Pokémon…" oninput="filterTable()" autocomplete="off" />
+  </div>
+  <div class="filter-group" id="rarity-filters">
+    <button class="filter-btn active" onclick="setFilter('all', this)">Tous</button>
+    <button class="filter-btn" onclick="setFilter('common', this)">Communs</button>
+    <button class="filter-btn" onclick="setFilter('semi-legen', this)">Semi-Légendaires</button>
+    <button class="filter-btn" onclick="setFilter('legen', this)">Légendaires</button>
+    <button class="filter-btn" onclick="setFilter('legen-reg', this)">Légendaires région</button>
+  </div>
+</div>
+
+<!-- TABLE -->
+<main>
+<div class="table-wrap">
+  <p class="count-label">Affichage de <span id="visible-count"></span> / 230 Pokémon</p>
+
+  <div class="table-scroll">
+    <table id="codex-table" aria-label="Codex de Khemis — liste des Pokémon">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th class="center">Image</th>
+          <th>Nom français</th>
+          <th>Nom anglais</th>
+          <th>Type(s)</th>
+          <th>Rareté</th>
+        </tr>
+      </thead>
+      <tbody id="codex-body">
+        <!-- Généré par JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company · Sprites © PokeAPI</p>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// CODEX DATA — 230 Pokémon
+// Chaque entrée : [frName, enName, spriteId, [types], rarity]
+// rarity: 'common' | 'semi-legen' | 'legen' | 'legen-reg'
+// spriteId: numéro PokeAPI (ou null si sprite personnalisé requis)
+// ══════════════════════════════════════════════════════════════════
+const SPRITE = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+const CODEX = [
+  // ── COMMUNS ──
+  ["Salamèche",       "Charmander",        4,    ["feu"],               "common"],
+  ["Reptincel",       "Charmeleon",        5,    ["feu", "dragon"],     "common"],
+  ["Dracaufeu",       "Charizard",         6,    ["feu","dragon"],      "common"],
+  ["Roucool",         "Pidgey",            16,   ["foudre","vol"],      "common"],
+  ["Roucoups",        "Pidgeotto",         17,   ["foudre","vol"],      "common"],
+  ["Roucarnage",      "Pidgeot",           18,   ["foudre","vol"],      "common"],
+  ["Abo",             "Ekans",             23,   ["poison"],            "common"],
+  ["Arbok",           "Arbok",             24,   ["poison"],            "common"],
+  ["Scarabrute",      "Pinsir",            127,  ["insect", "ombre"],   "common"],
+  ["Miaouss",         "Meowth",            52,   ["normal"],            "common"],
+  ["Persian",         "Persian",           53,   ["divin"],             "common"],
+  ["Caninos",         "Growlithe",         58,   ["feu"],               "common"],
+  ["Arcanin",         "Arcanine",          59,   ["feu", "dragon"],     "common"],
+  ["Magicarpe",       "Magikarp",          129,  ["eau"],               "common"],
+  ["Léviator",        "Gyarados",          130,  ["eau","dragon"],      "common"],
+  ["Onix",            "Onix",              95,   ["granit","sol"],      "common"],
+  ["Steelix",         "Steelix",           208,  ["metal","sol"],       "common"],
+  ["Racaillou",       "Geodude",           74,   ["granit"],            "common"],
+  ["Gravalanch",      "Graveler",          75,   ["granit"],            "common"],
+  ["Grolem",          "Golem",             76,   ["granit"],            "common"],
+  ["Fantominus",      "Gastly",            92,   ["ame"],      "common"],
+  ["Spectrum",        "Haunter",           93,   ["ame","feu"],      "common"],
+  ["Ectoplasma",      "Gengar",            94,   ["ame","feu"],      "common"],
+  ["Abra",            "Abra",              63,   ["esprit"],            "common"],
+  ["Kadabra",         "Kadabra",           64,   ["esprit"],            "common"],
+  ["Alakazam",        "Alakazam",          65,   ["esprit"],            "common"],
+  ["Sabelette",       "Sandshrew",         27,   ["sol"],               "common"],
+  ["Sablaireau",      "Sandslash",         28,   ["sol", "plante"],               "common"],
+  ["Krabby",          "Krabby",            98,   ["eau"],               "common"],
+  ["Krabboss",        "Kingler",           99,   ["eau", "sol"],               "common"],
+  ["Taupiqueur",      "Diglett",           50,   ["sol", "granit"],               "common"],
+  ["Triopikeur",      "Dugtrio",           51,   ["sol", "granit"],               "common"],
+  ["Noeunoeuf",       "Exeggcute",         102,  ["plante","esprit"],   "common"],
+  ["Noadkoko d'Alola","Exeggutor d'Alola", 10114,["plante","dragon"],   "common"],
+  ["Osselait",        "Cubone",            104,  ["sol"],               "common"],
+  ["Ossatueur d'Alola","Marowak d'Alola",  10115,["feu","ame"],         "common"],
+  ["Hypotrempe",      "Horsea",            116,  ["eau","esprit"],               "common"],
+  ["Hypocéan",        "Seadra",            117,  ["eau","esprit"],               "common"],
+  ["Hyporoi",         "Kingdra",           230,  ["eau","dragon"],      "common"],
+  ["Amonita",         "Omanyte",           138,  ["granit","eau"],      "common"],
+  ["Amonistar",       "Omastar",           139,  ["eau","ombre"],      "common"],
+  ["Kabuto",          "Kabuto",            140,  ["granit","eau"],      "common"],
+  ["Kabutops",        "Kabutops",          141,  ["eau","combat"],      "common"],
+  ["Ptéra",           "Aerodactyl",        142,  ["vol"],      "common"],
+  ["Minidraco",       "Dratini",           147,  ["dragon","eau"],            "common"],
+  ["Draco",           "Dragonair",         148,  ["dragon","eau"],            "common"],
+  ["Dracolosse",      "Dragonite",         149,  ["dragon","divin"],      "common"],
+  ["Héricendre",      "Cyndaquil",         155,  ["feu","sol"],               "common"],
+  ["Feurisson",       "Quilava",           156,  ["feu","sol"],               "common"],
+  ["Typhlosion",      "Typhlosion",        157,  ["feu","sol"],               "common"],
+  ["Kaiminus",        "Totodile",          158,  ["eau"],               "common"],
+  ["Crocrodil",       "Croconaw",          159,  ["eau"],               "common"],
+  ["Aligatueur",      "Feraligatr",        160,  ["eau","ombre"],               "common"],
+  ["Axoloto",         "Wooper",            194,  ["eau","sol"],         "common"],
+  ["Maraïste",        "Quagsire",          195,  ["eau","sol"],         "common"],
+  ["Coxy",            "Ledyba",           165,  ["insect"],      "common"],
+  ["Coxyclaque",      "Ledian",           166,  ["insect"],               "common"],
+  ["Mimigal",         "Spinarak",          167,  ["insect","poison"],             "common"],
+  ["Migalos",         "Ariados",          168,  ["insect","poison"],             "common"],
+  ["Scarhino",        "Heracross",         214,  ["insect","combat"],   "common"],
+  ["Yanma",           "Yanma",             193,  ["insect","vol"],      "common"],
+  ["Yanmega",         "Yanmega",           469,  ["insect","dragon"],      "common"],
+  ["Babimanta",       "Mantyke",           458,  ["eau"],         "common"],
+  ["Démanta",         "Mantine",           226,  ["eau"],         "common"],
+  ["Malosse",         "Houndour",           228,  ["ombre","feu"],     "common"],
+  ["Démolosse",       "Houndoom",           229,  ["ombre","feu"],       "common"],
+  ["Natu",            "Natu",              177,  ["esprit","vol"],      "common"],
+  ["Xatu",            "Xatu",              178,  ["esprit","vol"],      "common"],
+  ["Girafarig",       "Girafarig",         203,  ["normal","esprit"],   "common"],
+  ["Zarbi",           "Unown",             201,  ["ombre"],            "common"],
+  ["Phanpy",          "Phanpy",            231,  ["sol"],               "common"],
+  ["Donphan",         "Donphan",           232,  ["sol","metal"],               "common"],
+  ["Airmure",         "Skarmory",          227,  ["metal","vol"],       "common"],
+  ["Embrylex",        "Larvitar",          246,  ["sol"],      "common"],
+  ["Ymphect",         "Pupitar",           247,  ["granit"],      "common"],
+  ["Tyranocif",       "Tyranitar",         248,  ["sol","dragon"],    "common"],
+  ["Arcko",           "Treecko",           252,  ["plante"],            "common"],
+  ["Massko",          "Grovyle",           253,  ["plante","dragon"],            "common"],
+  ["Jungko",          "Sceptile",          254,  ["plante","dragon"],            "common"],
+  ["Chamallot",       "Numel",             322,  ["feu","sol"],         "common"],
+  ["Camérupt",        "Camerupt",          323,  ["feu","sol"],         "common"],
+  ["Ningale",         "Nincada",           290,  ["insect","sol"],      "common"],
+  ["Ninjask",         "Ninjask",           291,  ["insect","vol"],      "common"],
+  ["Munja",           "Shedinja",          292,  ["insect","ame"],      "common"],
+  ["Balbuto",         "Baltoy",           343,  ["sol","esprit"],            "common"],
+  ["Kaorine",         "Claydol",            344,  ["sol","esprit"],      "common"],
+  ["Tropius",         "Tropius",           357,  ["plante","dragon"],      "common"],
+  ["Absol",           "Absol",             359,  ["ombre"],             "common"],
+  ["Mangriff",        "Zangoose",          335,  ["combat"],            "common"],
+  ["Séviper",         "Seviper",           336,  ["poison","ombre"],            "common"],
+  ["Kraknoix",        "Trapinch",          328,  ["sol"],               "common"],
+  ["Vibraninf",       "Vibrava",           329,  ["sol","insect"],      "common"],
+  ["Libégon",         "Flygon",            330,  ["insect","dragon"],      "common"],
+  ["Cacnea",          "Cacnea",            331,  ["plante"],            "common"],
+  ["Cacturne",        "Cacturne",          332,  ["plante","ombre"],    "common"],
+  ["Medhyena",        "Poochyena",         261,  ["ombre"],             "common"],
+  ["Grahyèna",        "Mightyena",         262,  ["ombre"],             "common"],
+  ["Skelénox",        "Duskull",           355,  ["ame","ombre"],               "common"],
+  ["Téraclope",       "Dusclops",          356,  ["ame","ombre"],               "common"],
+  ["Noctunoir",       "Dusknoir",          477,  ["ame","ombre"],               "common"],
+  ["Carvanha",        "Carvanha",          318,  ["eau"],       "common"],
+  ["Sharpedo",        "Sharpedo",          319,  ["eau"],       "common"],
+  ["Lilia",           "Lileep",           345,  ["granit","plante"],   "common"],
+  ["Vacilys",         "Cradily",          346,  ["granit","plante"],   "common"],
+  ["Anorith",         "Anorith",           347,  ["insect","eau"],   "common"],
+  ["Armaldo",         "Armaldo",           348,  ["insect","eau"],   "common"],
+  ["Barpau",          "Feebas",            349,  ["eau"],               "common"],
+  ["Milobellus",      "Milotic",           350,  ["eau","divin"],               "common"],
+  ["Ténéfix",         "Sableye",           302,  ["ombre"],       "common"],
+  ["Stalgamin",       "Snorunt",           361,  ["gel"],               "common"],
+  ["Oniglali",        "Glalie",            362,  ["gel"],               "common"],
+  ["Momartik",        "Froslass",          478,  ["gel","ame"],         "common"],
+  ["Tortipouss",      "Turtwig",           387,  ["plante"],            "common"],
+  ["Boskara",         "Grotle",            388,  ["plante"],            "common"],
+  ["Torterra",        "Torterra",          389,  ["plante","sol"],      "common"],
+  ["Hippopotas",      "Hippopotas",        449,  ["sol"],               "common"],
+  ["Hippodocus",      "Hippowdon",         450,  ["sol","dragon"],               "common"],
+  ["Riolu",           "Riolu",             447,  ["combat"],            "common"],
+  ["Lucario",         "Lucario",           448,  ["combat","ombre"],    "semi-legen"],
+  ["Griknot",         "Gible",             443,  ["dragon","sol"],      "common"],
+  ["Carmache",        "Gabite",            444,  ["dragon","sol"],      "common"],
+  ["Carchacrok",      "Garchomp",          445,  ["dragon","sol"],      "common"],
+  ["Nosepass",        "Nosepass",          299,  ["granit"],            "common"],
+  ["Tarinorme",       "Probopass",         476,  ["granit","metal"],    "common"],
+  ["Spiritomb",       "Spiritomb",         442,  ["ame","ombre"],       "common"],
+  ["Lixy",            "Shinx",             403,  ["foudre"],            "common"],
+  ["Luxio",           "Luxio",             404,  ["foudre"],            "common"],
+  ["Luxray",          "Luxray",            405,  ["foudre","ombre"],            "common"],
+  ["Chaglam",         "Glameow",            431,  ["normal"],      "common"],
+  ["Chaffreux",       "Purugly",         432,  ["normal"],      "common"],
+  ["Farfuret",        "Sneasel",           215,  ["ombre"],       "common"],
+  ["Dimoret",         "Weavile",           461,  ["ombre"],       "common"],
+  ["Scorplane",       "Gligar",            207,  ["sol","vol"],         "common"],
+  ["Scorvol",         "Gliscor",           472,  ["sol","vol"],         "common"],
+  ["Rapion",          "Skorupi",           451,  ["poison","insect"],      "common"],
+  ["Drascore",        "Drapion",          452,  ["poison","ombre"],      "common"],
+  ["Blizzi",          "Snover",           459,  ["plante","gel"],               "common"],
+  ["Blizzaroi",       "Abomasnow",           460,  ["plante","gel"],               "common"],
+  ["Marcacrin",       "Swinub",             220,  ["gel","sol"],               "common"],
+  ["Cochignon",       "Piloswine",           221,  ["gel","sol"],      "common"],
+  ["Mammochon",       "Mamoswine",         473,  ["gel","sol"],         "common"],
+  ["Vipélierre",      "Snivy",             495,  ["plante"],            "common"],
+  ["Lianaja",         "Servine",           496,  ["plante","divin"],            "common"],
+  ["Majaspic",        "Serperior",         497,  ["plante","divin"],            "common"],
+  ["Gruikui",         "Tepig",             498,  ["feu"],               "common"],
+  ["Grotichon",       "Pignite",           499,  ["feu","combat"],      "common"],
+  ["Roitiflam",       "Emboar",            500,  ["feu","combat"],      "common"],
+  ["Bargantua",       "Basculin",        550,  ["eau","ombre"],      "common"],
+  ["Lewsor",          "Elgyem",           605,  ["esprit"],            "common"],
+  ["Neitram",         "Beheeyem",           606,  ["esprit"],            "common"],
+  ["Darumarond",      "Darumaka",          554,  ["feu"],               "common"],
+  ["Darumacho",       "Darmanitan",        555,  ["feu","combat"],               "common"],
+  ["Crabicoque",      "Dwebble",           557,  ["insect","granit"],   "common"],
+  ["Crabaraque",      "Crustle",           558,  ["insect","granit"],   "common"],
+  ["Mascaïman",       "Sandile",           551,  ["sol"],       "common"],
+  ["Escroco",         "Krokorok",          552,  ["sol"],       "common"],
+  ["Crocorible",      "Krookodile",        553,  ["sol","ombre"],       "common"],
+  ["Tutafeh",         "Yamask",        562,  ["ame","ombre"],               "common"],
+  ["Tutankafer",      "Cofagrigus",         563,  ["ame","ombre"],      "semi-legen"],
+  ["Vostourno",       "Vullaby",           629,  ["vol"],      "common"],
+  ["Vaututrice",      "Mandibuzz",         630,  ["ombre","vol"],       "common"],
+  ["Scalpion",        "Pawniard",           624,  ["ombre","metal"],   "common"],
+  ["Scalproie",       "Bisharp",           625,  ["ombre","metal"],    "common"],
+  ["Zorua",           "Zorua",             570,  ["ombre"],             "common"],
+  ["Zoroark",         "Zoroark",           571,  ["ombre"],             "common"],
+  ["Coupenotte",      "Axew",          610,  ["dragon"],     "common"],
+  ["Incisache",       "Fraxure",           611,  ["dragon"],     "common"],
+  ["Tranchodon",      "Haxorus",             612,  ["dragon"],    "common"],
+  ["Baggiguane",      "Scraggy",           559,  ["combat"],    "common"],
+  ["Baggaïd",         "Scrafty",           560,  ["combat"],    "common"],
+  ["Chacripan",       "Purrloin",           509,  ["ombre"],            "common"],
+  ["Léopardus",       "Liepard",           510,  ["ombre","divin"],             "semi-legen"],
+  ["Ponchiot",        "Lillipup",          506,  ["normal"],            "common"],
+  ["Ponchien",        "Herdier",           507,  ["normal"],            "common"],
+  ["Mastouffe",       "Stoutland",         508,  ["normal"],            "common"],
+  ["Maracachi",       "Maractus",          556,  ["plante"],            "common"],
+  ["Cryptéro",        "Sigilyph",          561,  ["esprit","vol"],      "common"],
+  ["Carapagos",       "Tirtouga",            564,  ["eau","granit"],      "common"],
+  ["Mégapagos",       "Carracosta",          565,  ["eau","dragon"],      "common"],
+  ["Arkéapti",        "Archen",            566,  ["granit","vol"],      "common"],
+  ["Aéroptéryx",      "Archeops",          567,  ["vol","dragon"],      "common"],
+  ["Gringolem",       "Golett",            622,  ["metal"],         "common"],
+  ["Golemastoc",      "Golurk",            623,  ["metal"],         "common"],
+  ["Furaiglon",       "Rufflet",           627,  ["vol"],      "common"],
+  ["Gueriaigle",      "Braviary",          628,  ["vol","combat"],      "common"],
+  ["Aflamanoir",      "Heatmor",        631,  ["feu","sol"],         "common"],
+  ["Fermite",         "Durant",           632,  ["insect","metal"],            "common"],
+  ["Pyronille",       "Larvesta",          636,  ["insect","feu"],      "common"],
+  ["Pyrax",           "Volcarona",         637,  ["insect","feu"],      "common"],
+  ["Marisson",        "Chespin",           650,  ["plante"],            "common"],
+  ["Boguérisse",      "Quilladin",         651,  ["plante","ombre"],            "common"],
+  ["Blindépique",     "Chesnaught",        652,  ["plante","ombre"],   "common"],
+  ["Couafarel",       "Furfrou",        676,  ["normal"],      "common"],
+  ["Monorpale",       "Honedge",           679,  ["metal","ame"],       "common"],
+  ["Dimoclès",        "Doublade",          680,  ["metal","ame"],       "common"],
+  ["Exagide",         "Aegislash",         681,  ["metal","ame"],       "common"],
+  ["Hélionceau",      "Litleo",        667,  ["feu","normal"],   "common"],
+  ["Némélios",        "Pyroar",         668,  ["feu","normal"],   "common"],
+  ["Passerouge",      "Fletchling",        661,  ["vol"],      "common"],
+  ["Braisillon",      "Fletchinder",            662,  ["feu","vol"],      "common"],
+  ["Flambusard",      "Talonflame",            663,  ["feu","vol"],      "common"],
+  ["Psystigri",       "Espurr",            677,  ["esprit","normal"],            "common"],
+  ["Mistigrix",       "Meowstic",          678,  ["esprit","normal"],            "common"],
+  ["Galvaran",        "Helioptile",            694,  ["foudre","sol"],            "common"],
+  ["Iguolta",         "Heliolisk",        695,  ["foudre","sol"],   "common"],
+  ["Évoli",           "Eevee",             133,  ["normal"],            "common"],
+  ["Aquali",          "Vaporeon",          134,  ["eau"],               "common"],
+  ["Voltali",         "Jolteon",           135,  ["foudre"],            "common"],
+  ["Pyroli",          "Flareon",           136,  ["feu"],               "common"],
+  ["Mentali",         "Espeon",            196,  ["esprit"],            "common"],
+  ["Noctali",         "Umbreon",           197,  ["ombre"],             "common"],
+  ["Phyllali",        "Leafeon",           470,  ["plante"],            "common"],
+  ["Givrali",         "Glaceon",           471,  ["gel"],               "common"],
+  ["Nymphali",        "Sylveon",           700,  ["divin"],             "common"],
+  // ── LÉGENDAIRES CAPTURABLES ──
+  ["Raikou",          "Raikou",            243,  ["foudre"],            "legen"],
+  ["Entei",           "Entei",             244,  ["feu"],               "legen"],
+  ["Suicune",         "Suicune",           245,  ["eau"],               "legen"],
+  ["Regirock",        "Regirock",          377,  ["granit"],            "legen"],
+  ["Darkrai",         "Darkrai",           491,  ["ombre"],             "legen"],
+  ["Démétéros",       "Landorus",          645,  ["sol","vol"],         "legen"],
+  // ── LÉGENDAIRES DE LA RÉGION ──
+  ["Sulfura",         "Moltres",           146,  ["feu","vol"],         "legen-reg"],
+  ["Ho-Oh",           "Ho-Oh",             250,  ["feu","vol"],         "legen-reg"],
+  // ── GRANDS LÉGENDAIRES ──
+  ["Groudon",         "Groudon",           383,  ["sol"],               "legen"],
+  ["Palkia",          "Palkia",            484,  ["eau","dragon"],      "legen"],
+  ["Reshiram",        "Reshiram",          643,  ["dragon","feu"],      "legen"],
+  ["Yveltal",         "Yveltal",           717,  ["ombre","vol"],       "legen"],
+  ["Zygarde",         "Zygarde",           718,  ["dragon","sol"],      "legen"],
+  ["Hoopa",           "Hoopa",             720,  ["esprit","ame"],    "legen"],
+  ["Mew",             "Mew",               151,  ["esprit"],            "legen"],
+  ["Mewtwo",          "Mewtwo",            150,  ["esprit"],            "legen"],
+];
+
+// Rareté labels
+const RARITY_HTML = {
+  'common':    `<span class="rarity-badge rarity-common">🐫 Commun</span>`,
+  'semi-legen':`<span class="rarity-badge rarity-semi-legen">🦉 Semi-Légendaire</span>`,
+  'legen':     `<span class="rarity-badge rarity-legen">🐉 Légendaire</span>`,
+  'legen-reg': `<span class="rarity-badge rarity-legen-reg">🐦‍🔥​ Légendaire Région</span>`,
+};
+
+// Section breaks
+const SECTIONS = {
+  1:   "Pokémon de la Région",
+  119: "Lucario — Semi-Légendaire",
+  159: "Tutankafer — Semi-Légendaire",
+  172: "Léopardus — Semi-Légendaire",
+  207: "Évolutions d'Évoli",
+  215: "Légendaires Capturables",
+  221: "Légendaires de la Région",
+  223: "Grands Légendaires",
+};
+
+function buildTable() {
+  const tbody = document.getElementById('codex-body');
+  let html = '';
+
+  CODEX.forEach((p, i) => {
+    const num = i + 1;
+    const [fr, en, spriteId, types, rarity] = p;
+    const numStr = `#${String(num).padStart(3,'0')}`;
+
+    // Section header
+    if (SECTIONS[num]) {
+      html += `<tr class="section-row" data-section><td colspan="6"><span class="section-label">${SECTIONS[num]}</span></td></tr>`;
+    }
+
+    // Type badges
+    const typeBadges = types.map(t => `<span class="tb t-${t}">${t}</span>`).join('');
+
+    // Sprite
+    const spriteHTML = spriteId
+      ? `<img src="${SPRITE(spriteId)}" alt="${fr}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="sprite-placeholder" style="display:none">?</span>`
+      : `<span class="sprite-placeholder">?</span>`;
+
+    html += `
+      <tr data-fr="${fr.toLowerCase()}" data-en="${en.toLowerCase()}" data-rarity="${rarity}" data-num="${num}">
+        <td><span class="dex-num">${numStr}</span></td>
+        <td class="center sprite-cell"><div class="sprite-wrap">${spriteHTML}</div></td>
+        <td><span class="poke-fr">${fr}</span></td>
+        <td><span class="poke-en">${en}</span></td>
+        <td class="type-cell">${typeBadges}</td>
+        <td>${RARITY_HTML[rarity]}</td>
+      </tr>`;
+  });
+
+  tbody.innerHTML = html;
+  updateCount();
+}
+
+let currentFilter = 'all';
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterTable();
+}
+
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('#codex-body tr[data-rarity]');
+  let visible = 0;
+
+  rows.forEach(row => {
+    const fr = row.dataset.fr || '';
+    const en = row.dataset.en || '';
+    const rarity = row.dataset.rarity;
+
+    const matchSearch = !q || fr.includes(q) || en.includes(q) || row.dataset.num.includes(q);
+    const matchFilter = currentFilter === 'all' || rarity === currentFilter;
+
+    if (matchSearch && matchFilter) {
+      row.classList.remove('hidden');
+      visible++;
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+
+  // Hide section rows if all following rows are hidden
+  const allRows = document.querySelectorAll('#codex-body tr');
+  allRows.forEach(row => {
+    if (row.dataset.section !== undefined) {
+      let next = row.nextElementSibling;
+      let anyVisible = false;
+      while (next && next.dataset.section === undefined) {
+        if (!next.classList.contains('hidden') && next.dataset.rarity) anyVisible = true;
+        next = next.nextElementSibling;
+      }
+      row.style.display = anyVisible ? '' : 'none';
+    }
+  });
+
+  updateCount(visible);
+}
+
+function updateCount(n) {
+  if (n === undefined) n = CODEX.length;
+  document.getElementById('visible-count').textContent = n;
+}
+
+buildTable();
+</script>
+
+<script>
+  /* ── Burger Menu ── */
+  const burger    = document.querySelector('.burger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileLinks = mobileNav.querySelectorAll('a');
+
+  function openMenu() {
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Fermer le menu');
+    mobileNav.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    mobileNav.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+</script>
+</body>
+</html>

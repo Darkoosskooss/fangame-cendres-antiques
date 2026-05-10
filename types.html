@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Types de Pokémon Cendres Antiques | Les 18 types de la région de Khemis avec leurs noms renommés, couleurs et tableau des affinités." />
+  <meta name="robots" content="index, follow" />
+  <title>Types | Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+
+      /* Les 18 types */
+      --t-normal:  #c3b5b2;
+      --t-feu:     #ee9474;
+      --t-eau:     #4596ed;
+      --t-foudre:  #f5ab3d;
+      --t-plante:  #28bc75;
+      --t-gel:     #51c4c8;
+      --t-combat:  #ea8383;
+      --t-poison:  #b292f7;
+      --t-sol:     #c99457;
+      --t-vol:     #83aff1;
+      --t-esprit:  #dd7db4;
+      --t-insect:  #9bc337;
+      --t-granit:  #8b5a4a;
+      --t-ame:     #9b96ed;
+      --t-dragon:  #7c88f3;
+      --t-metal:   #c2c6d1;
+      --t-ombre:   #5f626d;
+      --t-divin:   #e981a4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-main {
+      font-family: var(--font-display);
+      font-size: .88rem;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      color: var(--text-muted);
+      letter-spacing: .35em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(42,173,164,.08) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓂋';
+      position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .78rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 560px; margin: 0 auto; font-size: 1.06rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── RENAME BANNER ── */
+    .rename-banner {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem;
+    }
+    .rename-inner {
+      background: rgba(201,151,58,.06);
+      border: 1px solid rgba(201,151,58,.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+    }
+    .rename-label {
+      font-family: var(--font-heading); font-size: .70rem; font-weight: 700;
+      letter-spacing: .35em; text-transform: uppercase; color: var(--gold);
+      white-space: nowrap; padding-top: .1rem;
+    }
+    .rename-pills { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .rename-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-heading); font-size: .70rem; letter-spacing: .1em;
+      text-transform: uppercase; padding: .25rem .7rem; border-radius: 3px;
+      border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03);
+    }
+    .rename-pill .old { color: var(--text-muted); text-decoration: line-through; }
+    .rename-pill .arrow { color: var(--gold); opacity: .6; }
+    .rename-pill .new { color: var(--text-main); font-weight: 600; }
+
+    /* ── SEARCH ── */
+    .search-bar {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem;
+    }
+    .search-wrap { position: relative; max-width: 420px; }
+    .search-wrap input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-wrap input:focus { border-color: rgba(201,151,58,.5); }
+    .search-wrap input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+
+    /* ── MAIN ── */
+    .page-main { max-width: 1300px; margin: 2.5rem auto 0; padding: 0 2rem 6rem; }
+
+    /* ══════════════════════════════════════
+       SECTION 1 — GRILLE DES TYPES
+    ══════════════════════════════════════ */
+    .section-head {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-head h2 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-head::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(201,151,58,.3), transparent);
+    }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .type-card {
+      border-radius: 5px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.07);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .type-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.45); border-color: rgba(255,255,255,.18); }
+    .type-card.hidden { display: none; }
+
+    .type-card-top {
+      padding: 1.4rem 1rem 1rem;
+      display: flex; flex-direction: column; align-items: center; gap: .6rem;
+    }
+    .type-icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(0,0,0,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+    .type-card-name {
+      font-family: var(--font-display); font-size: .88rem; font-weight: 900;
+      color: #1d170b; letter-spacing: .08em; text-align: center;
+    }
+    .type-card-rename {
+      font-family: var(--font-heading); font-size: .64rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(29,23,11,.55); text-align: center; line-height: 1.4;
+    }
+    .type-card-bottom {
+      background: rgba(0,0,0,.2);
+      padding: .6rem .8rem;
+      display: flex; flex-direction: column; gap: .35rem;
+    }
+    .tcb-label {
+      font-family: var(--font-heading); font-size: .6rem;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: .1rem;
+    }
+    .tcb-types { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .mini-badge {
+      font-family: var(--font-heading); font-size: .6rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .15rem .45rem; border-radius: 3px;
+      color: #1d170b;
+      border: 1px solid rgba(29,23,11,.15);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 2 — TABLEAU D'AFFINITÉS
+    ══════════════════════════════════════ */
+    .affinity-section { margin-bottom: 4rem; }
+
+    .affinity-legend {
+      display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.2rem;
+    }
+    .aleg {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-heading); font-size: .70rem;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .aleg-dot {
+      width: 14px; height: 14px; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-size: .68rem; font-weight: 700; color: #fff;
+    }
+    .aleg-dot.super    { background: rgba(40,188,117,.85); }
+    .aleg-dot.normal_eff { background: rgba(255,255,255,.1); color: var(--text-muted); border: 1px solid var(--border); }
+    .aleg-dot.resist   { background: rgba(69,150,237,.6); }
+    .aleg-dot.immune   { background: rgba(30,20,10,.7); border: 1px solid rgba(255,255,255,.1); color: var(--text-muted); }
+
+    .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 4px; }
+    .affinity-table {
+      border-collapse: collapse;
+      min-width: 900px; width: 100%;
+      background: rgba(255,255,255,.015);
+    }
+    .affinity-table th, .affinity-table td {
+      padding: 0; text-align: center;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    /* Colonne de gauche — types attaquants */
+    .affinity-table .row-label {
+      font-family: var(--font-heading); font-size: .64rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; padding: .4rem .6rem;
+      text-align: right; white-space: nowrap; width: 70px;
+      color: #1d170b; border-right: 2px solid rgba(0,0,0,.15);
+    }
+    /* En-têtes colonnes */
+    .affinity-table .col-head {
+      font-family: var(--font-heading); font-size: .6rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .4rem .3rem; white-space: nowrap;
+      color: #1d170b; border-bottom: 2px solid rgba(0,0,0,.15);
+      writing-mode: vertical-lr; transform: rotate(180deg);
+      height: 72px; vertical-align: bottom;
+    }
+    /* Coin vide */
+    .affinity-table .corner {
+      background: rgba(0,0,0,.3);
+      border-right: 2px solid rgba(0,0,0,.2);
+      border-bottom: 2px solid rgba(0,0,0,.2);
+    }
+    /* Cellules de valeur */
+    .affinity-table .cell {
+      width: 28px; height: 28px;
+      font-family: var(--font-heading); font-size: .76rem; font-weight: 700;
+      color: rgba(255,255,255,.9);
+      transition: transform var(--transition);
+    }
+    .affinity-table .cell:hover { transform: scale(1.3); z-index: 2; position: relative; }
+    .cell-2  { background: rgba(40,188,117,.80); color: #0a2e1c; }
+    .cell-1  { background: rgba(255,255,255,.06); color: rgba(255,255,255,.3); }
+    .cell-05 { background: rgba(69,150,237,.55); color: #d0e8ff; }
+    .cell-0  { background: rgba(10,8,3,.7); color: rgba(255,255,255,.15); }
+
+    /* ══════════════════════════════════════
+       SECTION 3 — FICHE DÉTAIL TYPE
+       (apparaît sur clic d'une type-card)
+    ══════════════════════════════════════ */
+    .type-detail {
+      display: none;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border); border-radius: 5px;
+      padding: 1.5rem 2rem; margin-bottom: 2rem;
+      animation: fadeUp .3s ease both;
+    }
+    .type-detail.visible { display: block; }
+    .detail-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;
+    }
+    .detail-badge {
+      padding: .45rem 1.2rem; border-radius: 4px;
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 900;
+      color: #1d170b; letter-spacing: .06em;
+    }
+    .detail-rename {
+      font-family: var(--font-heading); font-size: .76rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .detail-close {
+      margin-left: auto; background: none; border: 1px solid var(--border);
+      color: var(--text-muted); font-family: var(--font-heading); font-size: .76rem;
+      letter-spacing: .15em; text-transform: uppercase; padding: .3rem .8rem;
+      border-radius: 3px; cursor: pointer; transition: all var(--transition);
+    }
+    .detail-close:hover { border-color: rgba(201,151,58,.4); color: var(--gold-light); }
+    .detail-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .detail-block-label {
+      font-family: var(--font-heading); font-size: .68rem; font-weight: 700;
+      letter-spacing: .35em; text-transform: uppercase; margin-bottom: .6rem;
+    }
+    .dbl-super  { color: #28bc75; }
+    .dbl-resist { color: #4596ed; }
+    .dbl-immune { color: var(--text-muted); }
+    .dbl-weak   { color: #ea8383; }
+    .detail-type-list { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .detail-type-list .mini-badge { font-size: .68rem; padding: .2rem .55rem; }
+    .none-text {
+      font-family: var(--font-heading); font-size: .74rem;
+      color: rgba(168,144,96,.4); font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ── BURGER MENU ── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 3px;
+      transition: background var(--transition);
+      z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+
+    .burger-line {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1),
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus {
+      color: var(--gold-light);
+      background: rgba(201,151,58,.05);
+    }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    @media (max-width: 700px) {
+      .burger     { display: flex; }
+      .nav-links  { display: none; }
+      .mobile-nav { display: flex; }
+
+      nav { padding: 0 1.2rem; }
+      .types-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+
+    <!-- Burger button (mobile) -->
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html">Pokémon</a></li>
+    <li><a href="objets.html">Objets</a></li>
+    <li><a href="evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Les Énergies de Khemis ✦</p>
+  <h1>Types</h1>
+  <p>Les 18 types de la région, certains ont été renommés pour mieux refléter la culture et la magie de l'Égypte antique de Khemis.</p>
+</div>
+
+<!-- ══ RENOMMAGES ══ -->
+<div class="rename-banner">
+  <div class="rename-inner">
+    <span class="rename-label">𓂋 Renommés</span>
+    <div class="rename-pills">
+      <span class="rename-pill"><span class="old">Psy</span><span class="arrow">→</span><span class="new">Esprit</span></span>
+      <span class="rename-pill"><span class="old">Glace</span><span class="arrow">→</span><span class="new">Gel</span></span>
+      <span class="rename-pill"><span class="old">Acier</span><span class="arrow">→</span><span class="new">Métal</span></span>
+      <span class="rename-pill"><span class="old">Électrik</span><span class="arrow">→</span><span class="new">Foudre</span></span>
+      <span class="rename-pill"><span class="old">Spectre</span><span class="arrow">→</span><span class="new">Âme</span></span>
+      <span class="rename-pill"><span class="old">Ténèbres</span><span class="arrow">→</span><span class="new">Ombre</span></span>
+      <span class="rename-pill"><span class="old">Roche</span><span class="arrow">→</span><span class="new">Granit</span></span>
+      <span class="rename-pill"><span class="old">Fée</span><span class="arrow">→</span><span class="new">Divin</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RECHERCHE ══ -->
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher un type…" oninput="filterTypes()" autocomplete="off" />
+  </div>
+</div>
+
+<main>
+<div class="page-main">
+
+  <!-- ── GRILLE DES TYPES ── -->
+  <div class="section-head"><h2>Les 18 Types</h2></div>
+
+  <!-- Fiche détail (affichée au clic) -->
+  <div class="type-detail" id="type-detail">
+    <div class="detail-header">
+      <span class="detail-badge" id="detail-badge"></span>
+      <span class="detail-rename" id="detail-rename"></span>
+      <button class="detail-close" onclick="closeDetail()">✕ Fermer</button>
+    </div>
+    <div class="detail-grid" id="detail-grid"></div>
+  </div>
+
+  <div class="types-grid" id="types-grid"></div>
+
+  <!-- ── TABLEAU D'AFFINITÉS ── -->
+  <div class="affinity-section">
+    <div class="section-head"><h2>Tableau des Affinités</h2></div>
+    <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:1.2rem; line-height:1.8;">
+      Lignes = type de l'attaque · Colonnes = type du Pokémon défenseur.
+      Survolez une cellule pour voir sa valeur.
+    </p>
+    <div class="affinity-legend">
+      <span class="aleg"><span class="aleg-dot super">2</span> Super efficace (×2)</span>
+      <span class="aleg"><span class="aleg-dot normal_eff">1</span> Normal (×1)</span>
+      <span class="aleg"><span class="aleg-dot resist">½</span> Résisté (×½)</span>
+      <span class="aleg"><span class="aleg-dot immune">0</span> Immunisé (×0)</span>
+    </div>
+    <div class="table-scroll">
+      <table class="affinity-table" id="affinity-table" aria-label="Tableau des affinités de types"></table>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company</p>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+// DONNÉES DES TYPES
+// ═══════════════════════════════════════════════════
+const TYPES = [
+  { id:"normal",  name:"Normal",  color:"#c3b5b2", icon:"⚪", oldName:null },
+  { id:"feu",     name:"Feu",     color:"#ee9474", icon:"🔥", oldName:null },
+  { id:"eau",     name:"Eau",     color:"#4596ed", icon:"💧", oldName:null },
+  { id:"foudre",  name:"Foudre",  color:"#f5ab3d", icon:"⚡", oldName:"Électrik" },
+  { id:"plante",  name:"Plante",  color:"#28bc75", icon:"🌿", oldName:null },
+  { id:"gel",     name:"Gel",     color:"#51c4c8", icon:"🧊", oldName:"Glace" },
+  { id:"combat",  name:"Combat",  color:"#ea8383", icon:"🥊", oldName:null },
+  { id:"poison",  name:"Poison",  color:"#b292f7", icon:"☠️", oldName:null },
+  { id:"sol",     name:"Sol",     color:"#c99457", icon:"🏜️", oldName:null },
+  { id:"vol",     name:"Vol",     color:"#83aff1", icon:"🪶", oldName:null },
+  { id:"esprit",  name:"Esprit",  color:"#dd7db4", icon:"🔮", oldName:"Psy" },
+  { id:"insect",  name:"Insect",  color:"#9bc337", icon:"🪲", oldName:null },
+  { id:"granit",  name:"Granit",  color:"#8b5a4a", icon:"🪨", oldName:"Roche" },
+  { id:"ame",     name:"Âme",     color:"#9b96ed", icon:"👻", oldName:"Spectre" },
+  { id:"dragon",  name:"Dragon",  color:"#7c88f3", icon:"🐉", oldName:null },
+  { id:"metal",   name:"Métal",   color:"#c2c6d1", icon:"⚙️", oldName:"Acier" },
+  { id:"ombre",   name:"Ombre",   color:"#5f626d", icon:"🌑", oldName:"Ténèbres" },
+  { id:"divin",   name:"Divin",   color:"#e981a4", icon:"✨", oldName:"Fée" },
+];
+
+// Index id→objet pour accès rapide
+const T = {};
+TYPES.forEach(t => T[t.id] = t);
+
+// ═══════════════════════════════════════════════════
+// TABLE D'AFFINITÉS
+// Format : CHART[attaquant][defenseur] = multiplicateur
+// 0 = ×0, 0.5 = ×½, 1 = ×1 (omis), 2 = ×2
+// Source : tableaux officiels Pokémon (gen 6+)
+//  renommages: ghost→ame, dark→ombre, rock→granit,
+//              steel→metal, fairy→divin, ice→gel,
+//              psychic→esprit, electric→foudre
+// ═══════════════════════════════════════════════════
+// Ordre identique à TYPES
+const ORDER = ["normal","feu","eau","foudre","plante","gel","combat","poison","sol","vol","esprit","insect","granit","ame","dragon","metal","ombre","divin"];
+
+// Tableau complet (18×18)
+// Valeurs : 0 = immunisé, .5 = résisté, 1 = normal, 2 = super efficace
+const CHART_RAW = {
+  normal: { granit:.5, metal:.5, ame:0 },
+  feu:    { feu:.5, eau:.5, granit:.5, dragon:.5, plante:2, gel:2, insect:2, metal:2 },
+  eau:    { eau:.5, plante:.5, dragon:.5, feu:2, sol:2, granit:2 },
+  foudre: { foudre:.5, plante:.5, dragon:.5, sol:0, vol:2, eau:2 },
+  plante: { feu:.5, plante:.5, poison:.5, vol:.5, insect:.5, dragon:.5, metal:.5, eau:2, sol:2, granit:2 },
+  gel:    { eau:.5, gel:.5, plante:2, sol:2, vol:2, dragon:2 },
+  combat: { poison:.5, insect:.5, esprit:.5, vol:.5, divin:.5, ame:0, normal:2, gel:2, granit:2, ombre:2, metal:2 },
+  poison: { poison:.5, sol:.5, granit:.5, ame:.5, plante:2, divin:2 },
+  sol:    { plante:.5, insect:.5, vol:0, feu:2, foudre:2, poison:2, granit:2, metal:2 },
+  vol:    { foudre:.5, granit:.5, metal:.5, plante:2, combat:2, insect:2 },
+  esprit: { esprit:.5, ombre:.5, combat:2, poison:2 },
+  insect: { feu:.5, combat:.5, vol:.5, ame:.5, metal:.5, plante:2, esprit:2, ombre:2 },
+  granit: { combat:.5, sol:.5, metal:.5, feu:2, vol:2, insect:2, gel:2 },
+  ame:    { normal:0, combat:0, esprit:2, ame:2 },
+  dragon: { metal:.5, divin:0, dragon:2 },
+  metal:  { feu:.5, eau:.5, foudre:.5, metal:.5, gel:2, granit:2, divin:2 },
+  ombre: { ame:2, esprit:2, ombre:.5, divin:.5 },
+  divin: { poison:.5, metal:.5, combat:2, dragon:2, ombre:2, divin:.5 },
+};
+
+function getEff(atk, def) {
+  const row = CHART_RAW[atk] || {};
+  return row[def] !== undefined ? row[def] : 1;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDU — GRILLE DES TYPES
+// ═══════════════════════════════════════════════════
+function typeCardHTML(t) {
+  // Super efficace contre (type t attaque)
+  const superVs = ORDER.filter(d => getEff(t.id, d) === 2).map(d => T[d]);
+  // Résisté par
+  const resistedBy = ORDER.filter(d => getEff(t.id, d) === 0.5).map(d => T[d]);
+  // Immunisé contre (ne touche pas)
+  const immuneTo = ORDER.filter(d => getEff(t.id, d) === 0).map(d => T[d]);
+
+  const miniBadge = (type) =>
+    `<span class="mini-badge" style="background:${type.color}">${type.name}</span>`;
+
+  const superHtml = superVs.length
+    ? superVs.map(miniBadge).join('')
+    : `<span class="none-text">—</span>`;
+
+  return `
+  <div class="type-card" data-id="${t.id}" data-name="${t.name.toLowerCase()}" onclick="showDetail('${t.id}')"
+       style="background:${t.color};">
+    <div class="type-card-top">
+      <div class="type-icon">${t.icon}</div>
+      <span class="type-card-name">${t.name}</span>
+      ${t.oldName ? `<span class="type-card-rename">ex-${t.oldName}</span>` : ''}
+    </div>
+    <div class="type-card-bottom">
+      <p class="tcb-label">Super efficace vs</p>
+      <div class="tcb-types">${superHtml}</div>
+    </div>
+  </div>`;
+}
+
+function renderGrid() {
+  document.getElementById('types-grid').innerHTML = TYPES.map(typeCardHTML).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// RENDU — FICHE DÉTAIL
+// ═══════════════════════════════════════════════════
+function showDetail(id) {
+  const t = T[id];
+  const detail = document.getElementById('type-detail');
+
+  document.getElementById('detail-badge').textContent = t.name;
+  document.getElementById('detail-badge').style.background = t.color;
+  document.getElementById('detail-rename').textContent =
+    t.oldName ? `Anciennement : ${t.oldName}` : 'Nom inchangé';
+
+  // Efficacité offensive
+  const superOff  = ORDER.filter(d => getEff(id, d) === 2).map(d => T[d]);
+  const resistOff = ORDER.filter(d => getEff(id, d) === .5).map(d => T[d]);
+  const immuneOff = ORDER.filter(d => getEff(id, d) === 0).map(d => T[d]);
+
+  // Résistances défensives (ce type reçoit)
+  const superDef  = ORDER.filter(a => getEff(a, id) === 2).map(a => T[a]);
+  const resistDef = ORDER.filter(a => getEff(a, id) === .5).map(a => T[a]);
+  const immuneDef = ORDER.filter(a => getEff(a, id) === 0).map(a => T[a]);
+
+  const mb = (ty) => `<span class="mini-badge" style="background:${ty.color}">${ty.name}</span>`;
+  const list = (arr) => arr.length ? arr.map(mb).join('') : `<span class="none-text">Aucun</span>`;
+
+  document.getElementById('detail-grid').innerHTML = `
+    <div class="detail-block">
+      <p class="detail-block-label dbl-super">⬆ Super efficace contre</p>
+      <div class="detail-type-list">${list(superOff)}</div>
+    </div>
+    <div class="detail-block">
+      <p class="detail-block-label dbl-resist">⬇ Peu efficace contre</p>
+      <div class="detail-type-list">${list(resistOff)}</div>
+    </div>
+    <div class="detail-block">
+      <p class="detail-block-label dbl-immune">✕ Sans effet contre</p>
+      <div class="detail-type-list">${list(immuneOff)}</div>
+    </div>
+    <div class="detail-block">
+      <p class="detail-block-label" style="color:#ea8383">⚠ Faible face à</p>
+      <div class="detail-type-list">${list(superDef)}</div>
+    </div>
+    <div class="detail-block">
+      <p class="detail-block-label dbl-resist">🛡 Résiste à</p>
+      <div class="detail-type-list">${list(resistDef)}</div>
+    </div>
+    <div class="detail-block">
+      <p class="detail-block-label dbl-immune">🚫 Immunisé contre</p>
+      <div class="detail-type-list">${list(immuneDef)}</div>
+    </div>
+  `;
+
+  detail.classList.add('visible');
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeDetail() {
+  document.getElementById('type-detail').classList.remove('visible');
+}
+
+// ═══════════════════════════════════════════════════
+// RENDU — TABLEAU D'AFFINITÉS
+// ═══════════════════════════════════════════════════
+function cellClass(v) {
+  if (v === 2)   return 'cell cell-2';
+  if (v === 0.5) return 'cell cell-05';
+  if (v === 0)   return 'cell cell-0';
+  return 'cell cell-1';
+}
+function cellLabel(v) {
+  if (v === 2)   return '2';
+  if (v === 0.5) return '½';
+  if (v === 0)   return '0';
+  return '';
+}
+
+function renderTable() {
+  const tbl = document.getElementById('affinity-table');
+  let html = '<thead><tr><th class="corner"></th>';
+
+  // En-têtes colonnes (défenseurs)
+  ORDER.forEach(id => {
+    const t = T[id];
+    html += `<th class="col-head" style="background:${t.color}">${t.name}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  // Lignes (attaquants)
+  ORDER.forEach(atkId => {
+    const atk = T[atkId];
+    html += `<tr>
+      <td class="row-label" style="background:${atk.color}">${atk.name}</td>`;
+    ORDER.forEach(defId => {
+      const v = getEff(atkId, defId);
+      const cls = cellClass(v);
+      const lbl = cellLabel(v);
+      html += `<td class="${cls}" title="${atk.name} → ${T[defId].name} : ×${v}">${lbl}</td>`;
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody>';
+  tbl.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════
+// FILTRE
+// ═══════════════════════════════════════════════════
+function filterTypes() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('.type-card').forEach(card => {
+    const name = card.dataset.name || '';
+    const id   = card.dataset.id || '';
+    const match = !q || name.includes(q) || id.includes(q);
+    card.classList.toggle('hidden', !match);
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// BURGER MENU
+// ═══════════════════════════════════════════════════
+const burger    = document.querySelector('.burger');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileLinks = mobileNav.querySelectorAll('a');
+
+function openMenu() {
+  burger.setAttribute('aria-expanded', 'true');
+  burger.setAttribute('aria-label', 'Fermer le menu');
+  mobileNav.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Ouvrir le menu');
+  mobileNav.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+burger.addEventListener('click', () => {
+  const isOpen = burger.getAttribute('aria-expanded') === 'true';
+  isOpen ? closeMenu() : openMenu();
+});
+
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 700) closeMenu();
+});
+
+renderGrid();
+renderTable();
+</script>
+</body>
+</html>

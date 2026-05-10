@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Objets de Pokémon Cendres Antiques | Tous les objets, balls, pierres d'évolution, papyrus et trésors de la région de Khemis." />
+  <meta name="robots" content="index, follow" />
+  <title>Objets | Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+
+      /* Couleurs de catégorie */
+      --c-tenir:    #C9973A;
+      --c-soin:     #28bc75;
+      --c-ball:     #4596ed;
+      --c-pierre:   #dd7db4;
+      --c-papyrus:  #f5ab3d;
+      --c-fossile:  #8b5a4a;
+      --c-joyau:    #9b96ed;
+      --c-tresor:   #E8C06A;
+      --c-unique:   #ee9474;
+      --c-autre:    #a7acbe;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-main {
+      font-family: var(--font-display);
+      font-size: .88rem;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      color: var(--text-muted);
+      letter-spacing: .35em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(42,173,164,.08) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓋹';
+      position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+      font-size: 11rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .85rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 540px; margin: 0 auto; font-size: 1.05rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    }
+    .search-box { position: relative; flex: 1; min-width: 220px; }
+    .search-box input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-box input:focus { border-color: rgba(201,151,58,.5); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+
+    .filter-group { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: var(--font-heading); font-size: .7rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; padding: .4rem .85rem;
+      border-radius: 3px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.02); color: var(--text-muted);
+      cursor: pointer; transition: all var(--transition); display: flex; align-items: center; gap: .35rem;
+    }
+    .filter-btn:hover { background: rgba(201,151,58,.07); border-color: rgba(201,151,58,.35); color: var(--gold-light); }
+    .filter-btn.active { box-shadow: 0 0 0 1px currentColor; }
+    .filter-btn .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── MAIN LAYOUT ── */
+    .page-layout {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem 6rem;
+      display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; align-items: start;
+    }
+
+    /* ── SIDEBAR NAV ── */
+    .items-sidebar {
+      position: sticky; top: 90px;
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; animation: fadeUp .6s ease both;
+    }
+    .sidebar-header {
+      padding: 1rem 1.3rem; background: rgba(201,151,58,.06);
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-header h2 {
+      font-family: var(--font-heading); font-size: .74rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+    }
+    .sidebar-nav { list-style: none; padding: .4rem 0; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .6rem 1.3rem; font-family: var(--font-heading); font-size: .80rem;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+      transition: all var(--transition); border-left: 2px solid transparent;
+    }
+    .sidebar-nav li a:hover { color: var(--gold-light); background: rgba(201,151,58,.05); border-left-color: var(--gold); }
+    .sidebar-nav li a .s-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .sidebar-nav li a .s-count { margin-left: auto; font-size: .68rem; color: rgba(168,144,96,.5); }
+
+    /* ── ITEMS CONTENT ── */
+    .items-content { animation: fadeUp .6s .1s ease both; }
+
+    /* ── SECTION BLOCK ── */
+    .item-section { margin-bottom: 3rem; }
+    .section-head {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+      padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+    }
+    .section-icon { font-size: 1.8rem; }
+    .section-eyebrow {
+      font-family: var(--font-heading); font-size: .68rem; letter-spacing: .4em;
+      text-transform: uppercase; margin-bottom: .1rem;
+    }
+    .section-head h2 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      line-height: 1.1; letter-spacing: .04em;
+    }
+    .section-count {
+      margin-left: auto; font-family: var(--font-heading); font-size: .76rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      padding: .25rem .7rem; border-radius: 3px; white-space: nowrap;
+    }
+
+    /* ── ITEM GRID ── */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ── ITEM CARD ── */
+    .item-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 1.1rem 1.3rem; display: flex; gap: 1rem; align-items: flex-start;
+      transition: all var(--transition); position: relative; overflow: hidden;
+    }
+    .item-card::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+      width: 2px; background: var(--cat-color, var(--gold));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .item-card:hover { background: rgba(201,151,58,.04); border-color: rgba(201,151,58,.3); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+    .item-card:hover::before { opacity: 1; }
+    .item-card.hidden { display: none; }
+
+    .item-img-wrap {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: rgba(255,255,255,.04); border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.76rem; overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .item-card:hover .item-img-wrap { border-color: rgba(201,151,58,.4); }
+    .item-img-wrap img { width: 46px; height: 46px; object-fit: contain; image-rendering: pixelated; }
+
+    .item-body { flex: 1; min-width: 0; }
+    .item-name {
+      font-family: var(--font-heading); font-size: .98rem; font-weight: 700;
+      color: var(--gold-pale); margin-bottom: .2rem; line-height: 1.2;
+    }
+    .item-price {
+      font-family: var(--font-heading); font-size: 1.12rem; letter-spacing: .15em;
+      color: var(--gold); opacity: .7; margin-bottom: .4rem; display: block;
+    }
+    .item-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── VISIBLE COUNT ── */
+    .count-bar {
+      font-family: var(--font-heading); font-size: .70rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem;
+    }
+    .count-bar span { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .75rem; color: rgba(168,144,96,.4); }
+
+    /* ── BURGER MENU ── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 3px;
+      transition: background var(--transition);
+      z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+    .burger-line {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1),
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a.active { color: var(--gold); }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus { color: var(--gold-light); background: rgba(201,151,58,.05); }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .burger     { display: flex; }
+      .nav-links  { display: none; }
+      .mobile-nav { display: flex; }
+      nav { padding: 0 1.2rem; }
+    }
+
+    @media (max-width: 900px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+        padding: 0 1.2rem 4rem;
+      }
+      .items-sidebar { position: static; }
+
+      .filters-bar {
+        padding: 0 1.2rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box { min-width: unset; }
+      .filter-group {
+        justify-content: center;
+      }
+
+      .page-hero { padding: 110px 1.2rem 40px; }
+
+      .section-head {
+        flex-wrap: wrap;
+        gap: .6rem;
+      }
+      .section-count { margin-left: 0; }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: 1fr; }
+
+      .item-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .item-card::before { width: 100%; height: 2px; bottom: auto; }
+
+      .item-body { min-width: unset; width: 100%; }
+
+      .filters-bar { margin-top: 1.2rem; }
+      .filter-group { gap: .35rem; }
+      .filter-btn { font-size: .65rem; padding: .35rem .7rem; }
+
+      .count-bar { text-align: center; }
+
+      .page-hero p { font-size: .95rem; }
+
+      .section-head { justify-content: center; }
+      .section-eyebrow, .section-head h2 { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html" class="active">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+
+    <!-- Burger button (mobile) -->
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html">Pokémon</a></li>
+    <li><a href="objets.html" class="active">Objets</a></li>
+    <li><a href="evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Artefacts & Reliques ✦</p>
+  <h1>Objets</h1>
+  <p>Tous les objets, amulettes, papyrus d'enseignement et trésors de la région de Khemis, des plus communs aux plus précieux.</p>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher un objet…" oninput="filterItems()" autocomplete="off" />
+  </div>
+  <div class="filter-group" id="cat-filters">
+    <button class="filter-btn active" onclick="setFilter('all',this)" style="color:var(--gold)">
+      <span class="dot" style="background:var(--gold)"></span> Tous
+    </button>
+    <button class="filter-btn" onclick="setFilter('tenir',this)" style="--cc:var(--c-tenir)">
+      <span class="dot" style="background:var(--c-tenir)"></span> À tenir
+    </button>
+    <button class="filter-btn" onclick="setFilter('soin',this)">
+      <span class="dot" style="background:var(--c-soin)"></span> Soins
+    </button>
+    <button class="filter-btn" onclick="setFilter('ball',this)">
+      <span class="dot" style="background:var(--c-ball)"></span> Balls
+    </button>
+    <button class="filter-btn" onclick="setFilter('pierre',this)">
+      <span class="dot" style="background:var(--c-pierre)"></span> Pierres
+    </button>
+    <button class="filter-btn" onclick="setFilter('papyrus',this)">
+      <span class="dot" style="background:var(--c-papyrus)"></span> Papyrus d'Enseignement
+    </button>
+    <button class="filter-btn" onclick="setFilter('fossile',this)">
+      <span class="dot" style="background:var(--c-fossile)"></span> Fossiles
+    </button>
+    <button class="filter-btn" onclick="setFilter('joyau',this)">
+      <span class="dot" style="background:var(--c-joyau)"></span> Joyaux
+    </button>
+    <button class="filter-btn" onclick="setFilter('tresor',this)">
+      <span class="dot" style="background:var(--c-tresor)"></span> Trésors
+    </button>
+    <button class="filter-btn" onclick="setFilter('unique',this)">
+      <span class="dot" style="background:var(--c-unique)"></span> Uniques
+    </button>
+    <button class="filter-btn" onclick="setFilter('autre',this)">
+      <span class="dot" style="background:var(--c-autre)"></span> Autres
+    </button>
+  </div>
+</div>
+
+<main>
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="items-sidebar" aria-label="Navigation par catégorie">
+    <div class="sidebar-header"><h2>𓋹 Catégories</h2></div>
+    <ul class="sidebar-nav">
+      <li><a href="#tenir"><span class="s-dot" style="background:var(--c-tenir)"></span> Objets à tenir <span class="s-count">67</span></a></li>
+      <li><a href="#soin"><span class="s-dot" style="background:var(--c-soin)"></span> Objets de soin <span class="s-count">22</span></a></li>
+      <li><a href="#ball"><span class="s-dot" style="background:var(--c-ball)"></span> Balls <span class="s-count">11</span></a></li>
+      <li><a href="#pierre"><span class="s-dot" style="background:var(--c-pierre)"></span> Pierres d'évolution <span class="s-count">11</span></a></li>
+      <li><a href="#papyrus"><span class="s-dot" style="background:var(--c-papyrus)"></span> Papyrus d'Enseignement<span class="s-count">2</span></a></li>
+      <li><a href="#fossile"><span class="s-dot" style="background:var(--c-fossile)"></span> Fossiles <span class="s-count">7</span></a></li>
+      <li><a href="#joyau"><span class="s-dot" style="background:var(--c-joyau)"></span> Joyaux <span class="s-count">18</span></a></li>
+      <li><a href="#tresor"><span class="s-dot" style="background:var(--c-tresor)"></span> Trésors <span class="s-count">14</span></a></li>
+      <li><a href="#unique"><span class="s-dot" style="background:var(--c-unique)"></span> Objets uniques <span class="s-count">12</span></a></li>
+      <li><a href="#autre"><span class="s-dot" style="background:var(--c-autre)"></span> Autres objets <span class="s-count">8</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="items-content">
+    <p class="count-bar">Affichage de <span id="visible-count">172</span> objets</p>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- OBJETS À TENIR                      -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="tenir" data-cat="tenir">
+      <div class="section-head">
+        <span class="section-icon">🏺</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-tenir)">Équipement</p>
+          <h2 style="color:var(--c-tenir)">Objets à Tenir</h2>
+        </div>
+        <span class="section-count">67 objets</span>
+      </div>
+      <div class="item-grid">
+
+        <div class="item-card" data-cat="tenir" data-name="aile de phénix" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/aile-de-phenix.png" alt="Aile de Phénix" onerror="this.parentElement.innerHTML='🪶'" /></div>
+          <div class="item-body"><p class="item-name">Aile de Phénix</p><span class="item-price">200 P$</span><p class="item-desc">Fragment d'une plume de phénix légendaire, étonnamment légère. Elle permet au porteur de flotter brièvement dans les airs, immunisé aux attaques de type Sol.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="amulette de foudre" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/amulette-de-foudre.png" alt="Amulette de Foudre" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Amulette de Foudre</p><span class="item-price">50 P$</span><p class="item-desc">Talisman ancien gravé de runes de foudre sur du cuivre sacré. Amplifie la puissance des attaques de type Foudre du Pokémon qui le porte.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="amulette rouge" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/amulette-rouge.png" alt="Amulette Rouge" onerror="this.parentElement.innerHTML='🔴'" /></div>
+          <div class="item-body"><p class="item-name">Amulette Rouge</p><span class="item-price">200 P$</span><p class="item-desc">Amulette protectrice incrustée de pierre rouge. Lorsqu'elle se brise, elle repousse immédiatement l'adversaire et l'oblige à changer de position.</p></div>
+        </div>
+        
+        <div class="item-card" data-cat="tenir" data-name="bec pointu" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sharp-beak.png" alt="Bec Pointu" onerror="this.parentElement.innerHTML='🦅'" /></div>
+          <div class="item-body"><p class="item-name">Bec Pointu</p><span class="item-price">50 P$</span><p class="item-desc">Bec taillé en obsidienne, utilisé par les chasseurs du désert. Augmente la puissance des attaques de type Vol. Permet aussi de faire évoluer Furaiglon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="boue noire" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-sludge.png" alt="Boue Noire" onerror="this.parentElement.innerHTML='🟫'" /></div>
+          <div class="item-body"><p class="item-name">Boue Noire</p><span class="item-price">200 P$</span><p class="item-desc">Substance visqueuse provenant des marécages du Canilis. Régénère les PV des Pokémon de type Poison, mais nuit aux autres types.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="boule fumée" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/smoke-ball.png" alt="Boule Fumée" onerror="this.parentElement.innerHTML='💨'" /></div>
+          <div class="item-body"><p class="item-name">Boule Fumée</p><span class="item-price">200 P$</span><p class="item-desc">Sphère d'argile contenant une résine volatile. Garantit la fuite du combat face aux Pokémon sauvages, sans aucun échec possible.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="boule métal" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iron-ball.png" alt="Boule Métal" onerror="this.parentElement.innerHTML='⚙️'" /></div>
+          <div class="item-body"><p class="item-name">Boule Métal</p><span class="item-price">200 P$</span><p class="item-desc">Une sphère de métal pur forgée dans la carrière de Granos. Alourdit le porteur, l'empêchant de voler, mais renforce ses défenses.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="casque de guerrier" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/casque-de-guerrier.png" alt="Casque de Guerrier" onerror="this.parentElement.innerHTML='⛑️'" /></div>
+          <div class="item-body"><p class="item-name">Casque de Guerrier</p><span class="item-price">200 P$</span><p class="item-desc">Casque de bronze utilisé par les soldats de Khemis. Son poids et ses arêtes infligent des dégâts à ceux qui attaquent son porteur au contact.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="ceinture de combat" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/expert-belt.png" alt="Ceinture de Combat" onerror="this.parentElement.innerHTML='🥊'" /></div>
+          <div class="item-body"><p class="item-name">Ceinture de Combat</p><span class="item-price">200 P$</span><p class="item-desc">Ceinture de cuir renforcée portée par les gladiateurs de Khemis. Augmente la puissance des coups qui sont super efficaces.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="charbon" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charcoal.png" alt="Charbon" onerror="this.parentElement.innerHTML='🔥'" /></div>
+          <div class="item-body"><p class="item-name">Charbon</p><span class="item-price">50 P$</span><p class="item-desc">Fragment de charbon de bois tiré des forges de la région. Augmente la puissance des attaques de type Feu du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="collier de bastet" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/collier-bastet.png" alt="Collier de Bastet" onerror="this.parentElement.innerHTML='🐱'" /></div>
+          <div class="item-body"><p class="item-name">Collier de Bastet</p><span class="item-price">500 P$</span><p class="item-desc">Collier béni par les Pokémon Bastet. Aiguise l'instinct félin du porteur et augmente drastiquement son taux de coups critiques.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="croc dragon" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-fang.png" alt="Croc Dragon" onerror="this.parentElement.innerHTML='🐉'" /></div>
+          <div class="item-body"><p class="item-name">Croc Dragon</p><span class="item-price">200 P$</span><p class="item-desc">Dent tranchante d'un vieux dragon. Amplifie les attaques de type Dragon du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="croc rasoir" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png" alt="Croc Rasoir" onerror="this.parentElement.innerHTML='🦷'" /></div>
+          <div class="item-body"><p class="item-name">Croc Rasoir</p><span class="item-price">200 P$</span><p class="item-desc">Dent acérée d'une bête du désert. Peut apeurer l’ennemi quand le porteur lui inflige des dégâts.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="dent océan" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png" alt="Dent Océan" onerror="this.parentElement.innerHTML='🦈'" /></div>
+          <div class="item-body"><p class="item-name">Dent Océan</p><span class="item-price">200 P$</span><p class="item-desc">Dent provenant des profondeurs de la Mer Rubea. Augmente l'Attaque et l'Attaque Spéciale de Carvanha et Sharpedo.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="eau mystique" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mystic-water.png" alt="Eau Mystique" onerror="this.parentElement.innerHTML='💧'" /></div>
+          <div class="item-body"><p class="item-name">Eau Mystique</p><span class="item-price">200 P$</span><p class="item-desc">Eau sacrée puisée dans une source secrète. Augmente la puissance des attaques de type Eau et Divin.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="écaille divine" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png" alt="Écaille Divine" onerror="this.parentElement.innerHTML='🐟'" /></div>
+          <div class="item-body"><p class="item-name">Écaille Divine</p><span class="item-price">100 P$</span><p class="item-desc">Écaille sacrée ornée de symboles du Canilis, elle permet de faire évoluer Barpau.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="écaille draco" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png" alt="Écaille Draco" onerror="this.parentElement.innerHTML='🐲'" /></div>
+          <div class="item-body"><p class="item-name">Écaille Draco</p><span class="item-price">100 P$</span><p class="item-desc">Écaille d'un dragon des eaux, elle permet de faire évoluer Hypocéan.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens doux" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lax-incense.png" alt="Encens Doux" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Doux</p><span class="item-price">250 P$</span><p class="item-desc">Le parfum trompeur de cet encens baisse la Précision de l’ennemi.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens fleur" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rose-incense.png" alt="Encens Fleur" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Fleur</p><span class="item-price">100 P$</span><p class="item-desc">Un encens au parfum exotique augmentant la puissance des capacités de type Plante.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens granit" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rock-incense.png" alt="Encens Granit" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Encens Granit</p><span class="item-price">100 P$</span><p class="item-desc">Un encens au parfum exotique augmentant la puissance des capacités de type Granit.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens mer" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sea-incense.png" alt="Encens Mer" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Mer</p><span class="item-price">100 P$</span><p class="item-desc">Un encens au parfum curieux rappellant la Mer Rubea augmentant la puissance des capacités de type Eau.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens plein" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-incense.png" alt="Encens Plein" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Plein</p><span class="item-price">250 P$</span><p class="item-desc">Un encens au parfum exotique qui fait enfler son porteur et le fait se déplacer lentement.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens pur" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pure-incense.png" alt="Encens Pur" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Pur</p><span class="item-price">300 P$</span><p class="item-desc">Aide à repousser les Pokémon sauvages si le porteur est le premier Pokémon de l’équipe.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens rêve" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/odd-incense.png" alt="Encens Rêve" onerror="this.parentElement.innerHTML='🌀'" /></div>
+          <div class="item-body"><p class="item-name">Encens Rêve</p><span class="item-price">100 P$</span><p class="item-desc">Un encens au parfum exotique augmentant la puissance des capacités de type Esprit.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens vague" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wave-incense.png" alt="Encens Vague" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Encens Vague</p><span class="item-price">100 P$</span><p class="item-desc">Un encens au parfum curieux rappelant le Canilis augmentant la puissance des capacités de type Eau.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="encens veine" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luck-incense.png" alt="Encens Veine" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Encens Veine</p><span class="item-price">550 P$</span><p class="item-desc">Double l’argent gagné si le porteur se joint au combat.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="évoluroc" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/eviolite.png" alt="Évoluroc" onerror="this.parentElement.innerHTML='💠'" /></div>
+          <div class="item-body"><p class="item-name">Évoluroc</p><span class="item-price">200 P$</span><p class="item-desc">Cristal mystérieux qui booste la Défense et la Défense Spé d'un Pokémon qui n'a pas encore atteint sa forme finale.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="gantelet d'anubis" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/gantelet-d-anubis.png" alt="Gantelet d'Anubis" onerror="this.parentElement.innerHTML='🥊'" /></div>
+          <div class="item-body"><p class="item-name">Gantelet d'Anubis</p><span class="item-price">500 P$</span><p class="item-desc">Gantelet sacré porté par Anubis, guide des âmes. Guide le poing vers les coups les plus favorables.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="glace éternelle" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/never-melt-ice.png" alt="Glace Éternelle" onerror="this.parentElement.innerHTML='🧊'" /></div>
+          <div class="item-body"><p class="item-name">Glace Éternelle</p><span class="item-price">50 P$</span><p class="item-desc">Bloc de glace venu de l'île Kheperet qui ne fond jamais. Augmente la puissance des attaques de type Gel du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="graine miracle" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/miracle-seed.png" alt="Graine Miracle" onerror="this.parentElement.innerHTML='🌱'" /></div>
+          <div class="item-body"><p class="item-name">Graine Miracle</p><span class="item-price">50 P$</span><p class="item-desc">Graine sacrée venue de la nature luxuriante d'Isara. Augmente la puissance des attaques de type Plante du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="grelot coque" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shell-bell.png" alt="Grelots" onerror="this.parentElement.innerHTML='🔔'" /></div>
+          <div class="item-body"><p class="item-name">Grelot Coque</p><span class="item-price">200 P$</span><p class="item-desc">Restaure un peu les PV du porteur chaque fois qu’il inflige des dégâts.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="grelot zen" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png" alt="Grelots" onerror="this.parentElement.innerHTML='🔔'" /></div>
+          <div class="item-body"><p class="item-name">Grelot Zen</p><span class="item-price">200 P$</span><p class="item-desc">Un grelot dont le carillon calme le porteur et favorise l’amitié.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="griffe rasoir" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png" alt="Griffe Rasoir" onerror="this.parentElement.innerHTML='🦅'" /></div>
+          <div class="item-body"><p class="item-name">Griffe Rasoir</p><span class="item-price">200 P$</span><p class="item-desc">Griffe acérée provenant d'un rapace du désert. Augmente le taux de coups critiques et permet à Farfuret d'évoluer.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="grosse racine" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-root.png" alt="Grosse Racine" onerror="this.parentElement.innerHTML='🌿'" /></div>
+          <div class="item-body"><p class="item-name">Grosse Racine</p><span class="item-price">50 P$</span><p class="item-desc">Racine tentaculaire d'arbre d'Isara. Augmente les PV drainés par les capacités de soin du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="herbe blanche" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/white-herb.png" alt="Herbe Blanche" onerror="this.parentElement.innerHTML='🌾'" /></div>
+          <div class="item-body"><p class="item-name">Herbe Blanche</p><span class="item-price">200 P$</span><p class="item-desc">Herbe de l'île Kheperet qui revitalise les sols désertiques. Objet à tenir consommable : restaure toutes les statistiques baissées une seule fois.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="herbe mental" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mental-herb.png" alt="Herbes spéciales" onerror="this.parentElement.innerHTML='🍃'" /></div>
+          <div class="item-body"><p class="item-name">Herbe Mental</p><span class="item-price">200 P$</span><p class="item-desc">Guérit de certaines attaques limitant le choix des capacités. Ne peut être utilisé qu’une fois.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="herbe pouvoir" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-herb.png" alt="Herbes spéciales" onerror="this.parentElement.innerHTML='🍃'" /></div>
+          <div class="item-body"><p class="item-name">Herbe Pouvoir</p><span class="item-price">200 P$</span><p class="item-desc">Objet à tenir et à usage unique. Permet d’utiliser immédiatement une capacité qui devrait se charger au premier tour.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="masque de l'ombre" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/masque-de-l-ombre.png" alt="Masque de l'Ombre" onerror="this.parentElement.innerHTML='🕶️'" /></div>
+          <div class="item-body"><p class="item-name">Masque de l'Ombre</p><span class="item-price">50 P$</span><p class="item-desc">Masque obscur porté par les voleurs du désert. Il absorbe la lumière et amplifie la puissance des attaques du type Ombre.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="masque du choix" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/masque-du-choix.png" alt="Masque du Choix" onerror="this.parentElement.innerHTML='🎭'" /></div>
+          <div class="item-body"><p class="item-name">Masque du Choix</p><span class="item-price">200 P$</span><p class="item-desc">Masque cérémoniel à quatre faces — joie, tristesse, colère et stupeur. Une fois porté, il impose une émotion unique qui focalise totalement le Pokémon sur une seule attaque.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="masque du savoir" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/masque-du-savoir.png" alt="Masque du Savoir" onerror="this.parentElement.innerHTML='🎓'" /></div>
+          <div class="item-body"><p class="item-name">Masque du Savoir</p><span class="item-price">200 P$</span><p class="item-desc">Masque rituel des scribes de Khemis, créé pour canaliser la mémoire des anciens. Accroît la maîtrise et la précision des capacités Spéciales.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="masse os" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thick-club.png" alt="Masse Os" onerror="this.parentElement.innerHTML='🦴'" /></div>
+          <div class="item-body"><p class="item-name">Masse Os</p><span class="item-price">500 P$</span><p class="item-desc">Os rituellement durci, anciennement utilisé comme arme des gardiens de tombeaux. Double l'Attaque d'Osselait et permet à Osselait d'évoluer.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="mouchoir soie" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/silk-scarf.png" alt="Mouchoir Soie" onerror="this.parentElement.innerHTML='🎀'" /></div>
+          <div class="item-body"><p class="item-name">Mouchoir Soie</p><span class="item-price">50 P$</span><p class="item-desc">Écharpe de soie issue des vers à soie du Canilis. Augmente la puissance des attaques de type Normal du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="oeil d'horus" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/oeil-d-horus.png" alt="Oeil d'Horus" onerror="this.parentElement.innerHTML='👁️'" /></div>
+          <div class="item-body"><p class="item-name">Œil d'Horus</p><span class="item-price">200 P$</span><p class="item-desc">Amulette sacrée représentant l’œil protecteur d’Horus. Elle améliore l’acuité visuelle et permet de viser plus précisément.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="orbe flamme" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/flame-orb.png" alt="Orbes" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Orbe Flamme</p><span class="item-price">200 P$</span><p class="item-desc">Un orbe enchanté qui brûle son porteur durant le combat.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="orbe toxique" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/toxic-orb.png" alt="Orbes" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Orbe Toxique</p><span class="item-price">200 P$</span><p class="item-desc">Un orbe enchanté qui empoisonne gravement son porteur durant le combat.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="orbe vie" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/life-orb.png" alt="Orbes" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Orbe Vie</p><span class="item-price">200 P$</span><p class="item-desc">Un orbe enchanté qui augmente la puissance des capacités, mais dépense des PV à chaque coup.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="peau métal" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png" alt="Peau Métal" onerror="this.parentElement.innerHTML='🛡️'" /></div>
+          <div class="item-body"><p class="item-name">Peau Métal</p><span class="item-price">50 P$</span><p class="item-desc">Revêtement d'acier ancien. Augmente les attaques de type Métal du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="pic venin" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poison-barb.png" alt="Pic Venin" onerror="this.parentElement.innerHTML='☠️'" /></div>
+          <div class="item-body"><p class="item-name">Pic Venin</p><span class="item-price">50 P$</span><p class="item-desc">Épine acérée trempée dans le venin des serpents du désert. Amplifie les attaques de type Poison du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="pièce rune" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/amulet-coin.png" alt="Pièce Rune" onerror="this.parentElement.innerHTML='🪙'" /></div>
+          <div class="item-body"><p class="item-name">Pièce Rune</p><span class="item-price">500 P$</span><p class="item-desc">Pièce rare gravée de runes protectrices. Lorsque le porteur participe au combat, les gains en pièces d'or après la victoire sont doublés.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="pierre allégée" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/float-stone.png" alt="Pierre Allégée" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Allégée</p><span class="item-price">50 P$</span><p class="item-desc">Une pierre très légère qui réduit le poids du Pokémon qui la tient.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="poudre argentée" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/silver-powder.png" alt="Poudre Argentée" onerror="this.parentElement.innerHTML='✨'" /></div>
+          <div class="item-body"><p class="item-name">Poudre Argentée</p><span class="item-price">50 P$</span><p class="item-desc">Fine poudre extraite des ailes de papillons du désert. Amplifie les attaques Insecte du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="poudre claire" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/bright-powder.png" alt="Poudre Claire" onerror="this.parentElement.innerHTML='👓'" /></div>
+          <div class="item-body"><p class="item-name">Poudre Claire</p><span class="item-price">100 P$</span><p class="item-desc">Poudre translucide qui diminue la précision de l'adversaire.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="protecteur" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png" alt="Protecteur" onerror="this.parentElement.innerHTML='🛡️'" /></div>
+          <div class="item-body"><p class="item-name">Protecteur</p><span class="item-price">200 P$</span><p class="item-desc">Ancien bouclier de gladiateur. Permet à Gringolem d'évoluer.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="roche chaude" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heat-rock.png" alt="Roches" onerror="this.parentElement.innerHTML='🗿'" /></div>
+          <div class="item-body"><p class="item-name">Roche Chaude</p><span class="item-price">50 P$</span><p class="item-desc">Prolonge la durée de la capacité Zénith utilisée par le porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="roche de granite" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/roche-de-granite.png" alt="Roche de Granite" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Roche de Granite</p><span class="item-price">25 P$</span><p class="item-desc">Une roche incassable extraite de la carrière Granos. Augmente la puissance des capacités de type Granit du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="roche glace" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/icy-rock.png" alt="Roches" onerror="this.parentElement.innerHTML='🗿'" /></div>
+          <div class="item-body"><p class="item-name">Roche Glace</p><span class="item-price">50 P$</span><p class="item-desc">Prolonge la durée de la capacité Grêle utilisée par le porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="roche lisse" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/smooth-rock.png" alt="Roches" onerror="this.parentElement.innerHTML='🗿'" /></div>
+          <div class="item-body"><p class="item-name">Roche Lisse</p><span class="item-price">50 P$</span><p class="item-desc">Prolonge la durée de la capacité Tempête de Sable utilisée par le porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="roche royale" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png" alt="Roches" onerror="this.parentElement.innerHTML='🗿'" /></div>
+          <div class="item-body"><p class="item-name">Roche Royale</p><span class="item-price">60 P$</span><p class="item-desc">Peut apeurer l’ennemi lorsque le porteur lui inflige des dégâts.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="rune purifiante" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cleanse-tag.png" alt="Runes" onerror="this.parentElement.innerHTML='🔯'" /></div>
+          <div class="item-body"><p class="item-name">Rune Purifiante</p><span class="item-price">300 P$</span><p class="item-desc">Tablette runique gravée par les prêtres de Thèba. Permet de repousser les Pokémon sauvages plus faibles.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="rune sort" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/spell-tag.png" alt="Runes" onerror="this.parentElement.innerHTML='🔯'" /></div>
+          <div class="item-body"><p class="item-name">Rune Sort</p><span class="item-price">100 P$</span><p class="item-desc">Un talisman sinistre et étrange qui augmente la puissance des capacités de type Spectre.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="sable doux" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soft-sand.png" alt="Sable Doux" onerror="this.parentElement.innerHTML='🏜️'" /></div>
+          <div class="item-body"><p class="item-name">Sable Doux</p><span class="item-price">50 P$</span><p class="item-desc">Sable fin des grandes dunes de Khemis, réchauffé par le soleil. Augmente la puissance des attaques Sol du porteur.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="sablier du temps" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/sablier-du-temps.png" alt="Sablier du Temps" onerror="this.parentElement.innerHTML='⏳'" /></div>
+          <div class="item-body"><p class="item-name">Sablier du Temps</p><span class="item-price">200 P$</span><p class="item-desc">Petit sablier rituel, soufflé en verre coloré. Son écoulement régulier impose un rythme sacré qui booste une capacité utilisée à répétition. L’effet s’annule si une autre capacité est utilisée.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="scarabrute fugace" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/scarabrute-fugace.png" alt="Scarabrute Fugace" onerror="this.parentElement.innerHTML='🪲'" /></div>
+          <div class="item-body"><p class="item-name">Scarabrute Fugace</p><span class="item-price">200 P$</span><p class="item-desc">Petit scarabrute porte-bonheur, habité par un esprit pressé. À la moindre menace, il force son porteur à quitter le combat.</p></div>
+        </div>    
+
+        <div class="item-card" data-cat="tenir" data-name="sceptre mystique" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/sceptre-mystique.png" alt="Sceptre Mystique" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Sceptre Mystique</p><span class="item-price">50 P$</span><p class="item-desc">Petit sceptre de prêtre, orné d’un cristal d’Esprit. Son pouvoir amplifie les capacités du type Esprit.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="statuette du prêtre" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/statuette-du-pretre.png" alt="Statuette du Prêtre" onerror="this.parentElement.innerHTML='🏛️'" /></div>
+          <div class="item-body"><p class="item-name">Statuette du Prêtre</p><span class="item-price">200 P$</span><p class="item-desc">Statuette d'argile représentant un ancien prêtre de Khemis. Utilisée par les scribes pour analyser les inscriptions, elle aide le Pokémon à mieux repérer les failles ennemies.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="vase hanté" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/vase-hante.png" alt="Vase Hanté" onerror="this.parentElement.innerHTML='🏺'" /></div>
+          <div class="item-body"><p class="item-name">Vase Hanté</p><span class="item-price">500 P$</span><p class="item-desc">Vase trouvé dans les tombeaux des pharaons, abritant des âmes anciennes. Son aura lugubre rend le porteur sensible aux capacités qui ne peuvent habituellement pas lui faire de dégâts.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="tenir" data-name="vive griffe" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-claw.png" alt="Vive Griffe" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Vive Griffe</p><span class="item-price">50 P$</span><p class="item-desc">Griffe acérée d'un Pokémon rapide. Donne une chance d'agir en premier, indépendamment de la Vitesse.</p></div>
+        </div>
+
+      </div><!-- /item-grid -->
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- OBJETS DE SOIN                      -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="soin" data-cat="soin">
+      <div class="section-head">
+        <span class="section-icon">💊</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-soin)">Médecine</p>
+          <h2 style="color:var(--c-soin)">Objets de Soin</h2>
+        </div>
+        <span class="section-count">22 objets</span>
+      </div>
+      <div class="item-grid">
+
+        <div class="item-card" data-cat="soin" data-name="jus de fruit" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/berry-juice.png" alt="Jus de Fruit" onerror="this.parentElement.innerHTML='🍹'" /></div>
+          <div class="item-body"><p class="item-name">Jus de Fruit</p><span class="item-price">5 P$</span><p class="item-desc">Une boisson 100% pur jus de fruit pressé à la main. Restaure 20 PV d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="jus de datte" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/jus-de-datte.png" alt="Jus de Datte" onerror="this.parentElement.innerHTML='🌴'" /></div>
+          <div class="item-body"><p class="item-name">Jus de Datte</p><span class="item-price">12 P$</span><p class="item-desc">Une boisson fraîche issue des dattiers sacrés du désert. Sucrée et énergisante, elle restaure 50 PV d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="nectar de hathor" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/nectar-de-hathor.png" alt="Nectar de Hathor" onerror="this.parentElement.innerHTML='🍶'" /></div>
+          <div class="item-body"><p class="item-name">Nectar de Hathor</p><span class="item-price">20 P$</span><p class="item-desc">Une boisson sucrée dédiée à Hathor, déesse de la joie et de la santé. Très revigorante, elle restaure 100 PV d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="poudrenergie" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-powder.png" alt="Poudrenergie" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Poudrenergie</p><span class="item-price">30 P$</span><p class="item-desc">Poudre médicinale provenant du nectar de certaines plantes rares. Restaure 200 PV d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="racinenergie" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-root.png" alt="Racinenergie" onerror="this.parentElement.innerHTML='🌱'" /></div>
+          <div class="item-body"><p class="item-name">Racinenergie</p><span class="item-price">50 P$</span><p class="item-desc">Racine assez rare aux excellentes vertus thérapeutiques. Restaure tous les PV d'un Pokémon et soigne toutes ses altérations de statut.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="poudre soin" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-powder.png" alt="Poudre Soin" onerror="this.parentElement.innerHTML='🌿'" /></div>
+          <div class="item-body"><p class="item-name">Poudre Soin</p><span class="item-price">10 P$</span><p class="item-desc">Poudre médicinale provenant de plantes communes de la région. Soigne toutes les altérations de statut d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="herbe rappel" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/revival-herb.png" alt="Herbe Rappel" onerror="this.parentElement.innerHTML='🍃'" /></div>
+          <div class="item-body"><p class="item-name">Herbe Rappel</p><span class="item-price">60 P$</span><p class="item-desc">Herbe médicinale très rare. Ranime un Pokémon K.O. et restaure tous ses PV.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="galette cendrée" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/galette-cendree.png" alt="Galette Cendrée" onerror="this.parentElement.innerHTML='🍪'" /></div>
+          <div class="item-body"><p class="item-name">Galette Cendrée</p><span class="item-price">10 P$</span><p class="item-desc">Galette traditionnelle oubliée dans le four en argile un peu trop longtemps. Malgré son aspect brûlé, elle soigne toutes les altérations de statut d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="pain des âmes" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/pain-des-ames.png" alt="Pain des Âmes" onerror="this.parentElement.innerHTML='🍞'" /></div>
+          <div class="item-body"><p class="item-name">Pain des Âmes</p><span class="item-price">10 P$</span><p class="item-desc">Petit pain rituel confectionné selon une recette ancestrale, offert aux esprits lors des veillées funéraires. Son parfum apaisant soigne toutes les altérations de statut.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="huile" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/huile.png" alt="Huile" onerror="this.parentElement.innerHTML='⚗️'" /></div>
+          <div class="item-body"><p class="item-name">Huile</p><span class="item-price">20 P$</span><p class="item-desc">Huile de palme purifiée. Restaure 10 PP d'une capacité sélectionnée.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="huile sacrée" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/huile-sacree.png" alt="Huile Sacrée" onerror="this.parentElement.innerHTML='💫'" /></div>
+          <div class="item-body"><p class="item-name">Huile Sacrée</p><span class="item-price">35 P$</span><p class="item-desc">Huile bénie par les prêtres des temples. Restaure tous les PP d'une capacité sélectionnée à leur maximum.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="élixir" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/elixir.png" alt="Élixir" onerror="this.parentElement.innerHTML='✨'" /></div>
+          <div class="item-body"><p class="item-name">Élixir</p><span class="item-price">50 P$</span><p class="item-desc">Préparation alchimique ancestrale. Restaure 10 PP de toutes les capacités d'un Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="élixir sacré" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/elixir-sacre.png" alt="Élixir Sacré" onerror="this.parentElement.innerHTML='💎'" /></div>
+          <div class="item-body"><p class="item-name">Élixir Sacré</p><span class="item-price">70 P$</span><p class="item-desc">L'ultime préparation alchimique. Restaure tous les PP de toutes les capacités d'un Pokémon à leur maximum.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="essence de lotus" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/essence-de-lotus.png" alt="Essence de Lotus" onerror="this.parentElement.innerHTML='🌸'" /></div>
+          <div class="item-body"><p class="item-name">Essence de Lotus</p><span class="item-price">10 P$</span><p class="item-desc">Une infusion préparée à partir de pétales de lotus rares. On dit qu’elle renforce la vitalité des Pokémon qui la boivent.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="graine sacrée" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/graine-sacree.png" alt="Graine Sacrée" onerror="this.parentElement.innerHTML='💪'" /></div>
+          <div class="item-body"><p class="item-name">Graine Sacrée</p><span class="item-price">10 P$</span><p class="item-desc">Une graine sacrée consommée par les guerriers du désert. Riche en nutriments, elle renforce la puissance musculaire des Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="poudre de métal" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/poudre-de-metal.png" alt="Poudre de Métal" onerror="this.parentElement.innerHTML='⚙️'" /></div>
+          <div class="item-body"><p class="item-name">Poudre de Métal</p><span class="item-price">10 P$</span><p class="item-desc">Un minerai antique réduit en poudre. Les maîtres forgerons l’utilisent pour fortifier la peau et la résistance des Pokémon.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="coquille broyée" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/coquille-broyee.png" alt="Coquille Broyée" onerror="this.parentElement.innerHTML='🐚'" /></div>
+          <div class="item-body"><p class="item-name">Coquille Broyée</p><span class="item-price">10 P$</span><p class="item-desc">Fragments broyés de coquillages du Canilis, réputés pour renforcer les fondations spirituelles et la concentration.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="sels de sobek" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/sels-de-sobek.png" alt="Sels de Sobek" onerror="this.parentElement.innerHTML='🧂'" /></div>
+          <div class="item-body"><p class="item-name">Sels de Sobek</p><span class="item-price">10 P$</span><p class="item-desc">Des sels minéraux extraits du bord du Canilis à la Rive Sobek, réputés pour rétablir l’équilibre intérieur et renforcer la résistance mentale.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="résine noire" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/resine-noire.png" alt="Résine Noire" onerror="this.parentElement.innerHTML='🖤'" /></div>
+          <div class="item-body"><p class="item-name">Résine Noire</p><span class="item-price">10 P$</span><p class="item-desc">Une résine provenant d’arbres brûlés par le soleil. Lorsqu’elle est chauffée, elle réveille la vivacité des mouvements.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="essence d'hibiscus" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/essence-d-hibuscus.png" alt="Essence d'Hibiscus" onerror="this.parentElement.innerHTML='🌺'" /></div>
+          <div class="item-body"><p class="item-name">Essence d'Hibiscus</p><span class="item-price">500 P$</span><p class="item-desc">Préparée à partir d’un hibiscus poussant uniquement sur l’île paradisiaque de Sokaris. Cette essence rare stimule l’énergie intérieure du Pokémon, lui permettant d’utiliser un peu plus souvent l’une de ses capacités.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="datte royale" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="objets/datte-royale.png" alt="Datte Royale" onerror="this.parentElement.innerHTML='🌟'" /></div>
+          <div class="item-body"><p class="item-name">Datte Royale</p><span class="item-price">500 P$</span><p class="item-desc">Fruit extrêmement sucré d'un palmier cultivé uniquement dans les oasis sacrés. Fait progresser instantanément le Pokémon qui la mange d'un niveau.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="soin" data-name="cendre sacrée" style="--cat-color:var(--c-soin)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sacred-ash.png" alt="Cendre Sacrée" onerror="this.parentElement.innerHTML='🔥'" /></div>
+          <div class="item-body"><p class="item-name">Cendre Sacrée</p><span class="item-price">1000 P$</span><p class="item-desc">Des cendres sacrées qui appartiendraient au plus grand Pokémon légendaire de la région et possèdent des vertus thérapeutiques exceptionnelles. Elles réaniment un Pokémon K.O. et régénèrent toute leur santé.</p></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- BALLS                          -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="ball" data-cat="ball">
+      <div class="section-head">
+        <span class="section-icon">🔴</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-ball)">Capture</p>
+          <h2 style="color:var(--c-ball)">Balls</h2>
+        </div>
+        <span class="section-count">11 balls</span>
+      </div>
+      <div class="item-grid">
+
+        <div class="item-card" data-cat="ball" data-name="poké ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Poké Ball" onerror="this.parentElement.innerHTML='🔴'" /></div>
+          <div class="item-body"><p class="item-name">Poké Ball</p><span class="item-price">5 P$</span><p class="item-desc">Un objet semblable à une capsule qui capture les Pokémon sauvages. Il suffit pour cela de le lancer comme une balle.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="honor ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png" alt="Honor Ball" onerror="this.parentElement.innerHTML='🔵'" /></div>
+          <div class="item-body"><p class="item-name">Honor Ball</p><span class="item-price">40 P$ - offerte à l'achat de 10 Poké Balls</span><p class="item-desc">Une Poké Ball très performante dont le taux de réussite est 2 fois supérieur à celui de la Poké Ball.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="dune ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="objets/dune-ball.png" alt="Dune Ball" onerror="this.parentElement.innerHTML='🏜️'" /></div>
+          <div class="item-body"><p class="item-name">Dune Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon des sables.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="faiblo ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="objets/faiblo-ball.png" alt="Faiblo Ball" onerror="this.parentElement.innerHTML='⬇️'" /></div>
+          <div class="item-body"><p class="item-name">Faiblo Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon les plus faibles.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="lune ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-ball.png" alt="Lune Ball" onerror="this.parentElement.innerHTML='🌙'" /></div>
+          <div class="item-body"><p class="item-name">Lune Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon obscurs.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="rapide ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-ball.png" alt="Rapide Ball" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Rapide Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball qui permet d’attraper un Pokémon sauvage plus facilement si on l’utilise au début du combat.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="scara ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="objets/scara-ball.png" alt="Scara Ball" onerror="this.parentElement.innerHTML='🕸️'" /></div>
+          <div class="item-body"><p class="item-name">Scara Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon insectes.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="scuba ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dive-ball.png" alt="Scuba Ball" onerror="this.parentElement.innerHTML='🤿'" /></div>
+          <div class="item-body"><p class="item-name">Scuba Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon sous-marins.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="sombre ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="objets/sombre-ball.png" alt="Sombre Ball" onerror="this.parentElement.innerHTML='🌑'" /></div>
+          <div class="item-body"><p class="item-name">Sombre Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball efficace de nuit ou dans les endroits sombres, tels que les grottes.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="spirit ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/love-ball.png" alt="Spirit Ball" onerror="this.parentElement.innerHTML='💜'" /></div>
+          <div class="item-body"><p class="item-name">Spirit Ball</p><span class="item-price">10 P$</span><p class="item-desc">Une Poké Ball un peu spéciale qui fonctionne particulièrement bien sur les Pokémon mystiques.</p></div>
+        </div>
+
+        <div class="item-card" data-cat="ball" data-name="sacred ball" style="--cat-color:var(--c-ball)">
+          <div class="item-img-wrap"><img src="objets/sacred-ball.png" alt="Sacred Ball" onerror="this.parentElement.innerHTML='👑'" /></div>
+          <div class="item-body"><p class="item-name">Sacred Ball</p><span class="item-price">Inestimable</span><p class="item-desc">Assurément la Poké Ball la plus performante. Elle permet de capturer à coup sûr un Pokémon sauvage.</p></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- PIERRES D'ÉVOLUTION                 -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="pierre" data-cat="pierre">
+      <div class="section-head">
+        <span class="section-icon">💎</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-pierre)">Évolution</p>
+          <h2 style="color:var(--c-pierre)">Pierres d'Évolution</h2>
+        </div>
+        <span class="section-count">11 pierres — 100 P$ chacune</span>
+      </div>
+      <div class="item-grid">
+
+        <div class="item-card" data-cat="pierre" data-name="pierre aube" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png" alt="Pierre Aube" onerror="this.parentElement.innerHTML='✨'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Aube</p><span class="item-price">100 P$</span><p class="item-desc">Pierre aux éclats dorés de l'aurore qui fait évoluer certaines espèces de Pokémon. Elle brille comme un œil.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre eau" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png" alt="Pierre Eau" onerror="this.parentElement.innerHTML='💧'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Eau</p><span class="item-price">100 P$</span><p class="item-desc">Pierre aux reflets marins qui fait évoluer certaines espèces de Pokémon. Elle est de couleur bleue.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre éclat" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png" alt="Pierre Éclat" onerror="this.parentElement.innerHTML='💫'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Éclat</p><span class="item-price">100 P$</span><p class="item-desc">Pierre scintillante aux reflets mystérieux qui fait évoluer certaines espèces de Pokémon. Elle brille d’une lumière aveuglante.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre feu" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png" alt="Pierre Feu" onerror="this.parentElement.innerHTML='🔥'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Feu</p><span class="item-price">100 P$</span><p class="item-desc">Pierre brûlante issue des volcans qui fait évoluer certaines espèces de Pokémon. Elle est jaune et orange.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre foudre" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png" alt="Pierre Foudre" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Foudre</p><span class="item-price">100 P$</span><p class="item-desc">Pierre chargée d'électricité statique qui fait évoluer certaines espèces de Pokémon. Un éclair est présent dessus.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre gelée" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png" alt="Pierre Gelée" onerror="this.parentElement.innerHTML='🧊'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Gelée</p><span class="item-price">100 P$</span><p class="item-desc">Pierre froide venue de l'île Kheperet qui fait évoluer certaines espèces de Pokémon. Un flocon de neige semble être présent dessus.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre lune" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png" alt="Pierre Lune" onerror="this.parentElement.innerHTML='🌙'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Lune</p><span class="item-price">100 P$</span><p class="item-desc">Pierre née de la lumière lunaire qui fait évoluer certaines espèces de Pokémon. Elle est sombre comme la nuit.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre nuit" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png" alt="Pierre Nuit" onerror="this.parentElement.innerHTML='🌑'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Nuit</p><span class="item-price">100 P$</span><p class="item-desc">Pierre absorbant toute lumière qui fait évoluer certaines espèces de Pokémon. Elle est sombre comme une nuit sans lune.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre plante" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png" alt="Pierre Plante" onerror="this.parentElement.innerHTML='🌿'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Plante</p><span class="item-price">100 P$</span><p class="item-desc">Pierre couverte de mousses vivantes qui fait évoluer certaines espèces de Pokémon. Une feuille est présente dessus.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre soleil" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png" alt="Pierre Soleil" onerror="this.parentElement.innerHTML='☀️'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Soleil</p><span class="item-price">100 P$</span><p class="item-desc">Pierre irradiée par le soleil de Khemis qui fait évoluer certaines espèces de Pokémon. Elle est rouge comme le soleil couchant.</p></div>
+        </div>
+        <div class="item-card" data-cat="pierre" data-name="pierre stase" style="--cat-color:var(--c-pierre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/everstone.png" alt="Pierre Stase" onerror="this.parentElement.innerHTML='🥚'" /></div>
+          <div class="item-body"><p class="item-name">Pierre Stase</p><span class="item-price">100 P$</span><p class="item-desc">Pierre à l'énergie figée, cristallisée, empêchant l’évolution du Pokémon qui la tient.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- PAPYRUS                             -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="papyrus" data-cat="papyrus">
+      <div class="section-head">
+        <span class="section-icon">📜</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-papyrus)">Capacités</p>
+          <h2 style="color:var(--c-papyrus)">Papyrus d'Enseignement</h2>
+        </div>
+        <span class="section-count">2 types</span>
+      </div>
+      <div class="item-grid">
+        <div class="item-card" data-cat="papyrus" data-name="papyrus d'enseignement pe ct" style="--cat-color:var(--c-papyrus)">
+          <div class="item-img-wrap"><img src="objets/papyrus-d-enseignement-normal.png" alt="Papyrus d'Enseignement" onerror="this.parentElement.innerHTML='📜'" /></div>
+          <div class="item-body">
+            <p class="item-name">Papyrus d'Enseignement (PE)</p>
+            <span class="item-price">Consommable</span>
+            <p class="item-desc">Long rouleau de papyrus sur lequel est inscrit un glyphe d'attaque. Lorsque le Pokémon le touche, il libère une mémoire ancienne lui permettant d'apprendre l'attaque. Objet consommé après usage.</p>
+          </div>
+        </div>
+        <div class="item-card" data-cat="papyrus" data-name="papyrus sacré ps cs" style="--cat-color:var(--c-papyrus)">
+          <div class="item-img-wrap"><img src="objets/papyrus-sacre-normal.png" alt="Papyrus Sacré" onerror="this.parentElement.innerHTML='✨'" /></div>
+          <div class="item-body">
+            <p class="item-name">Papyrus Sacré (PS)</p>
+            <span class="item-price">Permanent, doré et orné de lapis-lazuli</span>
+            <p class="item-desc">Relique extrêmement rare, protégée par les temples. Sa magie est permanente : le Pokémon garde l'attaque définitivement. Les Papyrus Sacrés se distinguent par leur couleur dorée, leurs glyphes brillants et leur reliure en or et lapis-lazuli.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- FOSSILES                            -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="fossile" data-cat="fossile">
+      <div class="section-head">
+        <span class="section-icon">🦕</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-fossile)">Archéologie</p>
+          <h2 style="color:var(--c-fossile)">Fossiles</h2>
+        </div>
+        <span class="section-count">7 fossiles — Carrière Granos</span>
+      </div>
+      <div class="item-grid">
+        <div class="item-card" data-cat="fossile" data-name="fossile dôme kabuto" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dome-fossil.png" alt="Fossile Dôme" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Fossile Dôme</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Fragment de carapace pétrifié. Peut être ressuscité en Kabuto, crabe fossile des fonds marins.</p></div>
+        </div>
+        <div class="item-card" data-cat="fossile" data-name="nautile amonita" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/helix-fossil.png" alt="Nautile" onerror="this.parentElement.innerHTML='🐚'" /></div>
+          <div class="item-body"><p class="item-name">Nautile</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Coquillage fossile en spirale. Peut être ressuscité en Amonita, un mollusque céphalopode des abysses.</p></div>
+        </div>   
+        <div class="item-card" data-cat="fossile" data-name="vieil ambre ptéra" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-amber.png" alt="Vieil Ambre" onerror="this.parentElement.innerHTML='🦟'" /></div>
+          <div class="item-body"><p class="item-name">Vieil Ambre</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Résine ancienne emprisonnant l'ADN d'un Pokémon préhistorique. Peut être ressuscité en Ptéra.</p></div>
+        </div>
+        <div class="item-card" data-cat="fossile" data-name="fossile griffe anorith" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/claw-fossil.png" alt="Fossile Griffe" onerror="this.parentElement.innerHTML='🦀'" /></div>
+          <div class="item-body"><p class="item-name">Fossile Griffe</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Pince fossile tranchante d'une créature antique. Peut être ressuscitée en Anorith, crevette préhistorique.</p></div>
+        </div>
+        <div class="item-card" data-cat="fossile" data-name="fossile racine lilia" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/root-fossil.png" alt="Fossile Racine" onerror="this.parentElement.innerHTML='🌹'" /></div>
+          <div class="item-body"><p class="item-name">Fossile Racine</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Racine pétrifiée d'une plante disparue. Peut être ressuscitée en Lilia, la rose fossile.</p></div>
+        </div>
+        <div class="item-card" data-cat="fossile" data-name="fossile plaque carapagos" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cover-fossil.png" alt="Fossile Plaque" onerror="this.parentElement.innerHTML='🐢'" /></div>
+          <div class="item-body"><p class="item-name">Fossile Plaque</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Plaque de carapace fossile. Peut être ressuscitée en Carapagos, tortue des temps immémoriaux.</p></div>
+        </div>
+        <div class="item-card" data-cat="fossile" data-name="fossile plume arkéapti" style="--cat-color:var(--c-fossile)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/plume-fossil.png" alt="Fossile Plume" onerror="this.parentElement.innerHTML='🪶'" /></div>
+          <div class="item-body"><p class="item-name">Fossile Plume</p><span class="item-price">PS Éclate-Roc</span><p class="item-desc">Plume pétrifiée d'un oiseau préhistorique. Peut être ressuscitée en Arkéapti, rapace des temps anciens.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- JOYAUX                              -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="joyau" data-cat="joyau">
+      <div class="section-head">
+        <span class="section-icon">💠</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-joyau)">Gemmes</p>
+          <h2 style="color:var(--c-joyau)">Joyaux</h2>
+        </div>
+        <span class="section-count">18 joyaux — 5 P$ chacun</span>
+      </div>
+      <div class="item-grid">
+
+        <div class="item-card" data-cat="joyau" data-name="joyau âme spectre" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ghost-gem.png" alt="Joyau Âme" onerror="this.parentElement.innerHTML='👻'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Âme</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Âme.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau combat" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fighting-gem.png" alt="Joyau Combat" onerror="this.parentElement.innerHTML='🥊'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Combat</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Combat.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau divin fée" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fairy-gem.png" alt="Joyau Divin" onerror="this.parentElement.innerHTML='✨'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Divin</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Divin.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau dragon" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-gem.png" alt="Joyau Dragon" onerror="this.parentElement.innerHTML='🐉'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Dragon</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Dragon.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau eau" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-gem.png" alt="Joyau Eau" onerror="this.parentElement.innerHTML='💧'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Eau</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Eau.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau esprit psy" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/psychic-gem.png" alt="Joyau Esprit" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Esprit</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Esprit.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau feu" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-gem.png" alt="Joyau Feu" onerror="this.parentElement.innerHTML='🔥'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Feu</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Feu.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau foudre électrik" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electric-gem.png" alt="Joyau Foudre" onerror="this.parentElement.innerHTML='⚡'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Foudre</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Foudre.</p></div>
+        </div>  
+        <div class="item-card" data-cat="joyau" data-name="joyau gelé glace" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-gem.png" alt="Joyau Gelé" onerror="this.parentElement.innerHTML='🧊'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Gelé</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Gel.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau granite granit roche" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rock-gem.png" alt="Joyau Granite" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Granit</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Granit.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau insecte" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/bug-gem.png" alt="Joyau Insecte" onerror="this.parentElement.innerHTML='🪲'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Insecte</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Insecte.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau métal" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/steel-gem.png" alt="Joyau Métal" onerror="this.parentElement.innerHTML='⚙️'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Métal</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Métal.</p></div>
+        </div> 
+        <div class="item-card" data-cat="joyau" data-name="joyau normal" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/normal-gem.png" alt="Joyau Normal" onerror="this.parentElement.innerHTML='⚪'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Normal</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Normal.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau ombre ténèbres" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dark-gem.png" alt="Joyau Ombre" onerror="this.parentElement.innerHTML='🌑'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Ombre</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Ombre.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau plante" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/grass-gem.png" alt="Joyau Plante" onerror="this.parentElement.innerHTML='🌿'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Plante</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Plante.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau poison" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poison-gem.png" alt="Joyau Poison" onerror="this.parentElement.innerHTML='☠️'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Poison</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Poison.</p></div>
+        </div>
+        <div class="item-card" data-cat="joyau" data-name="joyau sol" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ground-gem.png" alt="Joyau Sol" onerror="this.parentElement.innerHTML='🏜️'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Sol</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Sol.</p></div>
+        </div> 
+        <div class="item-card" data-cat="joyau" data-name="joyau vol" style="--cat-color:var(--c-joyau)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/flying-gem.png" alt="Joyau Vol" onerror="this.parentElement.innerHTML='🪶'" /></div>
+          <div class="item-body"><p class="item-name">Joyau Vol</p><span class="item-price">5 P$</span><p class="item-desc">Un joyau augmentant une fois la puissance des capacités de type Vol.</p></div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- TRÉSORS                             -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="tresor" data-cat="tresor">
+      <div class="section-head">
+        <span class="section-icon">👑</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-tresor)">Antiquités</p>
+          <h2 style="color:var(--c-tresor)">Trésors</h2>
+        </div>
+        <span class="section-count">14 objets — À revendre</span>
+      </div>
+      <div class="item-grid">
+        <div class="item-card" data-cat="tresor" data-name="éclat étoile morceau étoile poussière étoile" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/stardust.png" alt="Éclats d'Étoile" onerror="this.parentElement.innerHTML='⭐'" /></div>
+          <div class="item-body"><p class="item-name">Éclats d'Étoile</p><span class="item-price">Bonne valeur</span><p class="item-desc">Sable rouge ravissant, aux grains très fins. Bonne valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="monef de bronze vieux sou" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Monef de Bronze" onerror="this.parentElement.innerHTML='🪙​'" /></div>
+          <div class="item-body"><p class="item-name">Monef de Bronze</p><span class="item-price">Bonne valeur</span><p class="item-desc">Vieille pièce en bronze frappée du profil d'un pharaon oublié. Bonne valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="perle" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pearl.png" alt="Perle" onerror="this.parentElement.innerHTML='🫧'" /></div>
+          <div class="item-body"><p class="item-name">Perle</p><span class="item-price">Bonne valeur</span><p class="item-desc">Petite perle nacrée trouvée dans les coquillages du Canilis. Bonne valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="sel du désert blanc" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="objets/sels-de-sobek.png" alt="Sel du Désert Blanc" onerror="this.parentElement.innerHTML='🧂'" /></div>
+          <div class="item-body"><p class="item-name">Sel du Désert Blanc</p><span class="item-price">Bonne valeur</span><p class="item-desc">Sel extrêmement pur extrait des dunes blanches du désert de Khemis. Considéré comme un ingrédient rituel très recherché. Bonne valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="monef d'argent vieil écu" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Monef d'Argent" onerror="this.parentElement.innerHTML='🪙​'" /></div>
+          <div class="item-body"><p class="item-name">Monef d'Argent</p><span class="item-price">Grande valeur</span><p class="item-desc">Ancienne pièce en argent utilisée comme offrande dans les temples de Khemis. Grande valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="grande perle" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-pearl.png" alt="Grande Perle" onerror="this.parentElement.innerHTML='⚪'" /></div>
+          <div class="item-body"><p class="item-name">Grande Perle</p><span class="item-price">Grande valeur</span><p class="item-desc">Grande perle nacrée trouvée dans les profondeurs du Canilis. Grande valeur marchande.</p></div>
+        </div>  
+        <div class="item-card" data-cat="tresor" data-name="pépite" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png" alt="Pépite" onerror="this.parentElement.innerHTML='💛'" /></div>
+          <div class="item-body"><p class="item-name">Pépite</p><span class="item-price">Grande valeur</span><p class="item-desc">Petite pépite d'or trouvée dans les sables de Khemis. Grande valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="monef d'or vieux ducat" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Monef d'Or" onerror="this.parentElement.innerHTML='🪙​'" /></div>
+          <div class="item-body"><p class="item-name">Monef d'Or</p><span class="item-price">Très grande valeur</span><p class="item-desc">Pièce d'or pur datant d'un règne très ancien. Son éclat n'a pas terni malgré les siècles. Très grande valeur marchande.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="maxi pépite" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-nugget.png" alt="Maxi Pépite" onerror="this.parentElement.innerHTML='🏅'" /></div>
+          <div class="item-body"><p class="item-name">Maxi Pépite</p><span class="item-price">Très grande valeur</span><p class="item-desc">Énorme pépite d'or pur extraite des mines de Khemis. Très grande valeur marchande.</p></div>
+        </div> 
+        <div class="item-card" data-cat="tresor" data-name="amphore sacrée vieux vase" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Amphore Sacrée" onerror="this.parentElement.innerHTML='🏺'" /></div>
+          <div class="item-body"><p class="item-name">Amphore Sacrée</p><span class="item-price">Très grande valeur</span><p class="item-desc">Amphore fine décorée de motifs du soleil et des dunes. Servait aux rituels d'offrandes. Très grande valeur marchande.</p></div>
+        </div>            
+        <div class="item-card" data-cat="tresor" data-name="bracelet dynastique vieux bijou" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Bracelet Dynastique" onerror="this.parentElement.innerHTML='📿'" /></div>
+          <div class="item-body"><p class="item-name">Bracelet Dynastique</p><span class="item-price">Valeur exceptionnelle</span><p class="item-desc">Bracelet gravé de hiéroglyphes évoquant une dynastie royale disparue. Très rare et précieux pour les collectionneurs. Valeur marchande exceptionnelle.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="coquille du canilis" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Coquille du Canilis" onerror="this.parentElement.innerHTML='🐚'" /></div>
+          <div class="item-body"><p class="item-name">Coquille du Canilis</p><span class="item-price">Valeur exceptionnelle</span><p class="item-desc">Coquille polie trouvée au fond du Canilis. Les pêcheurs disent qu'elle appartenait à une espèce aujourd'hui disparue. Très prisée des collectionneurs. Valeur marchande exceptionnelle.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="couronne du pharaon perdu vieux tortil" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Couronne du Pharaon Perdu" onerror="this.parentElement.innerHTML='👑'" /></div>
+          <div class="item-body"><p class="item-name">Couronne du Pharaon Perdu</p><span class="item-price">Valeur exceptionnelle</span><p class="item-desc">Couronne cérémonielle en or tressée, retrouvée dans une chambre funéraire abandonnée. Un trésor inestimable. Valeur marchande exceptionnelle.</p></div>
+        </div>
+        <div class="item-card" data-cat="tresor" data-name="statuette funéraire vieux santon" style="--cat-color:var(--c-tresor)">
+          <div class="item-img-wrap"><img src="" alt="Statuette Funéraire" onerror="this.parentElement.innerHTML='🏛️'" /></div>
+          <div class="item-body"><p class="item-name">Statuette Funéraire</p><span class="item-price">Valeur exceptionnelle</span><p class="item-desc">Statuette en pierre représentant une divinité, placée dans les tombeaux pour guider les âmes dans l'au-delà. Valeur marchande exceptionnelle.</p></div>
+        </div>
+        
+
+        
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- OBJETS UNIQUES                      -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="unique" data-cat="unique">
+      <div class="section-head">
+        <span class="section-icon">🌟</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-unique)">Reliques</p>
+          <h2 style="color:var(--c-unique)">Objets Uniques</h2>
+        </div>
+        <span class="section-count">12 objets</span>
+      </div>
+      <div class="item-grid">
+        <div class="item-card" data-cat="unique" data-name="papyrus de bord" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/papyrus-de-bord.png" alt="Papyrus de Bord" onerror="this.parentElement.innerHTML='📓'" /></div>
+          <div class="item-body"><p class="item-name">Papyrus de Bord</p><span class="item-price">Unique</span><p class="item-desc">Rouleau de papyrus qui garde en mémoire vos aventures quotidiennes.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="carte" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/carte.png" alt="Carte" onerror="this.parentElement.innerHTML='🗺️'" /></div>
+          <div class="item-body"><p class="item-name">Carte</p><span class="item-price">Unique</span><p class="item-desc">Carte usée qui indique les routes, villages et lieux sacrés connus de la région de Khemis. Certaines zones restent encore mystérieuses.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="codex de khemis" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/codex-khemis.png" alt="Codex de Khemis" onerror="this.parentElement.innerHTML='📖'" /></div>
+          <div class="item-body"><p class="item-name">Codex de Khemis</p><span class="item-price">Unique</span><p class="item-desc">Ancien codex couvert de hiéroglyphes et béni par les prêtres. Chaque page se remplit d'informations sur les Pokémon rencontrés grâce à une encre mystique.</p></div>
+        </div>   
+        <div class="item-card" data-cat="unique" data-name="filet de pêche" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/filet-de-peche.png" alt="Filet de Pêche" onerror="this.parentElement.innerHTML='🎣'" /></div>
+          <div class="item-body"><p class="item-name">Filet de Pêche</p><span class="item-price">Unique</span><p class="item-desc">Filet tressé en fibres de papyrus. Permet d'attraper les Pokémon aquatiques communs dans les rivières et les lacs.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="filet sacré" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/filet-sacre.png" alt="Filet Sacré" onerror="this.parentElement.innerHTML='🎣'" /></div>
+          <div class="item-body"><p class="item-name">Filet Sacré</p><span class="item-price">Unique</span><p class="item-desc">Filet renforcé en fils de lin et runes gravées. Attire plus facilement les Pokémon rares. Idéal pour les rivières profondes.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="filet de sobek" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/filet-de-sobek.png" alt="Filet de Sobek" onerror="this.parentElement.innerHTML='⚓'" /></div>
+          <div class="item-body"><p class="item-name">Filet de Sobek</p><span class="item-price">Unique</span><p class="item-desc">Filet cérémoniel béni par les prêtres de Thèba. Capable de capturer les Pokémon aquatiques les plus puissants et légendaires. Symbole de prestige.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="camérupt de voyage" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/camerupt-de-voyage.png" alt="Camérupt de Voyage" onerror="this.parentElement.innerHTML='🐪'" /></div>
+          <div class="item-body"><p class="item-name">Camérupt de Voyage</p><span class="item-price">200 P$</span><p class="item-desc">Un Camérupt dressé spécialement pour transporter rapidement son dresseur à travers le désert et les oasis.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="camérupt rapide de voyage" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/camerupt-de-voyage.png" alt="Camérupt Rapide" onerror="this.parentElement.innerHTML='🏃'" /></div>
+          <div class="item-body"><p class="item-name">Camérupt Rapide de Voyage</p><span class="item-price">2000 P$</span><p class="item-desc">Un Camérupt rapide dressé spécialement pour transporter rapidement son dresseur à travers le désert et les oasis.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="clé mystérieuse" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/odd-keystone.png" alt="Clé Mystérieuse" onerror="this.parentElement.innerHTML='🗝️'" /></div>
+          <div class="item-body"><p class="item-name">Clé Mystérieuse</p><span class="item-price">500 P$</span><p class="item-desc">Ancienne pierre qui est en réalité une clé permettant de faire apparaître Spiritomb dans les ruines de Tanasu. Un objet rare et convoité.</p></div>
+        </div>      
+        <div class="item-card" data-cat="unique" data-name="minerai mystique" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/minerai-mystique.png" alt="Minerai Mystique" onerror="this.parentElement.innerHTML='💠'" /></div>
+          <div class="item-body"><p class="item-name">Minerai Mystique</p><span class="item-price">Objet mystérieux</span><p class="item-desc">Un minerai extrêmement rare se trouvant uniquement dans la carrière de calcaire de la région de Khemis.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="galet noir" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dark-stone.png" alt="Galet Noir" onerror="this.parentElement.innerHTML='⬛'" /></div>
+          <div class="item-body"><p class="item-name">Galet Noir</p><span class="item-price">Objet mystérieux</span><p class="item-desc">Galet pur ayant appartenu au Pokémon Dragon qui rasa la ville de Per-Ankh.</p></div>
+        </div>
+        <div class="item-card" data-cat="unique" data-name="fragment de ra" style="--cat-color:var(--c-unique)">
+          <div class="item-img-wrap"><img src="objets/fragment-de-ra.png" alt="Fragment de Râ" onerror="this.parentElement.innerHTML='☀️'" /></div>
+          <div class="item-body"><p class="item-name">Fragment de Râ</p><span class="item-price">Objet mystérieux</span><p class="item-desc">Éclat cristallin béni par Râ, le dieu-soleil. Il renferme une énergie ardente pouvant alimenter certains artefacts anciens.</p></div>
+        </div>       
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- AUTRES OBJETS                       -->
+    <!-- ════════════════════════════════════ -->
+    <section class="item-section" id="autre" data-cat="autre">
+      <div class="section-head">
+        <span class="section-icon">🧺​</span>
+        <div class="section-title-wrap">
+          <p class="section-eyebrow" style="color:var(--c-autre)">Divers</p>
+          <h2 style="color:var(--c-autre)">Autres Objets</h2>
+        </div>
+        <span class="section-count">8 objets</span>
+      </div>
+      <div class="item-grid">
+        <div class="item-card" data-cat="tenir" data-name="trèfle à 4 feuilles" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/trefle-a-4-feuilles.png" alt="Trèfle à 4 feuilles" onerror="this.parentElement.innerHTML='🍀'" /></div>
+          <div class="item-body"><p class="item-name">Trèfle à 4 Feuilles</p><span class="item-price">Objet de quête</span><p class="item-desc">Cette plante pousse près du Canilis. Réputée pour porter chance, elle est très recherchée par les croyants.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="fragment de granite" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="objets/fragment-de-granite.png" alt="Fragment de Granite" onerror="this.parentElement.innerHTML='🪨'" /></div>
+          <div class="item-body"><p class="item-name">Fragment de Granite</p><span class="item-price">Objet de quête</span><p class="item-desc">Petit morceau de pierre de Granite.</p></div>
+        </div>
+        <div class="item-card" data-cat="tenir" data-name="plant de papyrus" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="objets/plant-de-papyrus.png" alt="Plant de Papyrus" onerror="this.parentElement.innerHTML='📜'" /></div>
+          <div class="item-body"><p class="item-name">Plant de Papyrus</p><span class="item-price">Objet de quête</span><p class="item-desc">Plant provenant des berges du Canilis. Ressource très importante dans la région de Khemis, très convoitée pour ses multiples usages.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="fumée claire repousse" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="objets/fumee-claire.png" alt="Fumée Claire" onerror="this.parentElement.innerHTML='💨'" /></div>
+          <div class="item-body"><p class="item-name">Fumée Claire</p><span class="item-price">20 P$</span><p class="item-desc">Sachet d'herbes du désert qui, brûlées, dégagent une fumée claire au parfum piquant. Éloigne temporairement les Pokémon sauvages faibles.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="fumée dense super repousse" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="objets/fumee-dense.png" alt="Fumée Dense" onerror="this.parentElement.innerHTML='🌫️'" /></div>
+          <div class="item-body"><p class="item-name">Fumée Dense</p><span class="item-price">30 P$</span><p class="item-desc">Mélange d'herbes rares et de résines produisant une fumée épaisse. Repousse efficacement la plupart des Pokémon sauvages.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="fumée royale max repousse" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="objets/fumee-royale.png" alt="Fumée Royale" onerror="this.parentElement.innerHTML='👑'" /></div>
+          <div class="item-body"><p class="item-name">Fumée Royale</p><span class="item-price">40 P$</span><p class="item-desc">Fumée issue d'un encens sacré réservé aux cérémonies de la cour. Son aura protectrice tient à distance même les Pokémon les plus téméraires.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="corde d'explorateur" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="objets/corde-d-explorateur.png" alt="Corde d'Explorateur" onerror="this.parentElement.innerHTML='🪢'" /></div>
+          <div class="item-body"><p class="item-name">Corde d'Explorateur</p><span class="item-price">25 P$</span><p class="item-desc">Corde tressée en lin solide, utilisée par les explorateurs et pilleurs de tombeaux. Permet de remonter immédiatement à la sortie d'une pyramide ou d'une caverne.</p></div>
+        </div>
+        <div class="item-card" data-cat="autre" data-name="écaillecoeur" style="--cat-color:var(--c-autre)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heart-scale.png" alt="Écaillecoeur" onerror="this.parentElement.innerHTML='💗'" /></div>
+          <div class="item-body"><p class="item-name">Écaillecoeur</p><span class="item-price">50 P$</span><p class="item-desc">Écaille en forme de cœur, douce au toucher.</p></div>
+        </div> 
+      </div>
+    </section>
+
+  </div><!-- /items-content -->
+</div><!-- /page-layout -->
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company · Sprites © PokeAPI</p>
+  </div>
+</footer>
+
+<script>
+/* ── Burger Menu ── */
+const burger    = document.querySelector('.burger');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileLinks = mobileNav.querySelectorAll('a');
+
+function openMenu() {
+  burger.setAttribute('aria-expanded', 'true');
+  burger.setAttribute('aria-label', 'Fermer le menu');
+  mobileNav.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Ouvrir le menu');
+  mobileNav.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+burger.addEventListener('click', () => {
+  const isOpen = burger.getAttribute('aria-expanded') === 'true';
+  isOpen ? closeMenu() : openMenu();
+});
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+
+/* ── Filtres ── */
+let currentFilter = 'all';
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterItems();
+}
+
+function filterItems() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.item-card');
+  const sections = document.querySelectorAll('.item-section');
+  let total = 0;
+
+  cards.forEach(card => {
+    const cat = card.dataset.cat;
+    const name = card.dataset.name || '';
+    const desc = card.querySelector('.item-desc')?.textContent.toLowerCase() || '';
+    const matchCat = currentFilter === 'all' || cat === currentFilter;
+    const matchSearch = !q || name.includes(q) || desc.includes(q);
+    if (matchCat && matchSearch) { card.classList.remove('hidden'); total++; }
+    else card.classList.add('hidden');
+  });
+
+  // Hide empty sections
+  sections.forEach(sec => {
+    const cat = sec.dataset.cat;
+    const matchCat = currentFilter === 'all' || cat === currentFilter;
+    const anyVisible = [...sec.querySelectorAll('.item-card')].some(c => !c.classList.contains('hidden'));
+    sec.style.display = matchCat && anyVisible ? '' : 'none';
+  });
+
+  document.getElementById('visible-count').textContent = total;
+}
+</script>
+
+</body>
+</html>

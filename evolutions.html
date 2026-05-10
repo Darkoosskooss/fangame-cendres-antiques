@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Évolutions de Pokémon Cendres Antiques | Toutes les évolutions simplifiées et conditions spéciales de la région de Khemis." />
+  <meta name="robots" content="index, follow" />
+  <title>Évolutions | Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+
+      /* Couleurs méthodes */
+      --c-pierre:   #dd7db4;
+      --c-niveau:   #4596ed;
+      --c-objet:    #C9973A;
+      --c-lieu:     #28bc75;
+      --c-special:  #ee9474;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV (identique aux autres pages) ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: .88rem; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+    .nav-logo-sub  { font-family: var(--font-heading); font-size: .74rem; color: var(--text-muted); letter-spacing: .35em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      font-family: var(--font-heading); font-size: .88rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      position: relative; padding-bottom: 4px; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 20%, rgba(42,173,164,.08) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓆓';
+      position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .78rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 560px; margin: 0 auto; font-size: 1.06rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── LÉGENDE DES MÉTHODES ── */
+    .legend-bar {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem;
+      display: flex; gap: .6rem; flex-wrap: wrap; align-items: center;
+    }
+    .legend-label {
+      font-family: var(--font-heading); font-size: .70rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted); margin-right: .4rem;
+    }
+    .legend-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-heading); font-size: .68rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .3rem .75rem; border-radius: 20px; border: 1px solid;
+    }
+    .lp-pierre  { color: var(--c-pierre); border-color: rgba(221,125,180,.3); background: rgba(221,125,180,.08); }
+    .lp-niveau  { color: var(--c-niveau); border-color: rgba(69,150,237,.3);  background: rgba(69,150,237,.08); }
+    .lp-objet   { color: var(--c-objet);  border-color: rgba(201,151,58,.3);  background: rgba(201,151,58,.08); }
+    .lp-lieu    { color: var(--c-lieu);   border-color: rgba(40,188,117,.3);  background: rgba(40,188,117,.08); }
+    .lp-special { color: var(--c-special);border-color: rgba(238,148,116,.3); background: rgba(238,148,116,.08); }
+
+    /* ── FILTRES + RECHERCHE ── */
+    .filters-bar {
+      max-width: 1300px; margin: 1.2rem auto 0; padding: 0 2rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    }
+    .search-box { position: relative; flex: 1; min-width: 220px; }
+    .search-box input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-box input:focus { border-color: rgba(201,151,58,.5); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; font-size: 1.06rem; }
+    .filter-group { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: var(--font-heading); font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; padding: .4rem .85rem;
+      border-radius: 3px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.02); color: var(--text-muted);
+      cursor: pointer; transition: all var(--transition); display: flex; align-items: center; gap: .35rem;
+    }
+    .filter-btn:hover { background: rgba(201,151,58,.07); border-color: rgba(201,151,58,.35); color: var(--gold-light); }
+    .filter-btn.active { box-shadow: 0 0 0 1px currentColor; }
+    .filter-btn .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── MAIN ── */
+    .evo-main {
+      max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem 6rem;
+    }
+    .count-bar {
+      font-family: var(--font-heading); font-size: .76rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem;
+    }
+    .count-bar span { color: var(--gold); }
+
+    /* ── EVO GRID ── */
+    .evo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.1rem;
+    }
+
+    /* ── EVO CARD ── */
+    .evo-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border); border-radius: 5px;
+      padding: 1.2rem 1.4rem;
+      display: flex; flex-direction: column; gap: .9rem;
+      transition: all var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .evo-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--stripe, var(--gold));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .evo-card:hover {
+      background: rgba(201,151,58,.04);
+      border-color: rgba(201,151,58,.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+    .evo-card:hover::before { opacity: 1; }
+    .evo-card.hidden { display: none; }
+
+    /* Ligne Pokémon : [from] → [condition] → [to] */
+    .evo-pokemon-row {
+      display: flex; align-items: center; gap: .7rem;
+    }
+
+    /* Bloc Pokémon (image + nom) */
+    .poke-block {
+      display: flex; flex-direction: column; align-items: center; gap: .35rem;
+      min-width: 72px;
+    }
+    .poke-sprite {
+      width: 68px; height: 68px;
+      background: rgba(255,255,255,.04); border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: border-color var(--transition); flex-shrink: 0;
+    }
+    .evo-card:hover .poke-sprite { border-color: rgba(201,151,58,.4); }
+    .poke-sprite img {
+      width: 60px; height: 60px;
+      object-fit: contain; image-rendering: pixelated;
+    }
+    .poke-name {
+      font-family: var(--font-heading); font-size: .78rem; font-weight: 700;
+      color: var(--gold-pale); text-align: center; line-height: 1.2;
+      letter-spacing: .05em;
+    }
+
+    /* Flèche centrale avec condition */
+    .evo-arrow-block {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      min-width: 0;
+    }
+    .evo-arrow {
+      font-size: 1.6rem; color: var(--gold); opacity: .5; line-height: 1;
+    }
+    .evo-condition {
+      display: flex; flex-direction: column; align-items: center; gap: .25rem; width: 100%;
+    }
+
+    /* Badge méthode */
+    .method-badge {
+      font-family: var(--font-heading); font-size: .64rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      padding: .15rem .55rem; border-radius: 20px; border: 1px solid;
+      white-space: nowrap;
+    }
+    .mb-pierre  { color: var(--c-pierre); border-color: rgba(221,125,180,.35); background: rgba(221,125,180,.08); }
+    .mb-niveau  { color: var(--c-niveau); border-color: rgba(69,150,237,.35);  background: rgba(69,150,237,.08); }
+    .mb-objet   { color: var(--c-objet);  border-color: rgba(201,151,58,.35);  background: rgba(201,151,58,.08); }
+    .mb-lieu    { color: var(--c-lieu);   border-color: rgba(40,188,117,.35);  background: rgba(40,188,117,.08); }
+    .mb-special { color: var(--c-special);border-color: rgba(238,148,116,.35); background: rgba(238,148,116,.08); }
+
+    /* Image de l'objet / pierre */
+    .condition-item {
+      display: flex; flex-direction: column; align-items: center; gap: .2rem;
+    }
+    .item-sprite-wrap {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,.04); border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .item-sprite-wrap img { width: 36px; height: 36px; object-fit: contain; image-rendering: pixelated; }
+    .item-sprite-wrap .item-fallback { font-size: 1.6rem; opacity: .6; }
+    .condition-name {
+      font-family: var(--font-heading); font-size: .74rem; color: var(--gold-light);
+      text-align: center; line-height: 1.2; max-width: 110px;
+    }
+
+    /* Ligne de détail texte */
+    .evo-detail {
+      font-family: var(--font-heading); font-size: .70rem; letter-spacing: .08em;
+      color: var(--text-muted); text-align: center; line-height: 1.5;
+    }
+    .evo-detail .evo-lvl { color: var(--gold); font-size: .78rem; }
+    .evo-detail .evo-loc { color: var(--c-lieu); }
+
+    /* Simplification tag */
+    .simplified-tag {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: var(--font-heading); font-size: .62rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--turquoise);
+      border: 1px solid rgba(42,173,164,.3); background: rgba(42,173,164,.06);
+      padding: .15rem .5rem; border-radius: 20px; align-self: flex-start;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ═══════════════════════════════════════════
+       BURGER MENU
+    ════════════════════════════════════════════ */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 3px;
+      transition: background var(--transition);
+      z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+
+    .burger-line {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1),
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    /* Croix quand ouvert */
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV OVERLAY
+    ════════════════════════════════════════════ */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus {
+      color: var(--gold-light);
+      background: rgba(201,151,58,.05);
+    }
+    .mobile-nav ul a.active { color: var(--gold); }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .burger      { display: flex; }
+      .nav-links   { display: none; }
+      .mobile-nav  { display: flex; }
+
+      nav { padding: 0 1.2rem; }
+    }
+
+    @media (max-width: 700px) {
+      .evo-grid { grid-template-columns: 1fr; }
+      .filters-bar { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html" class="active">Évolutions</a></li>
+    </ul>
+
+    <!-- Burger button (mobile) -->
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html">Pokémon</a></li>
+    <li><a href="objets.html">Objets</a></li>
+    <li><a href="evolutions.html" class="active">Évolutions</a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Khemis Évolué ✦</p>
+  <h1>Évolutions</h1>
+  <p>Toutes les conditions d'évolution de la région, notamment les évolutions simplifiées spécifiques à Khemis, avec leurs objets et lieux requis.</p>
+</div>
+
+<!-- ══ LÉGENDE ══ -->
+<div class="legend-bar" aria-label="Légende des méthodes d'évolution">
+  <span class="legend-label">Méthodes :</span>
+  <span class="legend-pill lp-pierre">💎 Pierre</span>
+  <span class="legend-pill lp-niveau">⬆️ Niveau</span>
+  <span class="legend-pill lp-objet">🏺 Objet</span>
+  <span class="legend-pill lp-lieu">📍 Lieu</span>
+  <span class="legend-pill lp-special">✦ Spécial</span>
+</div>
+
+<!-- ══ FILTRES ══ -->
+<div class="filters-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher une évolution" oninput="filterCards()" autocomplete="off" />
+  </div>
+  <div class="filter-group">
+    <button class="filter-btn active" onclick="setFilter('all', this)">
+      <span class="dot" style="background:var(--gold)"></span> Tous
+    </button>
+    <button class="filter-btn" onclick="setFilter('pierre', this)" style="color:var(--c-pierre)">
+      <span class="dot" style="background:var(--c-pierre)"></span> Pierre
+    </button>
+    <button class="filter-btn" onclick="setFilter('niveau', this)" style="color:var(--c-niveau)">
+      <span class="dot" style="background:var(--c-niveau)"></span> Niveau
+    </button>
+    <button class="filter-btn" onclick="setFilter('objet', this)" style="color:var(--c-objet)">
+      <span class="dot" style="background:var(--c-objet)"></span> Objet
+    </button>
+    <button class="filter-btn" onclick="setFilter('lieu', this)" style="color:var(--c-lieu)">
+      <span class="dot" style="background:var(--c-lieu)"></span> Lieu
+    </button>
+    <button class="filter-btn" onclick="setFilter('special', this)" style="color:var(--c-special)">
+      <span class="dot" style="background:var(--c-special)"></span> Spécial
+    </button>
+    <button class="filter-btn" onclick="setFilter('simplifie', this)" style="color:var(--turquoise)">
+      <span class="dot" style="background:var(--turquoise)"></span> Simplifiées
+    </button>
+  </div>
+</div>
+
+<!-- ══ CONTENU ══ -->
+<main>
+<div class="evo-main">
+  <p class="count-bar">Affichage de <span id="visible-count">24</span> / 24 évolutions</p>
+
+  <div class="evo-grid" id="evo-grid">
+    <!-- Rempli par JS -->
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company · Sprites © PokeAPI</p>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// SPRITE HELPERS
+// ═══════════════════════════════════════════════════════════
+const PKM = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+const ITEM = slug => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${slug}.png`;
+
+// Correspondances Pokémon → ID PokeAPI
+const PKM_IDS = {
+  "Magicarpe": 129, "Léviator": 130,
+  "Onix": 95, "Steelix": 208,
+  "Gravalanch": 75, "Grolem": 76,
+  "Spectrum": 93, "Ectoplasma": 94,
+  "Kadabra": 64, "Alakazam": 65,
+  "Noeunoeuf": 102, "Noadkoko de Khemis": 10114,
+  "Osselait": 104, "Ossatueur de Khemis": 10115,
+  "Hypocéan": 117, "Hyporoi": 230,
+  "Téraclope": 356, "Noctunoir": 477,
+  "Barpau": 349, "Milobellus": 350,
+  "Stalgamin": 361, "Oniglali": 362, "Momartik": 478,
+  "Hippopotas": 449, "Hippodocus": 450,
+  "Riolu": 447, "Lucario": 448,
+  "Tarinor": 299, "Tarinorme": 476,
+  "Farfuret": 215, "Dimoret": 461,
+  "Scorplane": 207, "Scorvol": 472,
+  "Tutafeh": 562, "Tutankafer": 563,
+  "Chacripan": 509, "Léopardus": 510,
+  "Gringolem": 622, "Golemastoc": 623,
+  "Furaiglon": 627, "Gueriaigle": 628,
+  "Pyronille": 636, "Pyrax": 637,
+  "Ningale": 290, "Ninjask": 291, "Munja": 292,
+};
+
+// Correspondances objets → slug PokeAPI item
+const ITEM_SLUGS = {
+  "Pierre Eau": "water-stone",
+  "Peau Métal": "metal-coat",
+  "Masse Os": "thick-club",
+  "Écaille Draco": "dragon-scale",
+  "Tissu Fauche": "reaper-cloth",
+  "Écaille Divine": "prism-scale",
+  "Pierre Gelée": "ice-stone",
+  "Pierre Aube": "shiny-stone",
+  "Croc Dragon": "dragon-fang",
+  "Gantelet d'Anubis": "objets/gantelet-d-anubis.png",
+  "Grif. Rasoir": "razor-claw",
+  "Croc Rasoir": "razor-fang",
+  "Vase Hanté": "objets/vase-hante.png",
+  "Collier de Bastet": "objets/collier-bastet.png",
+  "Protecteur": "protector",
+  "Bec Pointu": "sharp-beak",
+};
+
+// Fallback emoji si l'image de l'item n'existe pas
+const ITEM_EMOJI = {
+  "Pierre Eau": "💧", "Peau Métal": "⚙️", "Masse Os": "🦴",
+  "Écaille Draco": "🐉", "Tissu Fauche": "🪄", "Écaille Divine": "🐟",
+  "Pierre Gelée": "🧊", "Pierre Aube": "✨", "Croc Dragon": "🐉",
+  "Gantelet d'Anubis": "🥊", "Grif. Rasoir": "🦅", "Croc Rasoir": "🦷",
+  "Vase Hanté": "🏺", "Collier de Bastet": "🐱", "Protecteur": "🛡️",
+  "Bec Pointu": "🦅",
+};
+
+// ═══════════════════════════════════════════════════════════
+// DONNÉES DES ÉVOLUTIONS
+// Champs : from, to, method (pierre|niveau|objet|lieu|special),
+//          condition, niveau, lieu, simplifie, note
+// ═══════════════════════════════════════════════════════════
+const EVOS = [
+  // ── Évolutions par Pierre ──────────────────────────────
+  {
+    from: "Magicarpe", to: "Léviator",
+    method: "pierre", condition: "Pierre Eau",
+    simplifie: true,
+    note: "Plus besoin d'entraîner un misérable magicarpe pour qu'il évolue, donnez-lui une Pierre Eau et sa puissance n'en sera que multipliée !"
+  },
+  {
+    from: "Stalgamin", to: "Oniglali",
+    method: "pierre", condition: "Pierre Gelée",
+    niveau: 30, simplifie: false,
+    note: "Utiliser une Pierre Gelée sur Stalgamin à partir du niveau 30 pour obtenir Oniglali."
+  },
+  {
+    from: "Stalgamin", to: "Momartik",
+    method: "pierre", condition: "Pierre Aube",
+    niveau: 30, simplifie: false,
+    note: "Utiliser une Pierre Gelée sur Stalgamin à partir du niveau 30 pour obtenir Momartik."
+  },
+
+  // ── Évolutions par Niveau ──────────────────────────────
+  {
+    from: "Gravalanch", to: "Grolem",
+    method: "niveau", niveau: 45,
+    simplifie: true,
+    note: "Gravalanch évolue à partir du niveau 45 en Grolem !"
+  },
+  {
+    from: "Spectrum", to: "Ectoplasma",
+    method: "niveau", niveau: 45,
+    simplifie: true,
+    note: "Spectrum évolue à partir du niveau 45 en Ectoplasma."
+  },
+  {
+    from: "Kadabra", to: "Alakazam",
+    method: "niveau", niveau: 45,
+    simplifie: true,
+    note: "Kadabra évolue à partir du niveau 45 en Alakazam."
+  },
+  {
+    from: "Pyronille", to: "Pyrax",
+    method: "niveau", niveau: 26,
+    simplifie: false,
+    note: "Pyronille évolue en Pyrax au niveau 26 - évolution standard (Starter)."
+  },
+
+  // ── Évolutions par Objet ──────────────────────────────
+  {
+    from: "Onix", to: "Steelix",
+    method: "objet", condition: "Peau Métal",
+    niveau: 30, simplifie: true,
+    note: "Monter d'un niveau avec la Peau Métal à partir du niveau 30."
+  },
+  {
+    from: "Osselait", to: "Ossatueur de Khemis",
+    method: "objet", condition: "Masse Os",
+    simplifie: false,
+    note: "Monter d'un niveau avec la Masse Os."
+  },
+  {
+    from: "Hypocéan", to: "Hyporoi",
+    method: "objet", condition: "Écaille Draco",
+    niveau: 40, simplifie: true,
+    note: "Monter d'un niveau avec l'Écaille Draco à partir du niveau 40."
+  },
+  {
+    from: "Téraclope", to: "Noctunoir",
+    method: "objet", condition: "Tissu Fauche",
+    niveau: 40, simplifie: true,
+    note: "Monter d'un niveau avec le Tissu Fauche à partir du niveau 40."
+  },
+  {
+    from: "Barpau", to: "Milobellus",
+    method: "objet", condition: "Écaille Divine",
+    niveau: 28, simplifie: true,
+    note: "Monter d'un niveau avec l'Écaille Divine à partir du niveau 28."
+  },
+  {
+    from: "Hippopotas", to: "Hippodocus",
+    method: "objet", condition: "Croc Dragon",
+    niveau: 36, simplifie: false,
+    note: "Monter d'un niveau avec le Croc Dragon à partir du niveau 36."
+  },
+  {
+    from: "Farfuret", to: "Dimoret",
+    method: "objet", condition: "Griffe Rasoir",
+    niveau: 30, simplifie: false,
+    note: "Monter d'un niveau avec la Griffe Rasoir à partir du niveau 30."
+  },
+  {
+    from: "Scorplane", to: "Scorvol",
+    method: "objet", condition: "Croc Rasoir",
+    niveau: 30, simplifie: false,
+    note: "Monter d'un niveau avec le Croc Rasoir à partir du niveau 30."
+  },
+  {
+    from: "Gringolem", to: "Golemastoc",
+    method: "objet", condition: "Protecteur",
+    simplifie: false,
+    note: "Monter d'un niveau avec le Protecteur."
+  },
+  {
+    from: "Furaiglon", to: "Gueriaigle",
+    method: "objet", condition: "Bec Pointu",
+    niveau: 36, simplifie: false,
+    note: "Monter d'un niveau avec le Bec Pointu à partir du niveau 36."
+  },
+
+  // ── Évolutions par Lieu ────────────────────────────────
+  {
+    from: "Noeunoeuf", to: "Noadkoko de Khemis",
+    method: "lieu", lieu: "Île Sokaris",
+    simplifie: false,
+    note: "Monter d'un niveau sur l'île Sokaris."
+  },
+  {
+    from: "Riolu", to: "Lucario",
+    method: "lieu", condition: "Gantelet d'Anubis",
+    lieu: "Pyramide Djeser",
+    niveau: 30, simplifie: false,
+    note: "Monter d'un niveau avec le Gantelet d'Anubis dans la Pyramide Djeser à partir du niveau 30. Pokémon Semi-légendaire."
+  },
+  {
+    from: "Tutafeh", to: "Tutankafer",
+    method: "lieu", condition: "Vase Hanté",
+    lieu: "Pyramide Atumis",
+    niveau: 30, simplifie: false,
+    note: "Monter d'un niveau avec le Vase Hanté dans la Pyramide Atumis à partir du niveau 30. Pokémon Semi-légendaire."
+  },
+  {
+    from: "Chacripan", to: "Léopardus",
+    method: "lieu", condition: "Collier de Bastet",
+    lieu: "Temple Phyrae",
+    niveau: 30, simplifie: false,
+    note: "Monter d'un niveau avec le Collier de Bastet dans le Temple Phyrae à partir du niveau 30. Pokémon Semi-légendaire."
+  },
+  {
+    from: "Tarinor", to: "Tarinorme",
+    method: "lieu", condition: "Peau Métal",
+    lieu: "Grotte Granos",
+    simplifie: false,
+    note: "Monter d'un niveau avec la Peau Métal. L'évolution doit avoir lieu dans la grotte Granos."
+  },
+
+  // ── Évolutions Spéciales ───────────────────────────────
+  {
+    from: "Ningale", to: "Ninjask",
+    method: "special",
+    simplifie: false,
+    note: "Ningale évolue en Ninjask à partir du niveau 20 le jour."
+  },
+  {
+    from: "Ningale", to: "Munja",
+    method: "special",
+    simplifie: false,
+    note: "Ningale évolue en Munja à partir du niveau 20 la nuit."
+  },
+];
+
+// ═══════════════════════════════════════════════════════════
+// BUILD HTML
+// ═══════════════════════════════════════════════════════════
+function buildSprite(name) {
+  const id = PKM_IDS[name];
+  if (!id) return `<div class="poke-sprite"><span style="font-size:1.6rem;opacity:.35">?</span></div>`;
+  return `<div class="poke-sprite">
+    <img src="${PKM(id)}" alt="${name}" loading="lazy"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span style="display:none;font-size:1.6rem;opacity:.35">?</span>
+  </div>`;
+}
+
+function buildItemSprite(name) {
+  if (!name) return '';
+  const slug = ITEM_SLUGS[name];
+  const emoji = ITEM_EMOJI[name] || '📦';
+  if (!slug) return `<div class="item-sprite-wrap"><span class="item-fallback">${emoji}</span></div>`;
+
+  // Si le slug contient "/" ou ".png" → chemin local, sinon → PokeAPI
+  const src = (slug.includes('/') || slug.includes('.'))
+    ? slug
+    : ITEM(slug);
+
+  return `<div class="item-sprite-wrap">
+    <img src="${src}" alt="${name}" loading="lazy"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <span class="item-fallback" style="display:none">${emoji}</span>
+  </div>`;
+}
+
+function methodBadge(m) {
+  const MAP = {
+    pierre:  ['mb-pierre', '💎 Pierre'],
+    niveau:  ['mb-niveau', '⬆️ Niveau'],
+    objet:   ['mb-objet',  '🏺 Objet'],
+    lieu:    ['mb-lieu',   '📍 Lieu'],
+    special: ['mb-special','✦ Spécial'],
+  };
+  const [cls, label] = MAP[m] || ['mb-objet', m];
+  return `<span class="method-badge ${cls}">${label}</span>`;
+}
+
+function stripeColor(m) {
+  const MAP = {
+    pierre: 'var(--c-pierre)', niveau: 'var(--c-niveau)',
+    objet: 'var(--c-objet)', lieu: 'var(--c-lieu)', special: 'var(--c-special)'
+  };
+  return MAP[m] || 'var(--gold)';
+}
+
+function buildCard(e) {
+  // Condition centrale (objet ou pierre)
+  let conditionHTML = '';
+  if (e.condition) {
+    conditionHTML = `
+      <div class="condition-item">
+        ${buildItemSprite(e.condition)}
+        <span class="condition-name">${e.condition}</span>
+      </div>`;
+  }
+
+  // Détail texte
+  let details = [];
+  if (e.niveau) details.push(`<span class="evo-lvl">Niv. ${e.niveau}+</span>`);
+  if (e.lieu)   details.push(`<span class="evo-loc">📍 ${e.lieu}</span>`);
+  const detailHTML = details.length
+    ? `<div class="evo-detail">${details.join(' · ')}</div>`
+    : '';
+
+  const simplifiedTag = e.simplifie
+    ? `<span class="simplified-tag">✦ Simplifiée</span>`
+    : '';
+
+  // Keywords pour la recherche
+  const keywords = [e.from, e.to, e.condition || '', e.lieu || '', e.method].join(' ').toLowerCase();
+
+  return `
+  <div class="evo-card" data-method="${e.method}" data-simplifie="${e.simplifie}" data-keywords="${keywords}"
+       style="--stripe:${stripeColor(e.method)}">
+    ${simplifiedTag}
+    <div class="evo-pokemon-row">
+      <!-- Pokémon source -->
+      <div class="poke-block">
+        ${buildSprite(e.from)}
+        <span class="poke-name">${e.from}</span>
+      </div>
+
+      <!-- Flèche + condition -->
+      <div class="evo-arrow-block">
+        <div class="evo-condition">
+          ${methodBadge(e.method)}
+          ${conditionHTML}
+          ${detailHTML}
+        </div>
+        <div class="evo-arrow">→</div>
+      </div>
+
+      <!-- Pokémon cible -->
+      <div class="poke-block">
+        ${buildSprite(e.to)}
+        <span class="poke-name">${e.to}</span>
+      </div>
+    </div>
+
+    <!-- Note descriptive -->
+    <p style="font-size:.78rem; color:var(--text-muted); line-height:1.7; border-top:1px solid rgba(255,255,255,.05); padding-top:.7rem;">
+      ${e.note}
+    </p>
+  </div>`;
+}
+
+function renderAll() {
+  document.getElementById('evo-grid').innerHTML = EVOS.map(buildCard).join('');
+  updateCount();
+}
+
+// ═══════════════════════════════════════════════════════════
+// FILTRES
+// ═══════════════════════════════════════════════════════════
+let currentFilter = 'all';
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function filterCards() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.evo-card');
+  let total = 0;
+
+  cards.forEach(card => {
+    const method   = card.dataset.method;
+    const simplifie = card.dataset.simplifie === 'true';
+    const keywords = card.dataset.keywords;
+
+    const matchFilter =
+      currentFilter === 'all' ||
+      currentFilter === method ||
+      (currentFilter === 'simplifie' && simplifie);
+
+    const matchSearch = !q || keywords.includes(q);
+
+    if (matchFilter && matchSearch) { card.classList.remove('hidden'); total++; }
+    else card.classList.add('hidden');
+  });
+
+  updateCount(total);
+}
+
+function updateCount(n) {
+  if (n === undefined) n = EVOS.length;
+  document.getElementById('visible-count').textContent = n;
+}
+
+renderAll();
+
+// ── Burger Menu ──
+const burger    = document.querySelector('.burger');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileLinks = mobileNav.querySelectorAll('a');
+
+function openMenu() {
+  burger.setAttribute('aria-expanded', 'true');
+  burger.setAttribute('aria-label', 'Fermer le menu');
+  mobileNav.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Ouvrir le menu');
+  mobileNav.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+burger.addEventListener('click', () => {
+  const isOpen = burger.getAttribute('aria-expanded') === 'true';
+  isOpen ? closeMenu() : openMenu();
+});
+
+/* Fermer au clic sur un lien */
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+/* Fermer sur Escape */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+/* Fermer si on repasse en desktop */
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeMenu();
+});
+</script>
+</body>
+</html>

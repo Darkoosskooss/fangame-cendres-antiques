@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guide complet de Pokémon Cendres Antiques | Soluces, cartes et secrets de chaque zone de l'Égypte Antique." />
+  <meta name="robots" content="index, follow" />
+  <title>Guide | Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --lapis:       #1B3A6B;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: .88rem; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+    .nav-logo-sub  { font-family: var(--font-heading); font-size: .74rem; color: var(--text-muted); letter-spacing: .35em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      font-family: var(--font-heading); font-size: .88rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      position: relative; padding-bottom: 4px; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 140px 2rem 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(27,58,107,.2) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓂀';
+      position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .03; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .78rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p {
+      color: var(--text-muted); max-width: 520px; margin: 0 auto;
+      font-size: 1.05rem; animation: fadeUp .8s .3s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ORNAMENT */
+    .ornament { display: flex; align-items: center; gap: 1rem; margin: 2rem auto 0; max-width: 300px; animation: fadeUp .8s .45s ease both; }
+    .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .ornament span { color: var(--gold); font-size: 1.22rem; letter-spacing: .15em; }
+
+    /* MAIN LAYOUT */
+    .guide-container {
+      max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 6rem;
+      display: grid; grid-template-columns: 260px 1fr; gap: 3rem; align-items: start;
+    }
+
+    /* SIDEBAR */
+    .guide-sidebar {
+      top: 90px;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; animation: fadeUp .8s .2s ease both;
+    }
+    .sidebar-header {
+      padding: 1.2rem 1.5rem;
+      background: rgba(201,151,58,.06);
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-header h2 {
+      font-family: var(--font-heading); font-size: .78rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+    }
+    .sidebar-list { list-style: none; padding: .5rem 0; }
+    .sidebar-list li a {
+      display: flex; align-items: center; gap: .8rem;
+      padding: .75rem 1.5rem; font-family: var(--font-heading);
+      font-size: .86rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); transition: all var(--transition);
+      border-left: 2px solid transparent;
+    }
+    .sidebar-list li a:hover {
+      color: var(--gold-light); background: rgba(201,151,58,.05);
+      border-left-color: var(--gold);
+    }
+    .sidebar-list li a .zone-num {
+      font-size: .72rem; color: var(--turquoise); min-width: 20px;
+    }
+    .sidebar-list li a .zone-tag {
+      margin-left: auto; font-size: .68rem; padding: .15rem .5rem;
+      background: rgba(201,151,58,.1); color: var(--gold); border-radius: 2px;
+      letter-spacing: .1em;
+    }
+    .sidebar-list .separator {
+      padding: .5rem 1.5rem; font-family: var(--font-heading);
+      font-size: .68rem; letter-spacing: .35em; text-transform: uppercase;
+      color: rgba(229, 201, 147, 0.35); margin-top: .3rem;
+    }
+
+    /* GUIDE CARDS GRID */
+    .guide-main { animation: fadeUp .8s .35s ease both; }
+
+    .guide-section-label {
+      font-family: var(--font-heading); font-size: .76rem; font-weight: 700;
+      letter-spacing: .4em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .guide-section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--turquoise), transparent); opacity: .3; }
+
+    .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 3rem; }
+
+    .guide-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; transition: all var(--transition);
+      position: relative; display: flex; flex-direction: column;
+    }
+    .guide-card:hover {
+      border-color: rgba(201,151,58,.45);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+    }
+    .guide-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--gold), var(--turquoise));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .guide-card:hover::before { opacity: 1; }
+
+    .card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--sand-mid), var(--sand-warm));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.6rem; color: var(--gold); opacity: .4;
+      position: relative; overflow: hidden;
+    }
+    .card-image-bg {
+      position: absolute; inset: 0;
+      background: var(--img-gradient, linear-gradient(135deg, #1A1408, #251D0E));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-image-icon { font-size: 3.6rem; position: relative; z-index: 1; opacity: .5; }
+    .card-badge {
+      position: absolute; top: .6rem; right: .6rem;
+      background: rgba(10,8,3,.8); border: 1px solid rgba(201,151,58,.35);
+      padding: .2rem .6rem; font-family: var(--font-heading); font-size: .68rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold-light);
+      border-radius: 2px; z-index: 2;
+    }
+
+    .card-body { padding: 1.2rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .card-zone { font-family: var(--font-heading); font-size: .72rem; letter-spacing: .35em; text-transform: uppercase; color: var(--turquoise); margin-bottom: .4rem; }
+
+    /* h3 — titre des zones du guide */
+    .guide-card h3 {
+      font-family: var(--font-heading); font-size: 1.06rem; font-weight: 700;
+      color: var(--gold-pale); margin-bottom: .5rem; line-height: 1.3;
+    }
+
+    .card-desc { font-size: .98rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin-bottom: 1rem; }
+
+    .card-meta { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .card-tag {
+      font-family: var(--font-heading); font-size: .68rem; letter-spacing: .15em;
+      text-transform: uppercase; padding: .2rem .6rem;
+      border-radius: 2px; border: 1px solid;
+    }
+    .tag-type-ville  { color: var(--turquoise); border-color: rgba(42,173,164,.3); background: rgba(42,173,164,.06); }
+    .tag-type-route { color: var(--gold); border-color: rgba(201,151,58,.3); background: rgba(201,151,58,.06); }
+    .tag-type-village   { color: #4CAF50; border-color: rgba(76,175,80,.3); background: rgba(76,175,80,.06); }
+    .tag-type-autre  { color: #C9A03A; border-color: rgba(201,160,58,.3); background: rgba(201,160,58,.06); }
+
+    .card-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-heading); font-size: .76rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+      transition: gap var(--transition);
+    }
+    .card-link:hover { gap: .9rem; }
+    .card-link span { font-size: 1.06rem; }
+
+    /* COMING SOON */
+    .coming-soon-card {
+      background: rgba(255,255,255,.01); border: 1px dashed rgba(201,151,58,.15);
+      border-radius: 4px; padding: 2rem; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .6rem; text-align: center;
+      min-height: 220px; opacity: .5;
+    }
+    .coming-soon-card .cs-icon { font-size: 2.4rem; color: var(--gold); }
+    .coming-soon-card p {
+      font-family: var(--font-heading); font-size: .78rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 2rem; border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.4));
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ═══════════════════════════════════════════
+       BURGER MENU
+    ════════════════════════════════════════════ */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      border-radius: 3px;
+      transition: background var(--transition);
+      z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+
+    .burger-line {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1),
+                  opacity   .25s ease,
+                  width     .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV OVERLAY
+    ════════════════════════════════════════════ */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 72px;
+      z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .mobile-nav ul li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,151,58,.08);
+    }
+    .mobile-nav ul a {
+      display: block;
+      padding: 1.4rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover,
+    .mobile-nav ul a:focus {
+      color: var(--gold-light);
+      background: rgba(201,151,58,.05);
+    }
+    .mobile-nav-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 2.5rem 0 1rem;
+      opacity: .5;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 860px) {
+      .guide-container { grid-template-columns: 1fr; }
+      .guide-sidebar { position: static; }
+    }
+
+    @media (max-width: 768px) {
+      .burger     { display: flex; }
+      .nav-links  { display: none; }
+      .mobile-nav { display: flex; }
+      nav { padding: 0 1.2rem; }
+
+      .page-hero { padding: 110px 1.2rem 40px; }
+      .guide-container { padding: 2.5rem 1.2rem 4rem; gap: 2rem; }
+      .guide-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .guide-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: .4rem; text-align: center; }
+    }
+
+    @media (max-width: 360px) {
+      .guide-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigation principale">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-main">Cendres Antiques</span>
+        <span class="nav-logo-sub">Pokémon Fangame</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="guide.html" class="active">Guide</a></li>
+        <li><a href="pokemon.html">Pokémon</a></li>
+        <li><a href="objets.html">Objets</a></li>
+        <li><a href="evolutions.html">Évolutions</a></li>
+      </ul>
+
+      <!-- Burger button (mobile) -->
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile navigation overlay -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Menu de navigation mobile">
+    <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+    <ul role="list">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+  </div>
+
+  <div class="page-hero">
+    <p class="page-eyebrow">✦ Soluce Complète ✦</p>
+    <h1>Le Guide</h1>
+    <p>Chaque zone, chaque secret, chaque Pokémon sauvage, cartographiés pour toi par les scribes de l'Égypte Antique.</p>
+    <div class="ornament"><span>📜</span></div>
+  </div>
+
+  <main>
+    <div class="guide-container">
+
+      <!-- SIDEBAR -->
+      <aside class="guide-sidebar" aria-label="Sommaire du guide">
+        <div class="sidebar-header">
+          <h2>𓂀 Sommaire</h2>
+        </div>
+        <ul class="sidebar-list">
+          <li class="separator">— Début du jeu —</li>
+          <li><a href="guide-ouasis.html"><span class="zone-num">01</span> Ouasis <span class="zone-tag">Village</span></a></li>
+          <li><a href="guide-route1.html"><span class="zone-num">02</span> Route 1 <span class="zone-tag">Route</span></a></li>
+          <li><a href="guide-papyris.html"><span class="zone-num">03</span> Papyris <span class="zone-tag">Village</span></a></li>
+          <li><a href="guide-route2.html"><span class="zone-num">04</span> Route 2 <span class="zone-tag">Route</span></a></li>
+          <li class="separator">— 1ère Arène Pokémon —</li>
+          <li><a href="guide-isara.html"><span class="zone-num">05</span> Isara <span class="zone-tag">Village</span></a></li>
+          <li class="separator">— Possession d'un badge —</li>
+          <li><a href="guide-rivesobek.html"><span class="zone-num">06</span> Rive Sobek <span class="zone-tag">Route</span></a></li>
+          <li><a href="guide-thurae.html"><span class="zone-num">07</span> Carrière Thurae <span class="zone-tag">Carrière</span></a></li>
+          <li><a href="guide-route3.html"><span class="zone-num">08</span> Route 3 <span class="zone-tag">Route</span></a></li>
+          <li class="separator">— 2ème Arène Pokémon —</li>
+          <li><a href="guide-peramaris.html"><span class="zone-num">09</span> Peramaris <span class="zone-tag">Ville</span></a></li>
+          <li class="separator">— Possession de 2 badges —</li>
+          <li><a href="guide-ilekheperet.html"><span class="zone-num">10</span> Île Kheperet <span class="zone-tag">Île</span></a></li>
+          <li><a href="guide-ilesokaris.html"><span class="zone-num">11</span> Île Sokaris <span class="zone-tag">Île</span></a></li>
+          <li><a href="guide-route4.html"><span class="zone-num">12</span> Route 4 <span class="zone-tag">Route</span></a></li>
+          <li><a href="guide-obelisk.html"><span class="zone-num">13</span> Obelisk <span class="zone-tag">Tour</span></a></li>
+          <li><a href="guide-route5.html"><span class="zone-num">14</span> Route 5 <span class="zone-tag">Route</span></a></li>
+          <li class="separator">— 3ème Arène Pokémon —</li>
+          <li><a href="guide-theba.html"><span class="zone-num">15</span> Thèba <span class="zone-tag">Capitale</span></a></li>
+          <li class="separator">— 4ème Arène Pokémon —</li>
+          <li><a href="guide-granos.html"><span class="zone-num">16</span> Carrière Granos <span class="zone-tag">Carrière</span></a></li>
+          <li class="separator">— Possession de 4 badges —</li>
+          <li><a href="guide-route6.html"><span class="zone-num">17</span> Route 6 <span class="zone-tag">Route</span></a></li>
+          <li><a href="guide-tourmysterieuse.html"><span class="zone-num">18</span> Tour Mystérieuse <span class="zone-tag">Tour</span></a></li>
+          <li><a href="guide-perankh.html"><span class="zone-num">19</span> Ruines Per-Ankh <span class="zone-tag">Ruines</span></a></li>
+          <li class="separator">— Bientôt —</li>
+          <li><a href="guide-ilenephthys.html"><span class="zone-num">20</span> Île Nephthys <span class="zone-tag">Île</span></a></li>
+          <li><a href="guide-cheminphyrae.html"><span class="zone-num">21</span> Chemin du temple de Phyrae <span class="zone-tag">Route</span></a></li>
+          <li><a href="guide-templephyrae.html"><span class="zone-num">22</span> Temple de Phyrae <span class="zone-tag">Temple</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- MAIN -->
+      <section class="guide-main" aria-labelledby="guide-debut">
+
+        <p class="guide-section-label" id="guide-debut">Début de l'aventure</p>
+
+        <div class="guide-grid">
+
+          <!-- OUASIS -->
+          <a href="guide-ouasis.html" class="guide-card" aria-label="Guide du village Ouasis">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">🏘️</span>
+              </div>
+              <span class="card-badge">Village de départ</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 01</p>
+              <h3>Ouasis</h3>
+              <p class="card-desc">Ce village est un petit oasis proche du Canilis. Reculé, calme et accueillant, cette cité n'abrite pas de mystère particulier.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Village</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- ROUTE 1 -->
+          <a href="guide-route1.html" class="guide-card" aria-label="Guide de la Route 1">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🌴</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 02</p>
+              <h3>Route 1</h3>
+              <p class="card-desc">La toute première route de l’aventure. 
+Un chemin étendu longeant l’Est du Canilis et abritant des Pokémon sauvages à la fois dans des hautes herbes et dans le sable. 
+</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Papyris -->
+          <a href="guide-papyris.html" class="guide-card" aria-label="Guide du village Papyris">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">🏘️</span>
+              </div>
+              <span class="card-badge">Village</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 03</p>
+              <h3>Papyris</h3>
+              <p class="card-desc">Ce petit village, au bord du Canilis se voit être une terre fertile pour le papyrus, ressource très convoitée. </p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Village</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Route 2 -->
+          <a href="guide-route2.html" class="guide-card" aria-label="Guide de la route 2">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🌴</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 04</p>
+              <h3>Route 2</h3>
+              <p class="card-desc">Dans la continuité de la route 1, ce chemin longe aussi le Canilis et permet de rejoindre le village d’Isara.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Isara -->
+          <a href="guide-isara.html" class="guide-card" aria-label="Guide du village Isara">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">🏘️​</span>
+              </div>
+              <span class="card-badge">Village</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 05</p>
+              <h3>Isara</h3>
+              <p class="card-desc">Ce village est un endroit paisible proche du Canilis et d'un Oasis, où règnent la faune et la flore et surtout un champion redoutable. </p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Village</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Rive Sobek -->
+          <a href="guide-rivesobek.html" class="guide-card" aria-label="Guide de la Rive Sobek">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🏝️</span>
+              </div>
+              <span class="card-badge">Rive</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 06</p>
+              <h3>Rive Sobek</h3>
+              <p class="card-desc">Rive conviviale sur laquelle se trouvent quelques maisons et un port qui permet de faire une liaison entre les 2 parties de la région.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Carrière Thurae -->
+          <a href="guide-thurae.html" class="guide-card" aria-label="Guide de la Carrière Thurae">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🪨</span>
+              </div>
+              <span class="card-badge">Carrière</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 07</p>
+              <h3>Carrière Thurae</h3>
+              <p class="card-desc">La carrière Thurae est une carrière de calcaire très importante pour la région.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-autre">Carrière</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Route 3 -->
+          <a href="guide-route3.html" class="guide-card" aria-label="Guide de la Route 3">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🐫</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 08</p>
+              <h3>Route 3</h3>
+              <p class="card-desc">Une route en plein désert qui connecte la carrière Thurae et la ville portuaire de Peramaris.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Peramaris -->
+          <a href="guide-peramaris.html" class="guide-card" aria-label="Guide de la ville Peramaris">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">⚓</span>
+              </div>
+              <span class="card-badge">Ville</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 09</p>
+              <h3>Peramaris</h3>
+              <p class="card-desc">Ville portuaire située au Nord-Est de la région, Peramaris renferme un champion aventurier et redoutable.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-ville">Ville</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Île Kheperet -->
+          <a href="guide-ilekheperet.html" class="guide-card" aria-label="Guide de l'Île Kheperet">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🏝️</span>
+              </div>
+              <span class="card-badge">Île</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 10</p>
+              <h3>Île Kheperet</h3>
+              <p class="card-desc">Située tout au Nord-Est de la région, l’île Kheperet est une île gelée bien éloignée des terres.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Île</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Île Sokaris -->
+          <a href="guide-ilesokaris.html" class="guide-card" aria-label="Guide de l'Île Sokaris">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🏝️</span>
+              </div>
+              <span class="card-badge">Île</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 11</p>
+              <h3>Île Sokaris</h3>
+              <p class="card-desc">Cette île paradisiaque, située tout à l’Est de la région renferme des Pokémon atypiques.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Île</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Route 4 -->
+          <a href="guide-route4.html" class="guide-card" aria-label="Guide de la route 4">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🐫</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 12</p>
+              <h3>Route 4</h3>
+              <p class="card-desc">Une route en plein désert dans laquelle se trouve une très grande tour appelée Obelisk.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Obelisk -->
+          <a href="guide-obelisk.html" class="guide-card" aria-label="Guide de l'Obelisk">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🏯</span>
+              </div>
+              <span class="card-badge">Tour</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 13</p>
+              <h3>Obelisk</h3>
+              <p class="card-desc">L’Obelisk est une très grande tour située au centre de la partie Est de la région.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-autre">Tour</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Route 5 -->
+          <a href="guide-route5.html" class="guide-card" aria-label="Guide de la route 5">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🐫</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 14</p>
+              <h3>Route 5</h3>
+              <p class="card-desc">Une route qui fait le lien entre le village Papyris, la route 4 et la ville de Thèba.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Thèba -->
+          <a href="guide-theba.html" class="guide-card" aria-label="Guide de la ville Thèba">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">🕌</span>
+              </div>
+              <span class="card-badge">Thèba</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 15</p>
+              <h3>Thèba</h3>
+              <p class="card-desc">Capitale de la région, Thèba est la ville des échanges et des esprits.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-ville">Ville</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Carrière Granos -->
+          <a href="guide-granos.html" class="guide-card" aria-label="Guide de la Carrière Granos">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🪨</span>
+              </div>
+              <span class="card-badge">Carrière</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 16</p>
+              <h3>Carrière Granos</h3>
+              <p class="card-desc">Située au Sud-Est de la région de Khemis, cette carrière de granite abrite quelques habitants ou plutôt des ouvriers.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-autre">Carrière</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Route 6 -->
+          <a href="guide-route6.html" class="guide-card" aria-label="Guide de la route 6">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🐫</span>
+              </div>
+              <span class="card-badge">Route</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 17</p>
+              <h3>Route 6</h3>
+              <p class="card-desc">La route longe le bord de la Mer Rubea à l’Est de la région pour atteindre les ruines d’une ancienne cité plus au Nord du nom de Per-Ankh.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-route">Route</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Tour Mystérieuse -->
+          <a href="guide-tourmysterieuse.html" class="guide-card" aria-label="Guide de la Tour Mystérieuse">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #241A08 0%, #3A2C0A 50%, #1A1A08 100%);">
+                <span class="card-image-icon">🏯​</span>
+              </div>
+              <span class="card-badge">Tour</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 18</p>
+              <h3>Tour Mystérieuse</h3>
+              <p class="card-desc">Une tour cachée située tout au Sud-Est de la région. On dit qu’elle est occupée par des âmes de Pokémon.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-autre">Tour</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+          <!-- Ruines Per-Ankh -->
+          <a href="guide-perankh.html" class="guide-card" aria-label="Guide des Ruines Per-Ankh">
+            <div class="card-image">
+              <div class="card-image-bg" style="--img-gradient: linear-gradient(135deg, #1A1A08 0%, #2E2A10 40%, #1A3020 100%);">
+                <span class="card-image-icon">🏚️​</span>
+              </div>
+              <span class="card-badge">Ruines</span>
+            </div>
+            <div class="card-body">
+              <p class="card-zone">Zone 19</p>
+              <h3>Ruines Per-Ankh</h3>
+              <p class="card-desc">Per-Ankh était autrefois une ville de savoir. Elle abritait des antiquités et des écrits de longue date.</p>
+              <div class="card-meta">
+                <span class="card-tag tag-type-village">Ruines</span>
+              </div>
+              <span class="card-link">Lire le guide <span>→</span></span>
+            </div>
+          </a>
+
+        </div>
+
+        <p class="guide-section-label">Zones à venir</p>
+        <div class="guide-grid">
+          <div class="coming-soon-card"><span class="cs-icon">𓅓</span><p>Île Nephthys</p></div>
+          <div class="coming-soon-card"><span class="cs-icon">𓆑</span><p>Chemin du temple de Phyrae</p></div>
+          <div class="coming-soon-card"><span class="cs-icon">𓂋</span><p>Temple de Phyrae</p></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2026 Cendres Antiques - Fangame</p>
+      <p>Pokémon © Nintendo / Game Freak / The Pokémon Company</p>
+    </div>
+  </footer>
+  <script>
+    /* ── Burger Menu ── */
+    const burger    = document.querySelector('.burger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileLinks = mobileNav.querySelectorAll('a');
+
+    function openMenu() {
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Fermer le menu');
+      mobileNav.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
+      mobileNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', () => {
+      const isOpen = burger.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    /* Fermer au clic sur un lien */
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    /* Fermer sur Escape */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    /* Fermer si on repasse en desktop */
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+  </script>
+
+</body>
+</html>
