@@ -525,22 +525,25 @@ const PKM_IDS = {
   "Gravalanch": 75, "Grolem": 76,
   "Spectrum": 93, "Ectoplasma": 94,
   "Kadabra": 64, "Alakazam": 65,
-  "Noeunoeuf": 102, "Noadkoko de Khemis": 10114,
-  "Osselait": 104, "Ossatueur de Khemis": 10115,
+  "Noeunoeuf": 102, "Noadkoko": 10114,
+  "Osselait": 104, "Ossatueur": 10115,
   "Hypocéan": 117, "Hyporoi": 230,
   "Téraclope": 356, "Noctunoir": 477,
   "Barpau": 349, "Milobellus": 350,
   "Stalgamin": 361, "Oniglali": 362, "Momartik": 478,
   "Hippopotas": 449, "Hippodocus": 450,
-  "Riolu": 447, "Lucario": 448,
+  "Indu": 447, "Anubis": 448,
   "Tarinor": 299, "Tarinorme": 476,
   "Farfuret": 215, "Dimoret": 461,
   "Scorplane": 207, "Scorvol": 472,
-  "Tutafeh": 562, "Tutankafer": 563,
-  "Chacripan": 509, "Léopardus": 510,
+  "Tutanis": 562, "Tutânkhamon": 563,
+  "Miou": 509, "Bastet": 510,
   "Gringolem": 622, "Golemastoc": 623,
   "Furaiglon": 627, "Gueriaigle": 628,
   "Pyronille": 636, "Pyrax": 637,
+  "Scalpion": 624, "Scalproie": 625,
+  "Zorua": 570, "Zoroark": 571,
+  "Bennu": 146, "Râ": 250,
   "Ningale": 290, "Ninjask": 291, "Munja": 292,
 };
 
@@ -625,6 +628,24 @@ const EVOS = [
     simplifie: false,
     note: "Pyronille évolue en Pyrax au niveau 26 - évolution standard (Starter)."
   },
+  {
+    from: "Scalpion", to: "Scalproie",
+    method: "niveau", niveau: 26,
+    simplifie: false,
+    note: "Scalpion évolue en Scalproie au niveau 26 - évolution standard (Starter)."
+  },
+  {
+    from: "Zorua", to: "Zoroark",
+    method: "niveau", niveau: 26,
+    simplifie: false,
+    note: "Zorua évolue en Zoroark au niveau 26 - évolution standard (Starter)."
+  },
+  {
+    from: "Bennu", to: "Râ",
+    method: "niveau", niveau: 55,
+    simplifie: false,
+    note: "Bennu évolue en Râ au niveau 55 - évolution standard."
+  },
 
   // ── Évolutions par Objet ──────────────────────────────
   {
@@ -634,10 +655,10 @@ const EVOS = [
     note: "Monter d'un niveau avec la Peau Métal à partir du niveau 30."
   },
   {
-    from: "Osselait", to: "Ossatueur de Khemis",
+    from: "Osselait", to: "Ossatueur",
     method: "objet", condition: "Masse Os",
     simplifie: false,
-    note: "Monter d'un niveau avec la Masse Os."
+    note: "Monter d'un niveau avec la Masse Os à partir du niveau 28."
   },
   {
     from: "Hypocéan", to: "Hyporoi",
@@ -690,27 +711,27 @@ const EVOS = [
 
   // ── Évolutions par Lieu ────────────────────────────────
   {
-    from: "Noeunoeuf", to: "Noadkoko de Khemis",
+    from: "Noeunoeuf", to: "Noadkoko",
     method: "lieu", lieu: "Île Sokaris",
     simplifie: false,
-    note: "Monter d'un niveau sur l'île Sokaris."
+    note: "Monter d'un niveau sur l'île Sokaris à partir du niveau 16."
   },
   {
-    from: "Riolu", to: "Lucario",
+    from: "Indu", to: "Anubis",
     method: "lieu", condition: "Gantelet d'Anubis",
     lieu: "Pyramide Djeser",
     niveau: 30, simplifie: false,
     note: "Monter d'un niveau avec le Gantelet d'Anubis dans la Pyramide Djeser à partir du niveau 30. Pokémon Semi-légendaire."
   },
   {
-    from: "Tutafeh", to: "Tutankafer",
+    from: "Tutanis", to: "Tutânkhamon",
     method: "lieu", condition: "Vase Hanté",
     lieu: "Pyramide Atumis",
     niveau: 30, simplifie: false,
     note: "Monter d'un niveau avec le Vase Hanté dans la Pyramide Atumis à partir du niveau 30. Pokémon Semi-légendaire."
   },
   {
-    from: "Chacripan", to: "Léopardus",
+    from: "Miou", to: "Bastet",
     method: "lieu", condition: "Collier de Bastet",
     lieu: "Temple Phyrae",
     niveau: 30, simplifie: false,
