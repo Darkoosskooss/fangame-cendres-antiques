@@ -885,6 +885,7 @@
 
       .hero-image-section { padding: 3rem 1.2rem 2rem; }
       .hero-image-caption { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0 1rem; }
+      .hero-image-placeholder { aspect-ratio: 16/9; /* plus confortable sur tablette */}
 
       .section-header { margin-bottom: 2.5rem; }
       .features-grid  { gap: 1rem; }
@@ -1033,8 +1034,14 @@
 
         <!-- Grande image principale -->
         <figure class="hero-image-wrapper">
+          <picture>
+            <source media="(max-width: 480px)"  srcset="images/banner-mobile.png">
+            <source media="(max-width: 768px)"  srcset="images/banner-tablette.png">
+            <img src="images/vraie-banner-cendres-antiques.png" alt="Capture d'écran du jeu" loading="lazy">
+          </picture>
+          <!--
           <img src="images/vraie-banner-cendres-antiques.png" alt="Capture d'écran du jeu" width="1920" height="540" loading="lazy"/>
-          <!--  
+            
           <div class="hero-image-placeholder" role="img" aria-label="Bannière principale du jeu — à venir">
             <span class="placeholder-icon">𓋴</span>
             <span class="placeholder-text">Bannière du jeu — 1920 × 820 px recommandé</span>
