@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bases Stats modifiées | 🧬 Liste complète des Base Stats des Pokémon de la région de Khemis modifiées dans Pokémon Cendres Antiques." />
+  <meta name="robots" content="index, follow" />
+  <title>Bases Stats modifiées | Cendres Antiques</title>
+  <link rel="canonical" href="https://darkoosskooss.github.io/fangame-cendres-antiques/stats.html" />
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: .88rem; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+    .nav-logo-sub  { font-family: var(--font-heading); font-size: .74rem; color: var(--text-muted); letter-spacing: .35em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      font-family: var(--font-heading); font-size: .88rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      position: relative; padding-bottom: 4px; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 15% 20%, rgba(27,58,107,.18) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓆓'; position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 540px; margin: 0 auto; font-size: 1.06rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── SEARCH ── */
+    .filters-bar { max-width: 1300px; margin: 1.5rem auto 0; padding: 0 2rem; }
+    .search-box { position: relative; max-width: 420px; }
+    .search-box input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-box input:focus { border-color: rgba(201,151,58,.5); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.06rem; pointer-events: none; }
+
+    /* ── TABLE ── */
+    .table-wrap { max-width: 1300px; margin: 2rem auto 0; padding: 0 2rem 6rem; }
+    .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 4px; }
+    .count-label {
+      font-family: var(--font-heading); font-size: .74rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
+    }
+    .count-label span { color: var(--gold); }
+
+    table { width: 100%; min-width: 520px; border-collapse: collapse; background: rgba(255,255,255,.01); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    thead tr { background: rgba(201,151,58,.07); border-bottom: 1px solid rgba(201,151,58,.25); }
+    th {
+      font-family: var(--font-heading); font-size: .74rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      padding: .9rem 1rem; text-align: left; white-space: nowrap;
+    }
+    th.center { text-align: center; }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,.04); transition: background var(--transition); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(201,151,58,.04); }
+    tbody tr.hidden { display: none; }
+    td { padding: .6rem 1rem; vertical-align: middle; }
+    td.center { text-align: center; }
+
+    /* N° */
+    .dex-num { font-family: var(--font-heading); font-size: .82rem; color: var(--text-muted); letter-spacing: .1em; white-space: nowrap; }
+
+    /* Sprite */
+    .sprite-cell { width: 64px; }
+    .sprite-wrap {
+      width: 56px; height: 56px; margin: 0 auto;
+      background: rgba(255,255,255,.03); border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: border-color var(--transition);
+    }
+    tbody tr:hover .sprite-wrap { border-color: rgba(201,151,58,.4); }
+    .sprite-wrap img { width: 52px; height: 52px; image-rendering: pixelated; object-fit: contain; }
+    .sprite-placeholder { font-size: 1.6rem; opacity: .35; }
+
+    /* Noms */
+    .poke-fr { font-family: var(--font-heading); font-size: .96rem; color: var(--gold-pale); font-weight: 600; white-space: nowrap; }
+    .poke-en { font-size: .88rem; color: var(--text-muted); font-style: italic; white-space: nowrap; }
+
+    /* ── STAT CELLS ── */
+    .stat-cell { text-align: center; min-width: 120px; }
+    .stat-num {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--gold-pale);
+      line-height: 1.1;
+    }
+    .stat-num.old { color: var(--text-muted); font-size: 1.05rem; font-weight: 600; }
+    .stat-sub { display: flex; align-items: center; justify-content: center; gap: .35rem; margin-top: 3px; }
+    .stat-bst { font-family: var(--font-heading); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); opacity: .5; }
+    .stat-delta { font-family: var(--font-heading); font-size: .75rem; font-weight: 700; letter-spacing: .04em; }
+    .stat-delta.pos { color: #5eca8a; }
+    .stat-delta.neg { color: #e07070; }
+    .stat-none { color: var(--text-muted); opacity: .3; font-size: 1.2rem; letter-spacing: .1em; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ── BURGER ── */
+    .burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; cursor: pointer;
+      background: none; border: none; padding: 6px; border-radius: 3px;
+      transition: background var(--transition); z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+    .burger-line {
+      display: block; width: 100%; height: 1.5px; background: var(--gold);
+      border-radius: 2px; transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, width .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; top: 72px; z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px); border-top: 1px solid var(--border);
+      flex-direction: column; align-items: center; justify-content: center; gap: 0;
+      transform: translateY(-8px); opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-nav ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+    .mobile-nav ul li { width: 100%; text-align: center; border-bottom: 1px solid rgba(201,151,58,.08); }
+    .mobile-nav ul a {
+      display: block; padding: 1.2rem 2rem;
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover { color: var(--gold-light); background: rgba(201,151,58,.05); }
+    .mobile-nav ul a.active { color: var(--gold); }
+    .mobile-nav-ornament { color: var(--gold); font-size: 1.4rem; margin: 2.5rem 0 1rem; opacity: .5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1340px) {
+      .filters-bar, .table-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.5rem; }
+      th { font-size: .68rem; letter-spacing: .2em; padding: .8rem .75rem; }
+      td { padding: .55rem .75rem; }
+      .poke-fr { font-size: .88rem; }
+      .poke-en { font-size: .8rem; }
+      .stat-num { font-size: 1.05rem; }
+      .stat-num.old { font-size: .92rem; }
+    }
+
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      .nav-links { display: none; }
+      .mobile-nav { display: flex; }
+      nav { padding: 0 1.2rem; }
+      .page-hero { padding: 110px 1rem 36px; }
+      .page-hero h1 { font-size: clamp(1.6rem, 7vw, 2.8rem); }
+      .page-hero p { font-size: .95rem; padding: 0 .5rem; }
+      .filters-bar { padding: 0 1rem; }
+      .table-wrap { padding: 0 1rem 4rem; margin-top: 1.2rem; }
+      th { font-size: .62rem; letter-spacing: .12em; padding: .7rem .6rem; }
+      td { padding: .5rem .6rem; }
+      .sprite-wrap { width: 44px; height: 44px; }
+      .sprite-wrap img { width: 40px; height: 40px; }
+      .sprite-cell { width: 52px; }
+      .poke-fr { font-size: .84rem; }
+      .poke-en { font-size: .75rem; }
+      footer { width: 100%; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; padding: 1.5rem 1rem; gap: .5rem; }
+      .footer-bottom p { font-size: .8rem; }
+    }
+
+    @media (max-width: 480px) {
+      /* Masquer nom anglais */
+      th:nth-child(4), td:nth-child(4) { display: none; }
+      td { padding: .4rem .45rem; }
+      th { padding: .6rem .45rem; font-size: .58rem; }
+      .sprite-wrap { width: 36px; height: 36px; }
+      .sprite-wrap img { width: 32px; height: 32px; }
+      .sprite-cell { width: 42px; }
+      .dex-num { font-size: .72rem; }
+      .poke-fr { font-size: .8rem; }
+      .stat-num { font-size: .9rem; }
+      .stat-num.old { font-size: .82rem; }
+      .stat-cell { min-width: 70px; }
+    }
+
+    @media (max-width: 360px) {
+      /* Masquer ancienne base stats */
+      th:nth-child(5), td:nth-child(5) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html" class="active">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html" class="active">Pokémon</a></li>
+    <li><a href="objets.html">Objets</a></li>
+    <li><a href="evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Région de Khemis ✦</p>
+  <h1>Bases Stats Modifiées</h1>
+  <p>Les Pokémon de type Insect et Dragon sont beaucoup plus puissants que la plupart des Pokémon des autres types dans la région de Khemis.</p>
+</div>
+
+<div class="filters-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher un Pokémon…" oninput="filterTable()" autocomplete="off" />
+  </div>
+</div>
+
+<main>
+<div class="table-wrap">
+  <p class="count-label">Affichage de <span id="visible-count"></span> / 45 Pokémon</p>
+  <div class="table-scroll">
+    <table id="stats-table" aria-label="Bases Stats modifiées — Codex de Khemis">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th class="center">Image</th>
+          <th>Nom français</th>
+          <th>Nom anglais</th>
+          <th class="center">Ancienne Base Stats</th>
+          <th class="center">Nouvelle Base Stats</th>
+        </tr>
+      </thead>
+      <tbody id="stats-body">
+        <!-- Généré par JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company · Sprites © PokeAPI</p>
+  </div>
+</footer>
+
+<script>
+const SPRITE = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+// ══════════════════════════════════════════════════════════════════
+// STATS DATA — 45 Pokémon
+// Format : [frName, enName, spriteId, codexNum, ancienBST, nouveauBST]
+//   codexNum : numéro dans le Codex de Khemis (depuis pokemon.html)
+//   BST null = pas encore renseigné → affiche « — »
+// ══════════════════════════════════════════════════════════════════
+const STATS_LIST = [
+  ["Reptincel",    "Charmeleon",  5,     2,   424, 450],
+  ["Dracaufeu",    "Charizard",   6,     3,   555, 574],
+  ["Scarabrute",   "Pinsir",      127,   9,   500, 550],
+  ["Persian",      "Persian",     53,    11,  440, 481],
+  ["Arcanin",      "Arcanine",    59,    13,  555, 574],
+  ["Léviator",     "Gyarados",    130,   15,  540, 558],
+  ["Taupiqueur",   "Diglett",     50,    31,  265, 285],
+  ["Triopikeur",   "Dugtrio",     51,    32,  425, 480],
+  ["Noadkoko",     "Exeggutor",   10114, 34,  530, 553],
+  ["Hyporoi",      "Kingdra",     230,   39,  540, 564],
+  ["Coxy",         "Ledyba",      165,   56,  265, 335],
+  ["Coxyclaque",   "Ledian",      166,   57,  390, 470],
+  ["Mimigal",      "Spinarak",    167,   58,  250, 330],
+  ["Migalos",      "Ariados",     168,   59,  400, 510],
+  ["Scarhino",     "Heracross",   214,   60,  500, 550],
+  ["Yanma",        "Yanma",       193,   61,  390, 465],
+  ["Yanmega",      "Yanmega",     469,   62,  515, 636],
+  ["Girafarig",    "Girafarig",   203,   69,  455, 490],
+  ["Zarbi",        "Unown",       201,   70,  336, 464],
+  ["Massko",       "Grovyle",     253,   78,  405, 435],
+  ["Jungko",       "Sceptile",    254,   79,  530, 558],
+  ["Ningale",      "Nincada",     290,   82,  266, 315],
+  ["Ninjask",      "Ninjask",     291,   83,  456, 535],
+  ["Munja",        "Shedinja",    292,   84,  236, 371],
+  ["Tropius",      "Tropius",     357,   87,  460, 494],
+  ["Vibraninf",    "Vibrava",     329,   92,  340, 420],
+  ["Libégon",      "Flygon",      330,   93,  520, 570],
+  ["Anorith",      "Anorith",     347,   105, 355, 405],
+  ["Armaldo",      "Armaldo",     348,   106, 495, 545],
+  ["Hippodocus",   "Hippowdon",   450,   117, 525, 550],
+  ["Indu",         "Indu",        447,   118, 285, 330],
+  ["Anubis",       "Anubis",      448,   119, 525, 546],
+  ["Rapion",       "Skorupi",     451,   135, 330, 390],
+  ["Crabicoque",   "Dwebble",     557,   153, 325, 385],
+  ["Crabaraque",   "Crustle",     558,   154, 485, 555],
+  ["Tutanis",      "Tutanis",     562,   158, 303, 334],
+  ["Tutânkhamon",  "Tutânkhamon", 563,   159, 483, 539],
+  ["Scalproie",    "Bisharp",     625,   163, 490, 530],
+  ["Zoroark",      "Zoroark",     571,   165, 510, 530],
+  ["Miou",         "Miou",        509,   171, 281, 322],
+  ["Bastet",       "Bastet",      510,   172, 446, 535],
+  ["Mégapagos",    "Carracosta",  565,   179, 495, 531],
+  ["Aéroptéryx",   "Archeops",    567,   181, 567, 578],
+  ["Fermite",      "Durant",      632,   187, 484, 527],
+  ["Pyrax",        "Volcarona",   637,   189, 550, 530],
+];
+
+function statCell(val, isNew, oldVal) {
+  if (val === null) {
+    return `<td class="stat-cell center"><span class="stat-none">—</span></td>`;
+  }
+
+  let deltaHTML = '';
+  if (isNew && oldVal !== null) {
+    const diff = val - oldVal;
+    if (diff !== 0) {
+      const cls   = diff > 0 ? 'pos' : 'neg';
+      const arrow = diff > 0 ? '▲' : '▼';
+      deltaHTML = `<span class="stat-delta ${cls}">${arrow}&nbsp;${Math.abs(diff)}</span>`;
+    }
+  }
+
+  const numClass = isNew ? 'stat-num' : 'stat-num old';
+  return `<td class="stat-cell center">
+    <span class="${numClass}">${val}</span>
+    <div class="stat-sub">
+      <span class="stat-bst">BST</span>${deltaHTML}
+    </div>
+  </td>`;
+}
+
+function buildTable() {
+  const tbody = document.getElementById('stats-body');
+  let html = '';
+
+  STATS_LIST.forEach(p => {
+    const [fr, en, spriteId, codexNum, oldBST, newBST] = p;
+    const numStr = `#${String(codexNum).padStart(3, '0')}`;
+
+    const spriteHTML = spriteId
+      ? `<img src="${SPRITE(spriteId)}" alt="${fr}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+         <span class="sprite-placeholder" style="display:none">?</span>`
+      : `<span class="sprite-placeholder">?</span>`;
+
+    html += `
+      <tr data-fr="${fr.toLowerCase()}" data-en="${en.toLowerCase()}" data-num="${codexNum}">
+        <td><span class="dex-num">${numStr}</span></td>
+        <td class="center sprite-cell"><div class="sprite-wrap">${spriteHTML}</div></td>
+        <td><span class="poke-fr">${fr}</span></td>
+        <td><span class="poke-en">${en}</span></td>
+        ${statCell(oldBST, false, null)}
+        ${statCell(newBST, true, oldBST)}
+      </tr>`;
+  });
+
+  tbody.innerHTML = html;
+  updateCount();
+}
+
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('#stats-body tr');
+  let visible = 0;
+
+  rows.forEach(row => {
+    const fr  = row.dataset.fr  || '';
+    const en  = row.dataset.en  || '';
+    const num = row.dataset.num || '';
+    const match = !q || fr.includes(q) || en.includes(q) || num.includes(q);
+    row.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+
+  updateCount(visible);
+}
+
+function updateCount(n) {
+  if (n === undefined) n = STATS_LIST.length;
+  document.getElementById('visible-count').textContent = n;
+}
+
+buildTable();
+</script>
+
+<script>
+  /* ── Burger Menu ── */
+  const burger    = document.querySelector('.burger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileLinks = mobileNav.querySelectorAll('a');
+
+  function openMenu() {
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Fermer le menu');
+    mobileNav.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    mobileNav.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+</script>
+</body>
+</html>
