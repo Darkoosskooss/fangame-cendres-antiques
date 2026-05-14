@@ -525,6 +525,8 @@ const PKM_IDS = {
   "Gravalanch": 75, "Grolem": 76,
   "Spectrum": 93, "Ectoplasma": 94,
   "Kadabra": 64, "Alakazam": 65,
+  "Kraknoix": 328, "Vibraninf": 329,
+  "Skélénox": 355, "Téraclope": 356,
   "Noeunoeuf": 102, "Noadkoko": 10114,
   "Osselait": 104, "Ossatueur": 10115,
   "Hypocéan": 117, "Hyporoi": 230,
@@ -627,6 +629,18 @@ const EVOS = [
     method: "niveau", niveau: 45,
     simplifie: true,
     note: "Kadabra évolue à partir du niveau 45 en Alakazam."
+  },
+  {
+    from: "Kraknoix", to: "Vibraninf",
+    method: "niveau", niveau: 30,
+    simplifie: true,
+    note: "Kraknoix évolue à partir du niveau 30 en Vibraninf."
+  },
+  {
+    from: "Skélénox", to: "Téraclope",
+    method: "niveau", niveau: 30,
+    simplifie: true,
+    note: "Skélénox évolue à partir du niveau 30 en Téraclope."
   },
   {
     from: "Pyronille", to: "Pyrax",
@@ -742,7 +756,7 @@ const EVOS = [
     from: "Gringolem", to: "Golemastoc",
     method: "objet", condition: "Protecteur",
     simplifie: false,
-    note: "Monter d'un niveau avec le Protecteur."
+    note: "Monter d'un niveau avec le Protecteur à partir du niveau 36."
   },
   {
     from: "Furaiglon", to: "Gueriaigle",
