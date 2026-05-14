@@ -548,7 +548,7 @@
   <aside class="items-sidebar" aria-label="Navigation par catégorie">
     <div class="sidebar-header"><h2>𓋹 Catégories</h2></div>
     <ul class="sidebar-nav">
-      <li><a href="#tenir"><span class="s-dot" style="background:var(--c-tenir)"></span> Objets à tenir <span class="s-count">67</span></a></li>
+      <li><a href="#tenir"><span class="s-dot" style="background:var(--c-tenir)"></span> Objets à tenir <span class="s-count">68</span></a></li>
       <li><a href="#soin"><span class="s-dot" style="background:var(--c-soin)"></span> Objets de soin <span class="s-count">22</span></a></li>
       <li><a href="#ball"><span class="s-dot" style="background:var(--c-ball)"></span> Balls <span class="s-count">11</span></a></li>
       <li><a href="#pierre"><span class="s-dot" style="background:var(--c-pierre)"></span> Pierres d'évolution <span class="s-count">11</span></a></li>
@@ -904,6 +904,11 @@
           <div class="item-body"><p class="item-name">Statuette du Prêtre</p><span class="item-price">200 P$</span><p class="item-desc">Statuette d'argile représentant un ancien prêtre de Khemis. Utilisée par les scribes pour analyser les inscriptions, elle aide le Pokémon à mieux repérer les failles ennemies.</p></div>
         </div>
 
+        <div class="item-card" data-cat="tenir" data-name="tissu fauche" style="--cat-color:var(--c-tenir)">
+          <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png" alt="Tissu Fauche" onerror="this.parentElement.innerHTML='🔮'" /></div>
+          <div class="item-body"><p class="item-name">Tissu Fauche</p><span class="item-price">200 P$</span><p class="item-desc">Un tissu imprégné d’une énergie spirituelle horriblement puissante. Apprécié d’un certain Pokémon.</p></div>
+        </div>
+
         <div class="item-card" data-cat="tenir" data-name="vase hanté" style="--cat-color:var(--c-tenir)">
           <div class="item-img-wrap"><img src="objets/vase-hante.png" alt="Vase Hanté" onerror="this.parentElement.innerHTML='🏺'" /></div>
           <div class="item-body"><p class="item-name">Vase Hanté</p><span class="item-price">500 P$</span><p class="item-desc">Vase trouvé dans les tombeaux des pharaons, abritant des âmes anciennes. Son aura lugubre rend le porteur sensible aux capacités qui ne peuvent habituellement pas lui faire de dégâts.</p></div>
@@ -1038,7 +1043,7 @@
 
         <div class="item-card" data-cat="soin" data-name="cendre sacrée" style="--cat-color:var(--c-soin)">
           <div class="item-img-wrap"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sacred-ash.png" alt="Cendre Sacrée" onerror="this.parentElement.innerHTML='🔥'" /></div>
-          <div class="item-body"><p class="item-name">Cendre Sacrée</p><span class="item-price">1000 P$</span><p class="item-desc">Des cendres sacrées qui appartiendraient au plus grand Pokémon légendaire de la région et possèdent des vertus thérapeutiques exceptionnelles. Elles réaniment un Pokémon K.O. et régénèrent toute leur santé.</p></div>
+          <div class="item-body"><p class="item-name">Cendre Sacrée</p><span class="item-price">1000 P$</span><p class="item-desc">Des cendres sacrées qui appartiendraient au plus grand Pokémon légendaire de la région et possèdent des vertus thérapeutiques exceptionnelles. Réaniment tous Pokémon K.O. et régénèrent toute leur santé.</p></div>
         </div>
 
       </div>
@@ -1190,22 +1195,22 @@
         <span class="section-count">2 types</span>
       </div>
       <div class="item-grid">
-        <div class="item-card" data-cat="papyrus" data-name="papyrus d'enseignement pe ct" style="--cat-color:var(--c-papyrus)">
+        <a href="papyrus.html"><div class="item-card" data-cat="papyrus" data-name="papyrus d'enseignement pe ct" style="--cat-color:var(--c-papyrus)">
           <div class="item-img-wrap"><img src="objets/papyrus-d-enseignement-normal.png" alt="Papyrus d'Enseignement" onerror="this.parentElement.innerHTML='📜'" /></div>
           <div class="item-body">
             <p class="item-name">Papyrus d'Enseignement (PE)</p>
             <span class="item-price">Consommable</span>
             <p class="item-desc">Long rouleau de papyrus sur lequel est inscrit un glyphe d'attaque. Lorsque le Pokémon le touche, il libère une mémoire ancienne lui permettant d'apprendre l'attaque. Objet consommé après usage.</p>
           </div>
-        </div>
-        <div class="item-card" data-cat="papyrus" data-name="papyrus sacré ps cs" style="--cat-color:var(--c-papyrus)">
+        </div></a>
+        <a href="papyrus.html"><div class="item-card" data-cat="papyrus" data-name="papyrus sacré ps cs" style="--cat-color:var(--c-papyrus)">
           <div class="item-img-wrap"><img src="objets/papyrus-sacre-normal.png" alt="Papyrus Sacré" onerror="this.parentElement.innerHTML='✨'" /></div>
           <div class="item-body">
             <p class="item-name">Papyrus Sacré (PS)</p>
             <span class="item-price">Permanent, doré et orné de lapis-lazuli</span>
             <p class="item-desc">Relique extrêmement rare, protégée par les temples. Sa magie est permanente : le Pokémon garde l'attaque définitivement. Les Papyrus Sacrés se distinguent par leur couleur dorée, leurs glyphes brillants et leur reliure en or et lapis-lazuli.</p>
           </div>
-        </div>
+        </div></a>
       </div>
     </section>
 

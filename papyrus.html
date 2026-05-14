@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Papyrus d'Enseignement & Papyrus Sacrés | 📜 Liste complète des PE et PS de Pokémon Cendres Antiques." />
+  <meta name="robots" content="index, follow" />
+  <title>Papyrus d'Enseignement & Papyrus Sacrés | Cendres Antiques</title>
+  <link rel="canonical" href="https://darkoosskooss.github.io/fangame-cendres-antiques/papyrus.html" />
+  <link rel="icon" type="image/x-icon" href="images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:         #C9973A;
+      --gold-light:   #E8C06A;
+      --gold-pale:    #F5E3B0;
+      --sand:         #1A1408;
+      --turquoise:    #2AADA4;
+      --text-main:    #F0E8D0;
+      --text-muted:   #A89060;
+      --border:       rgba(201,151,58,.22);
+      --font-display: 'Cinzel Decorative', serif;
+      --font-heading: 'Cinzel', serif;
+      --font-body:    'Lato', sans-serif;
+      --transition:   .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: .88rem; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+    .nav-logo-sub  { font-family: var(--font-heading); font-size: .74rem; color: var(--text-muted); letter-spacing: .35em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      font-family: var(--font-heading); font-size: .88rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      position: relative; padding-bottom: 4px; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 130px 2rem 50px; text-align: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,151,58,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 15% 20%, rgba(27,58,107,.18) 0%, transparent 55%);
+      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𓇳'; position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+      font-size: 9rem; opacity: .025; pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+      letter-spacing: .5em; text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 1rem; animation: fadeUp .8s ease both;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .6rem; animation: fadeUp .8s .15s ease both;
+    }
+    .page-hero p { color: var(--text-muted); max-width: 580px; margin: 0 auto; font-size: 1.06rem; animation: fadeUp .8s .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── LEGEND BADGES ── */
+    .legend-bar {
+      max-width: 1300px; margin: 1.5rem auto 0; padding: 0 2rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .legend-label {
+      font-family: var(--font-heading); font-size: .72rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .legend-badges { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      max-width: 1300px; margin: 1.5rem auto 0; padding: 0 2rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .search-box { position: relative; max-width: 420px; flex: 1 1 200px; }
+    .search-box input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-main); font-family: var(--font-body);
+      font-size: 1rem; outline: none; transition: border-color var(--transition);
+    }
+    .search-box input:focus { border-color: rgba(201,151,58,.5); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.06rem; pointer-events: none; }
+
+    .filter-group { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .45rem .9rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: rgba(201,151,58,.1);
+      border-color: rgba(201,151,58,.5);
+      color: var(--gold-light);
+    }
+
+    .filter-btn.active {
+      box-shadow: 0 0 0 1px rgba(201,151,58,.3);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap { max-width: 1300px; margin: 1.5rem auto 0; padding: 0 2rem 6rem; }
+    .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .count-label {
+      font-family: var(--font-heading); font-size: .74rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
+    }
+    .count-label span { color: var(--gold); }
+
+    table {
+      width: 100%; min-width: 700px; border-collapse: collapse;
+      background: rgba(255,255,255,.01); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    thead tr { background: rgba(201,151,58,.07); border-bottom: 1px solid rgba(201,151,58,.25); }
+    th {
+      font-family: var(--font-heading); font-size: .74rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      padding: .9rem 1rem; text-align: left; white-space: nowrap;
+    }
+    th.center { text-align: center; }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,.04); transition: background var(--transition); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(201,151,58,.04); }
+    tbody tr.hidden { display: none; }
+    td { padding: .65rem 1rem; vertical-align: middle; }
+    td.center { text-align: center; }
+
+    /* Numéro */
+    .pap-num {
+      font-family: var(--font-heading); font-size: .86rem; font-weight: 700;
+      color: var(--gold); letter-spacing: .06em; white-space: nowrap;
+    }
+    .pap-num.ps { color: var(--turquoise); }
+
+    /* Image objet */
+    .obj-cell { width: 64px; }
+    .obj-wrap {
+      width: 56px; height: 56px; margin: 0 auto;
+      background: rgba(255,255,255,.03); border-radius: 6px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: border-color var(--transition);
+    }
+    tbody tr:hover .obj-wrap { border-color: rgba(201,151,58,.4); }
+    .obj-wrap img { width: 48px; height: 48px; image-rendering: pixelated; object-fit: contain; }
+    .obj-placeholder { font-size: 1.4rem; opacity: .3; }
+
+    /* Nom attaque */
+    .move-name { font-family: var(--font-heading); font-size: .94rem; color: var(--gold-pale); font-weight: 600; white-space: nowrap; }
+
+    /* ── TYPE BADGE ── */
+    .tb {
+      display: inline-block;
+      padding: .18rem .55rem;
+      border-radius: 3px;
+      font-family: var(--font-heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-right: .3rem;
+      white-space: nowrap;
+    }
+
+    .t-vol     { background: #83aff1; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-foudre  { background: #f5ab3d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-poison  { background: #b292f7; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-eau     { background: #4596ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-sol     { background: #c99457; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-insect  { background: #9bc337; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-feu     { background: #ee9474; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-metal   { background: #c2c6d1; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ombre   { background: #5f626d; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-ame     { background: #9b96ed; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-combat  { background: #ea8383; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-granit  { background: #8b5a4a; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-divin   { background: #e981a4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-dragon  { background: #7c88f3; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-gel     { background: #51c4c8; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-esprit  { background: #dd7db4; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-normal  { background: #c3b5b2; color: #1d170b; border: 1px solid var(--gold-pale); }
+    .t-plante  { background: #28bc75; color: #1d170b; border: 1px solid var(--gold-pale); }
+
+    /* ── CATÉGORIE BADGE ── */
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-family: var(--font-heading);
+      font-size: .64rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      border: 1px solid;
+    }
+    .cat-physique  { background: rgba(232,98,44,.18); color: #E8874C; border: 1px solid rgba(232,98,44,.3); }
+    .cat-speciale  { background: rgba(58,144,207,.18); color: #5EB0E8; border: 1px solid rgba(58,144,207,.3); }
+    .cat-statut    { background: rgba(168,144,96,.12); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* Stats chiffres */
+    .stat-val {
+      font-family: var(--font-heading); font-size: .96rem; font-weight: 700;
+      color: var(--gold-pale); letter-spacing: .04em; text-align: center; display: block;
+    }
+    .stat-val.none { color: var(--text-muted); opacity: .35; font-size: 1.1rem; letter-spacing: .1em; }
+
+    /* Prix */
+    .price-val {
+      font-family: var(--font-heading); font-size: .9rem; font-weight: 600;
+      color: var(--gold); white-space: nowrap;
+    }
+    .price-val::after { content: ' ₽'; font-size: .75rem; opacity: .6; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .88rem; color: rgba(168,144,96,.4); }
+
+    /* ── BURGER ── */
+    .burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; cursor: pointer;
+      background: none; border: none; padding: 6px; border-radius: 3px;
+      transition: background var(--transition); z-index: 200;
+    }
+    .burger:hover { background: rgba(201,151,58,.08); }
+    .burger-line {
+      display: block; width: 100%; height: 1.5px; background: var(--gold);
+      border-radius: 2px; transform-origin: center;
+      transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, width .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; top: 72px; z-index: 99;
+      background: linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter: blur(16px); border-top: 1px solid var(--border);
+      flex-direction: column; align-items: center; justify-content: center; gap: 0;
+      transform: translateY(-8px); opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-nav ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+    .mobile-nav ul li { width: 100%; text-align: center; border-bottom: 1px solid rgba(201,151,58,.08); }
+    .mobile-nav ul a {
+      display: block; padding: 1.2rem 2rem;
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover { color: var(--gold-light); background: rgba(201,151,58,.05); }
+    .mobile-nav ul a.active { color: var(--gold); }
+    .mobile-nav-ornament { color: var(--gold); font-size: 1.4rem; margin: 2.5rem 0 1rem; opacity: .5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1340px) {
+      .filters-bar, .legend-bar, .table-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.5rem; }
+      th { font-size: .68rem; letter-spacing: .2em; padding: .8rem .75rem; }
+      td { padding: .55rem .75rem; }
+      .move-name { font-size: .86rem; }
+    }
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      .nav-links { display: none; }
+      .mobile-nav { display: flex; }
+      nav { padding: 0 1.2rem; }
+      .page-hero { padding: 110px 1rem 36px; }
+      .page-hero h1 { font-size: clamp(1.6rem, 7vw, 2.8rem); }
+      .page-hero p { font-size: .95rem; padding: 0 .5rem; }
+      .filters-bar, .legend-bar { padding: 0 1rem; }
+      .table-wrap { padding: 0 1rem 4rem; margin-top: 1rem; }
+      th { font-size: .62rem; letter-spacing: .12em; padding: .7rem .6rem; }
+      td { padding: .5rem .6rem; }
+      .obj-wrap { width: 44px; height: 44px; }
+      .obj-wrap img { width: 38px; height: 38px; }
+      .obj-cell { width: 52px; }
+      footer { width: 100%; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; padding: 1.5rem 1rem; gap: .5rem; }
+      .footer-bottom p { font-size: .8rem; }
+    }
+    @media (max-width: 540px) {
+      /* Masquer Précision sur petit écran */
+      th:nth-child(8), td:nth-child(8) { display: none; }
+      td { padding: .4rem .45rem; }
+      th { padding: .6rem .45rem; font-size: .58rem; }
+    }
+    @media (max-width: 420px) {
+      /* Masquer PP sur très petit écran */
+      th:nth-child(6), td:nth-child(6) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="pokemon.html">Pokémon</a></li>
+      <li><a href="objets.html">Objets</a></li>
+      <li><a href="evolutions.html">Évolutions</a></li>
+    </ul>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="guide.html">Guide</a></li>
+    <li><a href="pokemon.html">Pokémon</a></li>
+    <li><a href="objets.html">Objets</a></li>
+    <li><a href="evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <p class="page-eyebrow">✦ Région de Khemis ✦</p>
+  <h1>Papyrus</h1>
+  <p>Les Papyrus d'Enseignement (PE) et Papyrus Sacrés (PS) permettent d'apprendre des capacités spéciales à vos Pokémon.</p>
+</div>
+
+<!-- Légende catégories -->
+<div class="legend-bar">
+  <span class="legend-label">Catégorie :</span>
+  <div class="legend-badges">
+    <span class="cat-badge cat-physique">⚔ Physique</span>
+    <span class="cat-badge cat-speciale">✦ Spéciale</span>
+    <span class="cat-badge cat-statut">◆ Statut</span>
+  </div>
+</div>
+
+<!-- Barre de filtres -->
+<div class="filters-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Rechercher un papyrus ou une attaque…" oninput="filterTable()" autocomplete="off" />
+  </div>
+  <div class="filter-group" id="filter-type">
+    <button class="filter-btn active" data-type="all">Tous</button>
+    <button class="filter-btn" data-type="pe">PE</button>
+    <button class="filter-btn" data-type="ps">PS</button>
+  </div>
+</div>
+
+<main>
+<div class="table-wrap">
+  <p class="count-label">Affichage de <span id="visible-count"></span> / <span id="total-count"></span> Papyrus</p>
+  <div class="table-scroll">
+    <table id="papyrus-table" aria-label="Liste des Papyrus d'Enseignement et Sacrés">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th class="center">Image</th>
+          <th>Attaque</th>
+          <th class="center">Type</th>
+          <th class="center">Catégorie</th>
+          <th class="center">PP</th>
+          <th class="center">Puissance</th>
+          <th class="center">Précision</th>
+          <th class="center">Prix</th>
+        </tr>
+      </thead>
+      <tbody id="papyrus-body">
+        <!-- Généré par JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company</p>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// PAPYRUS DATA
+// Format : [id, fichierImage, nomAttaque, type, categorie, pp, puissance, precision, prix]
+//
+//   id          : "PE01", "PE02", … "PS01", "PS02", …
+//   fichierImage: nom du fichier dans le dossier "objets/" (ex: "pe01.png")
+//   nomAttaque  : nom de la capacité enseignée
+//   type        : "Normal" | "Feu" | "Eau" | "Plante" | "Électrik" | "Glace" |
+//                 "Combat" | "Poison" | "Sol" | "Vol" | "Psy" | "Insecte" |
+//                 "Roche" | "Spectre" | "Dragon" | "Ténèbres" | "Acier" | "Fée"
+//   categorie   : "Physique" | "Spéciale" | "Statut"
+//   pp          : nombre (ex: 10) ou null pour "—"
+//   puissance   : nombre (ex: 80) ou null pour "—"
+//   precision   : nombre (ex: 100) ou null pour "—"
+//   prix        : nombre (ex: 3000) ou null pour "—"
+// ══════════════════════════════════════════════════════════════════
+const PAPYRUS_LIST = [
+
+  // ── Papyrus Sacrés ─────────────────────────────────────────────
+  ["PS01", "papyrus-sacre-normal.png", "Flash",  "Normal",    "Statut",   20, null,  100, null],
+  ["PS02", "papyrus-sacre-combat.png", "Éclate-Roc",  "Combat",   "Physique",  15, 50, 100, null],
+  ["PS03", "papyrus-sacre-combat.png", "Force",  "Combat",     "Physique",  15, 75,  100, null],
+  ["PS04", "papyrus-sacre-eau.png", "Surf",  "Eau",       "Spéciale",  15, 90,  100, null],
+  ["PS05", "papyrus-sacre-vol.png", "Vol",  "Vol",  "Physique",    15, 90, 95, null],
+  ["PS06", "papyrus-sacre-insect.png", "Taillade",  "Insect",  "Physique",    20, 40, 95, null],
+  ["PS07", "papyrus-sacre-eau.png", "Plongée",  "Eau",  "Physique",    10, 80, 100, null],
+
+  // ── Papyrus d'Enseignement ──────────────────────────────────────
+
+  ["PE01", "papyrus-d-enseignement-metal.png", "Ailes d'Acier",  "Métal",    "Physique",  25, 70,  90, 300],
+  ["PE02", "papyrus-d-enseignement-metal.png", "Luminocanon",  "Métal",    "Spéciale",  10, 80,  100, 400],
+  ["PE03", "papyrus-d-enseignement-metal.png", "Queue de Fer",  "Métal",    "Physique",  15, 100,  75, 400],
+  ["PE04", "papyrus-d-enseignement-metal.png", "Strido-Son",  "Métal",    "Statut",  40, null,  85, 200],
+  ["PE05", "papyrus-d-enseignement-combat.png", "Casse-Brique",  "Combat",    "Physique",  15, 75,  100, 400],
+  ["PE06", "papyrus-d-enseignement-combat.png", "Dynamo-Poing",  "Combat",    "Physique",  5, 100,  50, 500],
+  ["PE07", "papyrus-d-enseignement-combat.png", "Gonflette",  "Combat",    "Statut",  20, null,  null, 200],
+  ["PE08", "papyrus-d-enseignement-combat.png", "Projection",  "Combat",    "Physique",  10, 60,  90, 300],
+  ["PE09", "papyrus-d-enseignement-combat.png", "Prévention",  "Combat",    "Statut",  15, null,  null, 200],
+  ["PE10", "papyrus-d-enseignement-combat.png", "Vampi-Poing",  "Combat",    "Physique",  10, 75,  100, 400],
+  ["PE11", "papyrus-d-enseignement-dragon.png", "Draco-Météore",  "Dragon",    "Spéciale",  5, 130,  90, 1000],
+  ["PE12", "papyrus-d-enseignement-dragon.png", "Draco-Choc",  "Dragon",    "Spéciale",  10, 85,  100, 500],
+  ["PE13", "papyrus-d-enseignement-dragon.png", "Draco-Griffe",  "Dragon",    "Physique",  15, 80,  100, 500],
+  ["PE14", "papyrus-d-enseignement-eau.png", "Aqua-Jet",  "Eau",    "Physique",  20, 40,  100, 300],
+  ["PE15", "papyrus-d-enseignement-eau.png", "Danse-Pluie",  "Eau",    "Statut",  5, null,  null, 200],
+  ["PE16", "papyrus-d-enseignement-eau.png", "Ébullition",  "Eau",    "Spéciale",  15, 80,  100, 400],
+  ["PE17", "papyrus-d-enseignement-eau.png", "Hydro-Queue",  "Eau",    "Physique",  10, 90,  90, 500],
+  ["PE18", "papyrus-d-enseignement-eau.png", "Pince-Masse",  "Eau",    "Physique",  10, 100,  90, 500],
+  ["PE19", "papyrus-d-enseignement-eau.png", "Saumure",  "Eau",    "Spéciale",  10, 65,  100, 400],
+  ["PE20", "papyrus-d-enseignement-eau.png", "Vibraqua",  "Eau",    "Spéciale",  20, 60,  100, 300],
+  ["PE21", "papyrus-d-enseignement-foudre.png", "Cage-Éclair",  "Foudre",    "Statut",  20, null,  null, 300],
+  ["PE22", "papyrus-d-enseignement-foudre.png", "Coup d'Jus",  "Foudre",    "Spéciale",  15, 80,  100, 400],
+  ["PE23", "papyrus-d-enseignement-foudre.png", "Élecanon",  "Foudre",    "Spéciale",  5, 120,  50, 1000],
+  ["PE24", "papyrus-d-enseignement-foudre.png", "Fatal-Foudre",  "Foudre",    "Spéciale",  10, 110,  70, 1000],
+  ["PE25", "papyrus-d-enseignement-foudre.png", "Onde de Choc",  "Foudre",    "Spéciale",  20, 60,  null, 300],
+  ["PE26", "papyrus-d-enseignement-foudre.png", "Poing-Éclair",  "Foudre",    "Physique",  15, 75,  100, 400],
+  ["PE27", "papyrus-d-enseignement-foudre.png", "Tonnerre",  "Foudre",    "Spéciale",  20, 90,  100, 500],
+  ["PE28", "papyrus-d-enseignement-foudre.png", "Vol Magnétik",  "Foudre",    "Statut",  10, null,  null, 200],
+  ["PE29", "papyrus-d-enseignement-divin.png", "Charme",  "Divin",    "Statut",  20, null,  100, 200],
+  ["PE30", "papyrus-d-enseignement-divin.png", "Doux Baiser",  "Divin",    "Statut",  10, null,  75, 200],
+  ["PE31", "papyrus-d-enseignement-divin.png", "Éclat Magique",  "Divin",    "Spéciale",  10, 80,  100, 400],
+  ["PE32", "papyrus-d-enseignement-divin.png", "Voix Enjôleuse",  "Divin",    "Spéciale",  15, 40,  null, 300],
+  ["PE33", "papyrus-d-enseignement-feu.png", "Calcination",  "Feu",    "Spéciale",  15, 60,  100, 300],
+  ["PE34", "papyrus-d-enseignement-feu.png", "Danse Flammes",  "Feu",    "Spéciale",  15, 35,  85, 300],
+  ["PE35", "papyrus-d-enseignement-feu.png", "Déflagration",  "Feu",    "Spéciale",  5, 110,  85, 1000],
+  ["PE36", "papyrus-d-enseignement-feu.png", "Feu Follet",  "Feu",    "Statut",  15, null,  85, 300],
+  ["PE37", "papyrus-d-enseignement-feu.png", "Lance-Flammes",  "Feu",    "Spéciale",  15, 90,  100, 500],
+  ["PE38", "papyrus-d-enseignement-feu.png", "Nitrocharge",  "Feu",    "Physique",  20, 50,  100, 300],
+  ["PE39", "papyrus-d-enseignement-feu.png", "Zénith",  "Feu",    "Statut",  5, null,  null, 200],
+  ["PE40", "papyrus-d-enseignement-gel.png", "Avalanche",  "Gel",    "Physique",  10, 60,  100, 300],
+  ["PE41", "papyrus-d-enseignement-gel.png", "Blizzard",  "Gel",    "Spéciale",  5, 110,  70, 1000],
+  ["PE42", "papyrus-d-enseignement-gel.png", "Crocs Givre",  "Gel",    "Physique",  15, 65,  95, 400],
+  ["PE43", "papyrus-d-enseignement-gel.png", "Grêle",  "Gel",    "Statut",  5, null,  null, 200],
+  ["PE44", "papyrus-d-enseignement-gel.png", "Laser Glace",  "Gel",    "Spéciale",  10, 90,  100, 500],
+  ["PE45", "papyrus-d-enseignement-gel.png", "Souffle Glacé",  "Gel",    "Spéciale",  10, 60,  90, 300],
+  ["PE46", "papyrus-d-enseignement-insect.png", "Bourdon",  "Insect",    "Spéciale",  10, 90,  100, 500],
+  ["PE47", "papyrus-d-enseignement-insect.png", "Demi-Tour",  "Insect",    "Physique",  20, 70,  100, 400],
+  ["PE48", "papyrus-d-enseignement-insect.png", "Piqûre",  "Insect",    "Physique",  20, 60,  100, 300],
+  ["PE49", "papyrus-d-enseignement-insect.png", "Plaie Croix",  "Insect",    "Physique",  15, 80,  100, 400],
+  ["PE50", "papyrus-d-enseignement-insect.png", "Toile",  "Insect",    "Statut",  10, null,  null, 200],
+  ["PE51", "papyrus-d-enseignement-insect.png", "Vent Argenté",  "Insect",    "Spéciale",  5, 60,  100, 400],
+  ["PE52", "papyrus-d-enseignement-plante.png", "Balle Graine",  "Plante",    "Physique",  30, 25,  100, 300],
+  ["PE53", "papyrus-d-enseignement-plante.png", "Éco-Sphère",  "Plante",    "Spéciale",  10, 90,  100, 500],
+  ["PE54", "papyrus-d-enseignement-plante.png", "Giga-Sangsue",  "Plante",    "Spéciale",  10, 75,  100, 500],
+  ["PE55", "papyrus-d-enseignement-plante.png", "Lance-Soleil",  "Plante",    "Spéciale",  10, 120,  100, 1000],
+  ["PE56", "papyrus-d-enseignement-plante.png", "Noeud Herbe",  "Plante",    "Spéciale",  20, null,  100, 300],
+  ["PE57", "papyrus-d-enseignement-plante.png", "Poing Dard",  "Plante",    "Physique",  15, 60,  100, 300],
+  ["PE58", "papyrus-d-enseignement-plante.png", "Spore",  "Plante",    "Statut",  15, null,  100, 300],
+  ["PE59", "papyrus-d-enseignement-plante.png", "Tempête Verte",  "Plante",    "Spéciale",  5, 130,  90, 1000],
+  ["PE60", "papyrus-d-enseignement-poison.png", "Acidarmure",  "Poison",    "Statut",  20, null,  null, 200],
+  ["PE61", "papyrus-d-enseignement-poison.png", "Bombe Beurk",  "Poison",    "Spéciale",  10, 90,  100, 500],
+  ["PE62", "papyrus-d-enseignement-poison.png", "Détricanon",  "Poison",    "Physique",  5, 120,  80, 1000],
+  ["PE63", "papyrus-d-enseignement-poison.png", "Queue-Poison",  "Poison",    "Physique",  25, 50,  100, 300],
+  ["PE64", "papyrus-d-enseignement-poison.png", "Toxik",  "Poison",    "Statut",  10, null,  90, 300],
+  ["PE65", "papyrus-d-enseignement-esprit.png", "Choc Esprit",  "Esprit",    "Spéciale",  10, 80,  100, 400],
+  ["PE66", "papyrus-d-enseignement-esprit.png", "Dévorêve",  "Esprit",    "Spéciale",  15, 100,  100, 500],
+  ["PE67", "papyrus-d-enseignement-esprit.png", "Distorsion",  "Esprit",    "Statut",  5, null,  null, 200],
+  ["PE68", "papyrus-d-enseignement-esprit.png", "Hypnose",  "Esprit",    "Statut",  20, null,  60, 200],
+  ["PE69", "papyrus-d-enseignement-esprit.png", "Mur Lumière",  "Esprit",    "Statut",  30, null,  null, 200],
+  ["PE70", "papyrus-d-enseignement-esprit.png", "Plénitude",  "Esprit",    "Statut",  20, null,  null, 300],
+  ["PE71", "papyrus-d-enseignement-esprit.png", "Protection",  "Esprit",    "Statut",  20, null,  null, 200],
+  ["PE72", "papyrus-d-enseignement-esprit.png", "Psyko",  "Esprit",    "Spéciale",  10, 90,  100, 500],
+  ["PE73", "papyrus-d-enseignement-esprit.png", "Voeu Soin",  "Esprit",    "Statut",  10, null,  null, 200],
+  ["PE74", "papyrus-d-enseignement-granit.png", "Éboulement",  "Granit",    "Physique",  10, 75,  90, 400],
+  ["PE75", "papyrus-d-enseignement-granit.png", "Lame de Granit",  "Granit",    "Physique",  5, 100,  80, 500],
+  ["PE76", "papyrus-d-enseignement-granit.png", "Piège de Granit",  "Granit",    "Statut",  20, null,  null, 200],
+  ["PE77", "papyrus-d-enseignement-granit.png", "Tombegranit",  "Granit",    "Physique",  15, 60,  95, 300],
+  ["PE78", "papyrus-d-enseignement-sol.png", "Coud'Boue",  "Sol",    "Spéciale",  10, 20,  100, 300],
+  ["PE79", "papyrus-d-enseignement-sol.png", "Piétisol",  "Sol",    "Physique",  20, 60,  100, 300],
+  ["PE80", "papyrus-d-enseignement-sol.png", "Séisme",  "Sol",    "Physique",  10, 100,  100, 500],
+  ["PE81", "papyrus-d-enseignement-sol.png", "Tempête de Sable",  "Sol",    "Statut",  5, null,  null, 200],
+  ["PE82", "papyrus-d-enseignement-sol.png", "Tunnel",  "Sol",    "Physique",  10, 80,  100, 400],
+  ["PE83", "papyrus-d-enseignement-ame.png", "Ball'Spectre",  "Âme",    "Spéciale",  15, 80,  100, 500],
+  ["PE84", "papyrus-d-enseignement-ame.png", "Griffe Spectre",  "Âme",    "Physique",  15, 70,  100, 400],
+  ["PE85", "papyrus-d-enseignement-ame.png", "Vent Mauvais",  "Âme",    "Spéciale",  5, 60,  100, 400],
+  ["PE86", "papyrus-d-enseignement-ombre.png", "Aiguisage",  "Ombre",    "Statut",  15, null,  null, 200],
+  ["PE87", "papyrus-d-enseignement-ombre.png", "Larcin",  "Ombre",    "Physique",  25, 60,  100, 300],
+  ["PE88", "papyrus-d-enseignement-ombre.png", "Provoc",  "Ombre",    "Statut",  20, null,  100, 200],
+  ["PE89", "papyrus-d-enseignement-ombre.png", "Représailles",  "Ombre",    "Physique",  10, 50,  100, 300],
+  ["PE90", "papyrus-d-enseignement-ombre.png", "Vibrobscur",  "Ombre",    "Spéciale",  15, 80,  100, 500],
+  ["PE91", "papyrus-d-enseignement-vol.png", "Acrobatie",  "Vol",    "Physique",  15, 55,  100, 400],
+  ["PE92", "papyrus-d-enseignement-vol.png", "Aéropique",  "Vol",    "Physique",  20, 60,  null, 300],
+  ["PE93", "papyrus-d-enseignement-vol.png", "Atterrissage",  "Vol",    "Statut",  10, null,  null, 300],
+  ["PE94", "papyrus-d-enseignement-vol.png", "Rapace",  "Vol",    "Physique",  15, 120,  100, 1000],
+  ["PE95", "papyrus-d-enseignement-normal.png", "Abri",  "Normal",    "Statut",  10, null,  null, 200],
+  ["PE96", "papyrus-d-enseignement-normal.png", "Bâillement",  "Normal",    "Statut",  10, null,  null, 200],
+  ["PE97", "papyrus-d-enseignement-normal.png", "Danse Lames",  "Normal",    "Statut",  20, null,  null, 300],
+  ["PE98", "papyrus-d-enseignement-normal.png", "Frustration",  "Normal",    "Physique",  20, null,  100, 300],
+  ["PE99", "papyrus-d-enseignement-normal.png", "Hurlement",  "Normal",    "Statut",  20, null,  null, 200],
+  ["PE100", "papyrus-d-enseignement-normal.png", "Retour",  "Normal",    "Physique",  20, null,  100, 300],
+];
+
+// ── Correspondance type → classe CSS ────────────────────────────
+const TYPE_CLASS = {
+  "Normal":    "t-normal",
+  "Feu":       "t-feu",
+  "Eau":       "t-eau",
+  "Plante":    "t-plante",
+  "Foudre":    "t-foudre",
+  "Gel":       "t-gel",
+  "Combat":    "t-combat",
+  "Poison":    "t-poison",
+  "Sol":       "t-sol",
+  "Vol":       "t-vol",
+  "Esprit":    "t-esprit",
+  "Insect":    "t-insect",
+  "Granit":    "t-granit",
+  "Âme":       "t-ame",
+  "Dragon":    "t-dragon",
+  "Ombre":     "t-ombre",
+  "Métal":     "t-metal",
+  "Divin":     "t-divin",
+};
+
+const CAT_CLASS   = { "Physique": "cat-physique", "Spéciale": "cat-speciale", "Statut": "cat-statut" };
+const CAT_ICON    = { "Physique": "⚔", "Spéciale": "✦", "Statut": "◆" };
+
+function val(v, suffix) {
+  if (v === null || v === undefined) return `<span class="stat-val none">—</span>`;
+  return `<span class="stat-val">${v}${suffix || ''}</span>`;
+}
+
+function buildTable() {
+  const tbody = document.getElementById('papyrus-body');
+  let html = '';
+
+  PAPYRUS_LIST.forEach(p => {
+    const [id, img, attaque, type, categorie, pp, puissance, precision, prix] = p;
+    const isPS      = id.startsWith('PS');
+    const numClass  = isPS ? 'pap-num ps' : 'pap-num';
+    const typeClass = TYPE_CLASS[type] || 'type-normal';
+    const catClass  = CAT_CLASS[categorie] || 'cat-statut';
+    const catIcon   = CAT_ICON[categorie]  || '◆';
+
+    const imgHTML = img
+      ? `<img src="objets/${img}" alt="${id}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+         <span class="obj-placeholder" style="display:none">📜</span>`
+      : `<span class="obj-placeholder">📜</span>`;
+
+    const prixHTML = prix !== null
+      ? `<span class="price-val">${prix.toLocaleString('fr-FR')}</span>`
+      : `<span class="stat-val none">—</span>`;
+
+    html += `
+      <tr data-id="${id.toLowerCase()}" data-attaque="${attaque.toLowerCase()}" data-kind="${isPS ? 'ps' : 'pe'}">
+        <td><span class="${numClass}">${id}</span></td>
+        <td class="center obj-cell"><div class="obj-wrap">${imgHTML}</div></td>
+        <td><span class="move-name">${attaque}</span></td>
+        <td class="center"><span class="tb ${typeClass}">${type}</span></td>
+        <td class="center"><span class="cat-badge ${catClass}">${catIcon} ${categorie}</span></td>
+        <td class="center">${val(pp)}</td>
+        <td class="center">${val(puissance)}</td>
+        <td class="center">${precision !== null ? `<span class="stat-val">${precision}%</span>` : `<span class="stat-val none">—</span>`}</td>
+        <td class="center">${prixHTML}</td>
+      </tr>`;
+  });
+
+  tbody.innerHTML = html;
+  document.getElementById('total-count').textContent = PAPYRUS_LIST.length;
+  updateCount();
+}
+
+let activeKind = 'all';
+
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('#papyrus-body tr');
+  let visible = 0;
+
+  rows.forEach(row => {
+    const id      = row.dataset.id      || '';
+    const attaque = row.dataset.attaque || '';
+    const kind    = row.dataset.kind    || '';
+    const matchQ  = !q || id.includes(q) || attaque.includes(q);
+    const matchK  = activeKind === 'all' || kind === activeKind;
+    const show    = matchQ && matchK;
+    row.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+
+  updateCount(visible);
+}
+
+function updateCount(n) {
+  if (n === undefined) n = PAPYRUS_LIST.length;
+  document.getElementById('visible-count').textContent = n;
+}
+
+// Filtres PE / PS
+document.querySelectorAll('#filter-type .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#filter-type .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeKind = btn.dataset.type;
+    filterTable();
+  });
+});
+
+buildTable();
+</script>
+
+<script>
+  /* ── Burger Menu ── */
+  const burger     = document.querySelector('.burger');
+  const mobileNav  = document.getElementById('mobile-nav');
+  const mobileLinks = mobileNav.querySelectorAll('a');
+
+  function openMenu() {
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Fermer le menu');
+    mobileNav.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    mobileNav.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+</script>
+</body>
+</html>
