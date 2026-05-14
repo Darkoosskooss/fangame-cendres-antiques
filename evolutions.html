@@ -555,6 +555,14 @@ const PKM_IDS = {
   "Ningale": 290, "Ninjask": 291, "Munja": 292,
 };
 
+// Images locales prioritaires (dossier pokemon/)
+// Ajouter ici : "NomPokémon": "fichier.png"
+// Si présent → pokemon/fichier.png est utilisé à la place du sprite PokeAPI
+// Si absent  → comportement habituel (PokeAPI ou placeholder)
+const PKM_LOCAL = {
+  "Râ":    "250.png",
+};
+
 // Correspondances objets → slug PokeAPI item
 const ITEM_SLUGS = {
   "Pierre Eau": "water-stone",
@@ -820,7 +828,21 @@ const EVOS = [
 // BUILD HTML
 // ═══════════════════════════════════════════════════════════
 function buildSprite(name) {
+  const localImg = PKM_LOCAL[name];
   const id = PKM_IDS[name];
+
+  if (localImg) {
+    // Image locale prioritaire ; repli sur PokeAPI si le fichier est absent
+    const fallback = id ? PKM(id) : null;
+    const onerror  = fallback
+      ? `this.onerror=null;this.src='${fallback}'`
+      : `this.style.display='none';this.nextElementSibling.style.display='block'`;
+    return `<div class="poke-sprite">
+      <img src="pokemon/${localImg}" alt="${name}" loading="lazy" onerror="${onerror}" />
+      ${fallback ? '' : `<span style="display:none;font-size:1.6rem;opacity:.35">?</span>`}
+    </div>`;
+  }
+
   if (!id) return `<div class="poke-sprite"><span style="font-size:1.6rem;opacity:.35">?</span></div>`;
   return `<div class="poke-sprite">
     <img src="${PKM(id)}" alt="${name}" loading="lazy"

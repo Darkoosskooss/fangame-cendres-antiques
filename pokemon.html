@@ -611,9 +611,12 @@
 <script>
 // ══════════════════════════════════════════════════════════════════
 // CODEX DATA — 230 Pokémon
-// Chaque entrée : [frName, enName, spriteId, [types], rarity]
-// rarity: 'common' | 'semi-legen' | 'legen' | 'legen-reg'
-// spriteId: numéro PokeAPI (ou null si sprite personnalisé requis)
+// Chaque entrée : [frName, enName, spriteId, [types], rarity, localImg?]
+// rarity   : 'common' | 'semi-legen' | 'legen' | 'legen-reg'
+// spriteId : numéro PokeAPI (ou null si image locale uniquement)
+// localImg : (optionnel) nom de fichier dans le dossier pokemon/
+//            ex. "bennu.png" → affiche pokemon/bennu.png en priorité
+//            Si localImg est absent ou null, le sprite PokeAPI est utilisé.
 // ══════════════════════════════════════════════════════════════════
 const SPRITE = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
@@ -842,16 +845,16 @@ const CODEX = [
   ["Démétéros",       "Landorus",          645,  ["sol","vol"],         "legen"],
   // ── LÉGENDAIRES DE LA RÉGION ──
   ["Bennu",         "Bennu",           146,  ["feu","vol"],         "legen-reg"],
-  ["Râ",           "Râ",             250,  ["feu","vol"],         "legen-reg"],
+  ["Râ",           "Râ",             250,  ["feu","vol"],         "legen-reg",  "250.png"],
   // ── GRANDS LÉGENDAIRES ──
   ["Groudon",         "Groudon",           383,  ["sol"],               "legen"],
-  ["Palkia",          "Palkia",            484,  ["eau","dragon"],      "legen"],
+  ["Palkia",          "Palkia",            484,  ["eau","dragon"],      "legen",  "484.png"],
   ["Reshiram",        "Reshiram",          643,  ["dragon","feu"],      "legen"],
   ["Yveltal",         "Yveltal",           717,  ["ombre","vol"],       "legen"],
-  ["Zygarde",         "Zygarde",           718,  ["dragon","sol"],      "legen"],
+  ["Zygarde",         "Zygarde",           718,  ["dragon","sol"],      "legen",  "718.png"],
   ["Hoopa",           "Hoopa",             720,  ["esprit","ame"],    "legen"],
   ["Mew",             "Mew",               151,  ["esprit", "divin"],            "legen"],
-  ["Mewtwo",          "Mewtwo",            150,  ["esprit", "ombre"],            "legen"],
+  ["Mewtwo",          "Mewtwo",            150,  ["esprit", "ombre"],            "legen",  "150.png"],
 ];
 
 // Rareté labels
@@ -880,7 +883,7 @@ function buildTable() {
 
   CODEX.forEach((p, i) => {
     const num = i + 1;
-    const [fr, en, spriteId, types, rarity] = p;
+    const [fr, en, spriteId, types, rarity, localImg] = p;
     const numStr = `#${String(num).padStart(3,'0')}`;
 
     // Section header
@@ -891,10 +894,21 @@ function buildTable() {
     // Type badges
     const typeBadges = types.map(t => `<span class="tb t-${t}">${t}</span>`).join('');
 
-    // Sprite
-    const spriteHTML = spriteId
-      ? `<img src="${SPRITE(spriteId)}" alt="${fr}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="sprite-placeholder" style="display:none">?</span>`
-      : `<span class="sprite-placeholder">?</span>`;
+    // Sprite — priorité : image locale > PokeAPI > placeholder
+    let spriteHTML;
+    if (localImg) {
+      // Image depuis le dossier pokemon/ ; repli sur le sprite API si le fichier est absent
+      const fallback = spriteId ? SPRITE(spriteId) : '';
+      const onerror  = fallback
+        ? `this.onerror=null;this.src='${fallback}'`
+        : `this.style.display='none';this.nextElementSibling.style.display='block'`;
+      spriteHTML = `<img src="pokemon/${localImg}" alt="${fr}" loading="lazy" onerror="${onerror}" />`
+                 + (fallback ? '' : `<span class="sprite-placeholder" style="display:none">?</span>`);
+    } else if (spriteId) {
+      spriteHTML = `<img src="${SPRITE(spriteId)}" alt="${fr}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="sprite-placeholder" style="display:none">?</span>`;
+    } else {
+      spriteHTML = `<span class="sprite-placeholder">?</span>`;
+    }
 
     html += `
       <tr data-fr="${fr.toLowerCase()}" data-en="${en.toLowerCase()}" data-rarity="${rarity}" data-num="${num}">
