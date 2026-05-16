@@ -496,7 +496,7 @@
 <!-- ══ CONTENU ══ -->
 <main>
 <div class="evo-main">
-  <p class="count-bar">Affichage de <span id="visible-count"></span> / 35 évolutions</p>
+  <p class="count-bar">Affichage de <span id="visible-count"></span> / 36 évolutions</p>
 
   <div class="evo-grid" id="evo-grid">
     <!-- Rempli par JS -->
@@ -529,6 +529,7 @@ const PKM_IDS = {
   "Skélénox": 355, "Téraclope": 356,
   "Noeunoeuf": 102, "Noadkoko": 10114,
   "Osselait": 104, "Ossatueur": 10115,
+  "Hypotrempe": 116, "Hypocéan": 117,
   "Hypocéan": 117, "Hyporoi": 230,
   "Téraclope": 356, "Noctunoir": 477,
   "Barpau": 349, "Milobellus": 350,
@@ -561,6 +562,10 @@ const PKM_IDS = {
 // Si absent  → comportement habituel (PokeAPI ou placeholder)
 const PKM_LOCAL = {
   "Râ":    "250.png",
+  "Hypotrempe":    "116.png",
+  "Hypocéan":    "117.png",
+  "Spectrum":    "093.png",
+  "Ectoplasma":    "094.png",
 };
 
 // Correspondances objets → slug PokeAPI item
@@ -643,6 +648,12 @@ const EVOS = [
     method: "niveau", niveau: 30,
     simplifie: false,
     note: "Kraknoix évolue à partir du niveau 30 en Vibraninf."
+  },
+  {
+    from: "Hypotrempe", to: "Hypocéan",
+    method: "niveau", niveau: 25,
+    simplifie: false,
+    note: "Hypotrempe évolue à partir du niveau 25 en Hypocéan."
   },
   {
     from: "Skélénox", to: "Téraclope",
