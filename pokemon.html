@@ -417,6 +417,15 @@
       opacity: .5;
     }
 
+    /* ── AUTRES ── */
+    tbody tr {
+      cursor: pointer;
+    }
+        
+    tbody tr:hover {
+      transform: scale(1.002);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1340px) {
       .codex-stats,
@@ -680,7 +689,7 @@ const CODEX = [
   ["Coxy",            "Ledyba",           165,  ["insect"],      "common"],
   ["Coxyclaque",      "Ledian",           166,  ["insect"],               "common"],
   ["Mimigal",         "Spinarak",          167,  ["insect","poison"],             "common"],
-  ["Migalos",         "Ariados",          168,  ["insect","poison"],             "common"],
+  ["Migalos",         "Ariados",          168,  ["poison","ame"],             "common"],
   ["Scarhino",        "Heracross",         214,  ["insect","combat"],   "common"],
   ["Yanma",           "Yanma",             193,  ["insect","vol"],      "common"],
   ["Yanmega",         "Yanmega",           469,  ["insect","dragon"],      "common"],
@@ -744,7 +753,7 @@ const CODEX = [
   ["Griknot",         "Gible",             443,  ["dragon","sol"],      "common"],
   ["Carmache",        "Gabite",            444,  ["dragon","sol"],      "common"],
   ["Carchacrok",      "Garchomp",          445,  ["dragon","sol"],      "common"],
-  ["Nosepass",        "Nosepass",          299,  ["granit"],            "common"],
+  ["Tarinor",        "Nosepass",          299,  ["granit"],            "common"],
   ["Tarinorme",       "Probopass",         476,  ["granit","metal"],    "common"],
   ["Spiritomb",       "Spiritomb",         442,  ["ame","ombre"],       "common"],
   ["Lixy",            "Shinx",             403,  ["foudre"],            "common"],
@@ -910,16 +919,31 @@ function buildTable() {
       spriteHTML = `<span class="sprite-placeholder">?</span>`;
     }
 
+    const enSlug = en
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]/g, "");
+
     html += `
-      <tr data-fr="${fr.toLowerCase()}" data-en="${en.toLowerCase()}" data-rarity="${rarity}" data-num="${num}">
+      <tr 
+        data-fr="${fr.toLowerCase()}" 
+        data-en="${en.toLowerCase()}" 
+        data-rarity="${rarity}" 
+        data-num="${num}"
+        onclick="window.location.href='fiche-pokemon/fiche.html?pokemon=${enSlug}'"
+        style="cursor:pointer;"
+      >
         <td><span class="dex-num">${numStr}</span></td>
-        <td class="center sprite-cell"><div class="sprite-wrap">${spriteHTML}</div></td>
+        <td class="center sprite-cell">
+          <div class="sprite-wrap">${spriteHTML}</div>
+        </td>
         <td><span class="poke-fr">${fr}</span></td>
         <td><span class="poke-en">${en}</span></td>
         <td class="type-cell">${typeBadges}</td>
         <td>${RARITY_HTML[rarity]}</td>
-      </tr>`;
-  });
+      </tr>
+    `;});
 
   tbody.innerHTML = html;
   updateCount();
