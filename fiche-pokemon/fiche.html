@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche Pokédex — Pokémon Cendres Antiques." />
+  <title id="page-title">Chargement… | Codex de Khemis | Pokémon Cendres Antiques</title>
+  <link rel="icon" type="image/x-icon" href="../images/icon_game.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #C9973A;
+      --gold-light:  #E8C06A;
+      --gold-pale:   #F5E3B0;
+      --sand:        #1A1408;
+      --sand-mid:    #251D0E;
+      --sand-warm:   #2E2410;
+      --turquoise:   #2AADA4;
+      --text-main:   #F0E8D0;
+      --text-muted:  #A89060;
+      --border:      rgba(201,151,58,.22);
+      --font-display:'Cinzel Decorative', serif;
+      --font-heading:'Cinzel', serif;
+      --font-body:   'Lato', sans-serif;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── TYPE BADGES ── */
+    .t-vol     { background:#83aff1; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-foudre  { background:#f5ab3d; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-poison  { background:#b292f7; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-eau     { background:#4596ed; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-sol     { background:#c99457; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-insect  { background:#9bc337; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-feu     { background:#ee9474; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-metal   { background:#c2c6d1; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-ombre   { background:#5f626d; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-ame     { background:#9b96ed; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-combat  { background:#ea8383; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-granit  { background:#8b5a4a; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-divin   { background:#e981a4; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-dragon  { background:#7c88f3; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-gel     { background:#51c4c8; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-esprit  { background:#dd7db4; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-normal  { background:#c3b5b2; color:#1d170b; border:1px solid var(--gold-pale); }
+    .t-plante  { background:#28bc75; color:#1d170b; border:1px solid var(--gold-pale); }
+
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--sand);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:9999;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    /* ── NAV ── */
+    header {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:linear-gradient(180deg, rgba(10,8,3,.97) 0%, rgba(10,8,3,.85) 100%);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    nav {
+      max-width:1200px; margin:0 auto; padding:0 2rem;
+      height:72px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo { display:flex; flex-direction:column; line-height:1; }
+    .nav-logo-main { font-family:var(--font-display); font-size:.88rem; color:var(--gold); letter-spacing:.2em; text-transform:uppercase; }
+    .nav-logo-sub  { font-family:var(--font-heading); font-size:.74rem; color:var(--text-muted); letter-spacing:.35em; text-transform:uppercase; }
+    .nav-links { display:flex; list-style:none; gap:2.5rem; }
+    .nav-links a {
+      font-family:var(--font-heading); font-size:.88rem; font-weight:600;
+      letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted);
+      position:relative; padding-bottom:4px; transition:color var(--transition);
+    }
+    .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--gold); transition:width var(--transition); }
+    .nav-links a:hover { color:var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+    .nav-links a.active { color:var(--gold); }
+
+    /* ── BURGER ── */
+    .burger {
+      display:none; flex-direction:column; justify-content:center; gap:5px;
+      width:40px; height:40px; cursor:pointer; background:none; border:none;
+      padding:6px; border-radius:3px; transition:background var(--transition); z-index:200;
+    }
+    .burger:hover { background:rgba(201,151,58,.08); }
+    .burger-line {
+      display:block; width:100%; height:1.5px; background:var(--gold); border-radius:2px;
+      transform-origin:center;
+      transition:transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, width .3s ease;
+    }
+    .burger[aria-expanded="true"] .burger-line:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .burger[aria-expanded="true"] .burger-line:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display:none; position:fixed; inset:0; top:72px; z-index:99;
+      background:linear-gradient(180deg, rgba(10,8,3,.98) 0%, rgba(26,20,8,.97) 100%);
+      backdrop-filter:blur(16px); border-top:1px solid var(--border);
+      flex-direction:column; align-items:center; justify-content:center;
+      gap:0; transform:translateY(-8px); opacity:0;
+      transition:opacity .3s ease, transform .3s ease; pointer-events:none;
+    }
+    .mobile-nav.is-open { opacity:1; transform:translateY(0); pointer-events:all; }
+    .mobile-nav ul { list-style:none; display:flex; flex-direction:column; align-items:center; gap:0; width:100%; }
+    .mobile-nav ul li { width:100%; text-align:center; border-bottom:1px solid rgba(201,151,58,.08); }
+    .mobile-nav ul a {
+      display:block; padding:1.4rem 2rem; font-family:var(--font-heading); font-size:1rem;
+      font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--text-muted);
+      transition:color var(--transition), background var(--transition);
+    }
+    .mobile-nav ul a:hover, .mobile-nav ul a:focus { color:var(--gold-light); background:rgba(201,151,58,.05); }
+    .mobile-nav ul a.active { color:var(--gold); }
+    .mobile-nav-ornament { color:var(--gold); font-size:1.4rem; margin:2.5rem 0 1rem; opacity:.5; }
+
+    /* ── LOADING / ERROR ── */
+    #loading {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-top: 72px;
+    }
+    .loader-glyph {
+      font-size: 3.5rem;
+      color: var(--gold);
+      opacity: .5;
+      animation: spin 3s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text {
+      font-family: var(--font-heading);
+      font-size: .78rem;
+      letter-spacing: .45em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    #error-box {
+      display: none;
+      max-width: 500px;
+      margin: 120px auto 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(238,148,116,.3);
+      border-radius: 6px;
+      background: rgba(238,148,116,.06);
+      text-align: center;
+    }
+    #error-box h2 { font-family: var(--font-heading); color: var(--gold-pale); margin-bottom: .8rem; }
+    #error-box p  { color: var(--text-muted); font-size: .92rem; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width:1100px; margin:0 auto; padding:100px 2rem 0;
+      display:flex; align-items:center; gap:.6rem;
+      font-family:var(--font-heading); font-size:.75rem;
+      letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted);
+    }
+    .breadcrumb a:hover { color:var(--gold-light); }
+    .breadcrumb-sep { opacity:.4; }
+
+    /* ── POKEMON HERO ── */
+    .poke-hero {
+      position:relative; overflow:hidden;
+      padding:1.5rem 2rem 2.5rem;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(238,148,116,.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 80%, rgba(201,151,58,.06) 0%, transparent 55%);
+      border-bottom:1px solid var(--border);
+    }
+    .poke-hero::before {
+      content:'𓆃';
+      position:absolute; top:50%; right:3%; transform:translateY(-50%);
+      font-size:12rem; opacity:.018; pointer-events:none; color:var(--gold);
+    }
+    .poke-hero-inner {
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:260px 1fr; gap:3rem; align-items:center;
+    }
+    .poke-image-block { position:relative; display:flex; flex-direction:column; align-items:center; gap:1rem; }
+    .poke-image-frame {
+      width:220px; height:220px; border-radius:50%;
+      border:2px solid var(--border);
+      background:radial-gradient(circle, rgba(238,148,116,.08) 0%, rgba(201,151,58,.04) 60%, transparent 100%);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 0 40px rgba(238,148,116,.08), inset 0 0 30px rgba(0,0,0,.3);
+      position:relative;
+    }
+    .poke-image-frame::before {
+      content:''; position:absolute; inset:-8px; border-radius:50%;
+      border:1px solid rgba(201,151,58,.15);
+    }
+    .poke-image-frame img {
+      width:190px; height:190px; object-fit:contain;
+      filter:drop-shadow(0 4px 20px rgba(238,148,116,.25));
+      image-rendering:auto;
+    }
+    .poke-types-hero { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; }
+    .poke-info-block { display:flex; flex-direction:column; gap:.8rem; }
+    .poke-dex-number { font-family:var(--font-heading); font-size:.9rem; color:var(--text-muted); letter-spacing:.4em; }
+    .poke-name-fr {
+      font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3rem);
+      background:linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-light));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.1;
+    }
+    .poke-name-en { font-family:var(--font-heading); font-size:1rem; color:var(--text-muted); font-style:italic; letter-spacing:.1em; }
+    .poke-desc {
+      font-size:1rem; color:var(--text-main); max-width:520px;
+      line-height:1.8; margin-top:.4rem;
+      padding-left:1rem; border-left:2px solid rgba(201,151,58,.3);
+    }
+
+    /* ── MAIN ── */
+    main { max-width:1100px; margin:0 auto; padding:2.5rem 2rem 5rem; }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family:var(--font-heading); font-size:.78rem; font-weight:700;
+      letter-spacing:.4em; text-transform:uppercase; color:var(--gold);
+      display:flex; align-items:center; gap:.8rem;
+      padding-bottom:.7rem; margin-bottom:1.4rem;
+      border-bottom:1px solid var(--border);
+    }
+    .section-title::before { content:'𓂋'; opacity:.7; }
+
+    /* ── LAYOUTS ── */
+    .two-col   { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem; }
+
+    /* ── CARD ── */
+    .card { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:6px; padding:1.5rem; }
+
+    /* ── INFO ROWS ── */
+    .info-row { display:flex; justify-content:space-between; align-items:center; padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,.04); }
+    .info-row:last-child { border-bottom:none; }
+    .info-label { font-family:var(--font-heading); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); }
+    .info-value { font-family:var(--font-heading); font-size:.9rem; color:var(--gold-pale); font-weight:600; }
+
+    /* ── STAT BARS ── */
+    .stat-row { margin-bottom:.9rem; }
+    .stat-row:last-child { margin-bottom:0; }
+    .stat-header { display:flex; justify-content:space-between; margin-bottom:.3rem; }
+    .stat-name { font-family:var(--font-heading); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); }
+    .stat-num  { font-family:var(--font-heading); font-size:.82rem; color:var(--gold-pale); font-weight:600; }
+    .stat-bar-bg { height:6px; background:rgba(255,255,255,.06); border-radius:3px; overflow:hidden; }
+    .stat-bar-fill { height:100%; border-radius:3px; transition:width 1s cubic-bezier(.4,0,.2,1); }
+    .stat-bar-fill.low  { background:linear-gradient(90deg, #ea8383, #ee9474); }
+    .stat-bar-fill.mid  { background:linear-gradient(90deg, var(--gold), var(--gold-light)); }
+    .stat-bar-fill.high { background:linear-gradient(90deg, #28bc75, #51c4c8); }
+    .stat-total { display:flex; justify-content:space-between; padding-top:.8rem; border-top:1px solid var(--border); margin-top:.8rem; }
+    .stat-total .stat-name { color:var(--gold); }
+    .stat-total .stat-num  { color:var(--gold-light); font-size:1rem; }
+
+    /* ── ABILITIES ── */
+    .ability-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:1rem; }
+    .ability-card {
+      background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:5px; padding:1rem 1.2rem;
+      transition:border-color var(--transition), background var(--transition);
+    }
+    .ability-card:hover { border-color:rgba(201,151,58,.4); background:rgba(201,151,58,.04); }
+    .ability-card.hidden-ability { border-color:rgba(42,173,164,.25); }
+    .ability-card.hidden-ability:hover { border-color:rgba(42,173,164,.5); background:rgba(42,173,164,.04); }
+    .ability-name { font-family:var(--font-heading); font-size:.88rem; font-weight:600; color:var(--gold-pale); }
+    .ability-tag  { font-family:var(--font-heading); font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--text-muted); margin-top:.2rem; }
+    .ability-tag.hidden { color:var(--turquoise); }
+
+    /* ── EVOLUTIONS ── */
+    .evo-chain { display:flex; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap; padding:1rem 0; }
+    .evo-step  { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.6rem; text-align:center; }
+    .evo-sprite-frame {
+      width:100px; height:100px; border-radius:50%;
+      border:1px solid var(--border); background:rgba(255,255,255,.03);
+      display:flex; align-items:center; justify-content:center;
+      transition:border-color var(--transition), box-shadow var(--transition);
+    }
+    .evo-sprite-frame:hover { border-color:rgba(201,151,58,.5); box-shadow:0 0 20px rgba(201,151,58,.1); }
+    .evo-sprite-frame.current { border-color:rgba(238,148,116,.5); box-shadow:0 0 20px rgba(238,148,116,.1); }
+    .evo-sprite-frame img { width:80px; height:80px; image-rendering:pixelated; object-fit:contain; }
+    .evo-name { font-family:var(--font-heading); font-size:.88rem; color:var(--gold-pale); font-weight:600; }
+    .evo-en   { font-family:var(--font-heading); font-size:.72rem; color:var(--text-muted); font-style:italic; }
+    .evo-arrow { display:flex; flex-direction:column; align-items:center; gap:.2rem; color:var(--gold); font-size:1.5rem; opacity:.7; }
+    .evo-condition {
+      font-family:var(--font-heading); font-size:.65rem; letter-spacing:.15em; text-transform:uppercase;
+      color:var(--text-muted); background:rgba(201,151,58,.07); border:1px solid var(--border);
+      border-radius:3px; padding:.2rem .5rem; white-space:nowrap;
+    }
+    /* Branching evolutions */
+    .evo-branch-wrap { display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; }
+    .evo-branch-root { display:flex; flex-direction:column; align-items:center; gap:.6rem; }
+    .evo-branch-row  { display:flex; gap:1.2rem; flex-wrap:wrap; justify-content:center; }
+    .evo-branch-arrow { color:var(--gold); opacity:.5; font-size:1.4rem; }
+
+    /* ── MOVESET TABS ── */
+    .tab-bar { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+    .tab-btn {
+      font-family:var(--font-heading); font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+      padding:.45rem 1rem; border-radius:3px; border:1px solid var(--border);
+      background:rgba(255,255,255,.02); color:var(--text-muted);
+      cursor:pointer; transition:all var(--transition);
+    }
+    .tab-btn:hover { background:rgba(201,151,58,.08); border-color:rgba(201,151,58,.4); color:var(--gold-light); }
+    .tab-btn.active { background:rgba(201,151,58,.1); border-color:rgba(201,151,58,.5); color:var(--gold); box-shadow:0 0 0 1px rgba(201,151,58,.25); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ── MOVE TABLE ── */
+    .move-table { width:100%; border-collapse:collapse; }
+    .move-table thead tr { background:rgba(201,151,58,.07); border-bottom:1px solid rgba(201,151,58,.2); }
+    .move-table th {
+      font-family:var(--font-heading); font-size:.68rem; font-weight:700;
+      letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
+      padding:.75rem 1rem; text-align:left; white-space:nowrap;
+    }
+    .move-table tbody tr { border-bottom:1px solid rgba(255,255,255,.04); transition:background var(--transition); }
+    .move-table tbody tr:last-child { border-bottom:none; }
+    .move-table tbody tr:hover { background:rgba(201,151,58,.04); }
+    .move-table td { padding:.5rem 1rem; vertical-align:middle; }
+    .move-name  { font-family:var(--font-heading); font-size:.88rem; color:var(--gold-pale); font-weight:600; }
+    .move-level {
+      font-family:var(--font-heading); font-size:.78rem; color:var(--text-muted);
+      background:rgba(201,151,58,.08); border:1px solid var(--border);
+      border-radius:3px; padding:.15rem .5rem; display:inline-block; min-width:2rem; text-align:center;
+    }
+    .tb { display:inline-block; padding:.18rem .55rem; border-radius:3px; font-family:var(--font-heading); font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .empty-tab { padding:1.2rem 1.5rem; color:var(--text-muted); font-family:var(--font-heading); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; }
+
+    /* ── ORNAMENT ── */
+    .ornament-divider { text-align:center; color:var(--gold); opacity:.25; font-size:1.2rem; letter-spacing:.8rem; margin:2rem 0; }
+
+    /* ── FOOTER ── */
+    footer { border-top:1px solid var(--border); background:linear-gradient(180deg, transparent, rgba(0,0,0,.4)); }
+    .footer-bottom {
+      max-width:1300px; margin:0 auto; padding:1.5rem 2rem;
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+    }
+    .footer-bottom p { font-size:.88rem; color:rgba(168,144,96,.4); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .animate    { animation:fadeUp .7s ease both; }
+    .animate-d1 { animation-delay:.1s; }
+    .animate-d2 { animation-delay:.2s; }
+    .animate-d3 { animation-delay:.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .poke-hero-inner { grid-template-columns:1fr; gap:1.5rem; }
+      .poke-image-block { flex-direction:row; align-items:center; gap:1.5rem; }
+      .poke-image-frame { width:160px; height:160px; flex-shrink:0; }
+      .poke-image-frame img { width:130px; height:130px; }
+      .two-col { grid-template-columns:1fr; }
+    }
+    @media (max-width:768px) {
+      .burger { display:flex; }
+      .nav-links { display:none; }
+      .mobile-nav { display:flex; }
+      nav { padding:0 1.2rem; }
+      .poke-hero { padding:1rem 1rem 2rem; }
+      .poke-image-block { flex-direction:column; }
+      main { padding:2rem 1rem 4rem; }
+      .breadcrumb { padding:90px 1rem 0; }
+      .ability-grid { grid-template-columns:1fr 1fr; }
+      .move-table th, .move-table td { padding:.45rem .6rem; font-size:.8rem; }
+    }
+    @media (max-width:480px) {
+      .poke-name-fr { font-size:1.9rem; }
+      .evo-chain { gap:1rem; }
+      .evo-sprite-frame { width:80px; height:80px; }
+      .evo-sprite-frame img { width:64px; height:64px; }
+      .ability-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <nav aria-label="Navigation principale">
+    <a href="../index.html" class="nav-logo">
+      <span class="nav-logo-main">Cendres Antiques</span>
+      <span class="nav-logo-sub">Pokémon Fangame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../guide.html">Guide</a></li>
+      <li><a href="../pokemon.html" class="active">Pokémon</a></li>
+      <li><a href="../objets.html">Objets</a></li>
+      <li><a href="../evolutions.html">Évolutions</a></li>
+    </ul>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
+  <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
+  <ul role="list">
+    <li><a href="../guide.html">Guide</a></li>
+    <li><a href="../pokemon.html" class="active">Pokémon</a></li>
+    <li><a href="../objets.html">Objets</a></li>
+    <li><a href="../evolutions.html">Évolutions</a></li>
+  </ul>
+</div>
+
+<!-- ── LOADING STATE ── -->
+<div id="loading">
+  <span class="loader-glyph">𓂀</span>
+  <span class="loader-text">Consultation du Codex…</span>
+</div>
+
+<!-- ── ERROR STATE ── -->
+<div id="error-box">
+  <h2>Pokémon introuvable</h2>
+  <p id="error-msg"></p>
+  <a href="../pokemon.html" style="display:inline-block;margin-top:1.2rem;font-family:var(--font-heading);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:.5rem 1.2rem;border-radius:3px;">← Retour au Codex</a>
+</div>
+
+<!-- ── MAIN CONTENT (populated by JS) ── -->
+<div id="content" style="display:none">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="../pokemon.html">Codex de Khemis</a>
+    <span class="breadcrumb-sep">𓂁</span>
+    <span id="breadcrumb-name" style="color:var(--gold-pale)">…</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="poke-hero">
+    <div class="poke-hero-inner">
+      <div class="poke-image-block animate">
+        <div class="poke-image-frame">
+          <img id="hero-image" src="" alt="" />
+        </div>
+        <div class="poke-types-hero" id="hero-types"></div>
+      </div>
+      <div class="poke-info-block animate animate-d1">
+        <div class="poke-dex-number" id="hero-dex-num"></div>
+        <h1 class="poke-name-fr" id="hero-name-fr"></h1>
+        <div class="poke-name-en" id="hero-name-en"></div>
+        <p class="poke-desc" id="hero-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main sections -->
+  <main>
+    <!-- Infos + Stats -->
+    <div class="two-col animate animate-d2">
+      <div>
+        <div class="section-title">Informations générales</div>
+        <div class="card" id="infos-card"></div>
+      </div>
+      <div>
+        <div class="section-title">Statistiques de base</div>
+        <div class="card" id="stats-card"></div>
+      </div>
+    </div>
+
+    <div class="ornament-divider">𓋹 𓂀 𓋹</div>
+
+    <!-- Abilities -->
+    <div class="animate animate-d2">
+      <div class="section-title">Capacités Spéciales</div>
+      <div class="ability-grid" id="abilities-grid"></div>
+    </div>
+
+    <div class="ornament-divider">𓋹 𓂀 𓋹</div>
+
+    <!-- Evolutions -->
+    <div id="evo-section" class="animate animate-d3">
+      <div class="section-title">Chaîne d'Évolution</div>
+      <div class="card">
+        <div id="evo-chain"></div>
+      </div>
+    </div>
+    <div id="evo-ornament" class="ornament-divider" style="display:none">𓋹 𓂀 𓋹</div>
+
+    <!-- Moveset -->
+    <div class="animate">
+      <div class="section-title">Capacités apprenables</div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('level',this)">Par niveau</button>
+        <button class="tab-btn" onclick="showTab('tutor',this)">Tuteur</button>
+        <button class="tab-btn" onclick="showTab('breed',this)">Reproduction</button>
+        <button class="tab-btn" onclick="showTab('tech',this)">PE / Papyrus d'Enseignement</button>
+      </div>
+      <div id="tab-level" class="tab-panel active"></div>
+      <div id="tab-tutor" class="tab-panel"></div>
+      <div id="tab-breed" class="tab-panel"></div>
+      <div id="tab-tech"  class="tab-panel"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-bottom">
+    <p>© 2026 Cendres Antiques | Fangame</p>
+    <p>Pokémon © Nintendo / Game Freak / The Pokémon Company · Sprites © PokeAPI</p>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CONFIGURATION
+   Chemin vers vos fichiers JSON, depuis le dossier fiche-pokemon/
+   ══════════════════════════════════════════════════════════════ */
+const JSON_BASE_PATH = '';
+const SPRITE_BASE    = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+const ARTWORK_BASE   = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
+
+/* ══════════════════════════════════════════════════════════════
+   CORRESPONDANCES TYPES
+   Supporte les noms anglais (JSON standard) ET français (PSDK FR)
+   ══════════════════════════════════════════════════════════════ */
+const TYPE_TO_CSS = {
+  // Anglais standard
+  fire:'feu', water:'eau', grass:'plante', electric:'foudre', psychic:'esprit',
+  ghost:'ame', dark:'ombre', dragon:'dragon', ice:'gel', fighting:'combat',
+  poison:'poison', ground:'sol', rock:'granit', steel:'metal', flying:'vol',
+  bug:'insect', normal:'normal', fairy:'divin',
+  // Noms alternatifs PSDK
+  soul:'ame', divine:'divin', stone:'granit', shadow:'ombre', spirit:'esprit',
+  // Noms français directs (au cas où)
+  feu:'feu', eau:'eau', plante:'plante', foudre:'foudre', esprit:'esprit',
+  ame:'ame', ombre:'ombre', dragon:'dragon', gel:'gel', combat:'combat',
+  poison:'poison', sol:'sol', granit:'granit', metal:'metal', vol:'vol',
+  insect:'insect', normal:'normal', divin:'divin',
+};
+
+const TYPE_LABEL = {
+  feu:'Feu', eau:'Eau', plante:'Plante', foudre:'Foudre', esprit:'Esprit',
+  ame:'Âme', ombre:'Ombre', dragon:'Dragon', gel:'Gel', combat:'Combat',
+  poison:'Poison', sol:'Sol', granit:'Granit', metal:'Métal', vol:'Vol',
+  insect:'Insect', normal:'Normal', divin:'Divin',
+};
+
+/* ══════════════════════════════════════════════════════════════
+   TRADUCTIONS CAPACITÉS (attaques)
+   Format : 'clé_json' : ['Nom français', 'type-css']
+   ══════════════════════════════════════════════════════════════ */
+const MOVES = {
+  // ── Normales ──
+  tackle:['Charge','normal'], tail_whip:['Groz\'Yeux','normal'],
+  leer:['Regard Effrayant','normal'], growl:['Rugissement','normal'],
+  scratch:['Griffe','normal'], quick_attack:['Vive-Attaque','normal'],
+  headbutt:['Cabriole','normal'], body_slam:['Torgnole','normal'],
+  take_down:['Bélier','normal'], double_edge:['Damoclès','normal'],
+  hyper_beam:['Ultralazer','normal'], giga_impact:['Giga Impact','normal'],
+  rapid_spin:['Toupie','normal'], substitute:['Sosie','normal'],
+  protect:['Abri','normal'], rest:['Repos','normal'], snore:['Ronflement','normal'],
+  sleep_talk:['Babille','normal'], baton_pass:['Relais','normal'],
+  return:['Retour','normal'], frustration:['Frustration','normal'],
+  attract:['Attraction','normal'], encore:['Rappel','normal'],
+  mimic:['Copie','normal'], swagger:['Vantardise','normal'],
+  screech:['Cri Strident','normal'], super_fang:['Super Crocs','normal'],
+  hyper_fang:['Crocs Ultimes','normal'], flail:['Fléau','normal'],
+  endeavor:['Effort','normal'], explosion:['Explosion','normal'],
+  self_destruct:['Déflagration','normal'], swift:['Météores','normal'],
+  hidden_power:['Force Cachée','normal'], natural_gift:['Don Nature','normal'],
+  weather_ball:['Balle Météo','normal'], round:['Chœur','normal'],
+  boomburst:['Éclattement','normal'], hyper_voice:['Éclat Sonore','normal'],
+  work_up:['Travail','normal'], sharpen:['Affûtage','normal'],
+  swords_dance:['Danse Lames','normal'], agility:['Agilité','esprit'],
+  smokescreen:['Brouillard','normal'], scary_face:['Grimace','normal'],
+  // ── Feu ──
+  ember:['Flammèche','feu'], flamethrower:['Lance-Flammes','feu'],
+  fire_blast:['Déflagration','feu'], fire_spin:['Danse Flammes','feu'],
+  flare_blitz:['Boutefeu','feu'], fire_punch:['Poing de Feu','feu'],
+  fire_fang:['Crocs Feu','feu'], flame_burst:['Rebondifeu','feu'],
+  flame_charge:['Nitrocharge','feu'], will_o_wisp:['Feu Follet','feu'],
+  fire_pledge:['Aire de Feu','feu'], heat_wave:['Canicule','feu'],
+  sunny_day:['Zénith','feu'], incinerate:['Calcination','feu'],
+  overheat:['Surchauffe','feu'], sacred_fire:['Feu Sacré','feu'],
+  eruption:['Éruption','feu'], mystical_fire:['Flamme Mystique','feu'],
+  inferno:['Flammes Infernales','feu'], mind_blown:['Tête Brûlée','feu'],
+  // ── Eau ──
+  water_gun:['Pistolet à O','eau'], bubble:['Écume','eau'],
+  bubble_beam:['Bulb\'Eau','eau'], surf:['Surf','eau'],
+  hydro_pump:['Hydrocanon','eau'], waterfall:['Cascade','eau'],
+  aqua_tail:['Aqua-Queue','eau'], aqua_jet:['Aqua-Jet','eau'],
+  rain_dance:['Danse Pluie','eau'], water_pledge:['Vague Aquatique','eau'],
+  scald:['Bouillante','eau'], liquidation:['Aqua-Frappe','eau'],
+  muddy_water:['Raz-de-Marée','eau'], water_spout:['Jet d\'Eau','eau'],
+  origin_pulse:['Onde Primordiale','eau'],
+  // ── Plante ──
+  vine_whip:['Fouet Lianes','plante'], razor_leaf:['Tranch\'Herbe','plante'],
+  solar_beam:['Laser Solaire','plante'], seed_bomb:['Bombe Graine','plante'],
+  energy_ball:['Balle Énergie','plante'], leaf_blade:['Lame-Feuille','plante'],
+  leaf_storm:['Tempête de Feuilles','plante'], giga_drain:['Giga-Sangsue','plante'],
+  absorb:['Absorb','plante'], mega_drain:['Méga-Sangsue','plante'],
+  synthesis:['Synthèse','plante'], ingrain:['Enroulement','plante'],
+  leech_seed:['Vampigraine','plante'], grass_knot:['Herbe Folle','plante'],
+  petal_dance:['Danse-Fleur','plante'], frenzy_plant:['Végé-Déluge','plante'],
+  spore:['Spore','plante'], sleep_powder:['Poudre Dodo','plante'],
+  stun_spore:['Para-Spore','plante'], poison_powder:['Poudre Toxik','plante'],
+  string_shot:['Sécrétion','insect'],
+  // ── Foudre ──
+  thunder_shock:['Éclair','foudre'], thunderbolt:['Tonnerre','foudre'],
+  thunder:['Tonnerre Max','foudre'], thunder_wave:['Cage-Éclair','foudre'],
+  spark:['Étincelle','foudre'], discharge:['Déflagration Choc','foudre'],
+  wild_charge:['Choc Mental','foudre'], volt_switch:['Voltiplomb','foudre'],
+  electro_ball:['Élector-Bille','foudre'], thunder_punch:['Poing Éclair','foudre'],
+  zap_cannon:['Zappeur','foudre'], magnet_rise:['Lévitation Mag.','foudre'],
+  // ── Esprit (Psychic) ──
+  psychic:['Psyko','esprit'], psybeam:['Psykoud\'boul','esprit'],
+  confusion:['Confu-Sort','esprit'], hypnosis:['Hypnose','esprit'],
+  reflect:['Miroir','esprit'], light_screen:['Voile Lumière','esprit'],
+  calm_mind:['Concentration','esprit'], amnesia:['Amnésie','esprit'],
+  barrier:['Barrière','esprit'], recover:['Soin','esprit'],
+  future_sight:['Détection','esprit'], extrasensory:['Perception','esprit'],
+  zen_headbutt:['Coup Zen','esprit'], psycho_cut:['Tranche Psy','esprit'],
+  trick:['Ruse','esprit'], skill_swap:['Permute Talent','esprit'],
+  trick_room:['Espace Vital','esprit'], gravity:['Gravité','esprit'],
+  teleport:['Téléport','esprit'], kinesis:['Kinesis','esprit'],
+  // ── Âme (Ghost) ──
+  night_shade:['Noctombre','ame'], hex:['Maléfice','ame'],
+  confuse_ray:['Rayon Confus','ame'], shadow_ball:['Boule Ombre','ame'],
+  shadow_claw:['Griffe Ombre','ame'], shadow_punch:['Poing de l\'Ombre','ame'],
+  ominous_wind:['Vent Sinistre','ame'], phantom_force:['Force Fantôme','ame'],
+  shadow_force:['Force Ombre','ame'], destiny_bond:['Lien du Destin','ame'],
+  curse:['Malédiction','ame'], grudge:['Rancune','ame'],
+  spite:['Rancœur','ame'], pain_split:['Partage Douleur','ame'],
+  dream_eater:['Croquesonge','esprit'], memento:['Mémento','ombre'],
+  // ── Ombre (Dark) ──
+  dark_pulse:['Choc Mental','ombre'], night_daze:['Noctacide','ombre'],
+  foul_play:['Trahison','ombre'], sucker_punch:['Jackpot','ombre'],
+  knock_off:['Jackpot','ombre'], pursuit:['Traque','ombre'],
+  thief:['Larcin','ombre'], beat_up:['Baston','ombre'],
+  taunt:['Provoc','ombre'], hone_claws:['Aiguisage','ombre'],
+  nasty_plot:['Complot','ombre'], snarl:['Cri Féroce','ombre'],
+  parting_shot:['Coup d\'Adieu','ombre'], topsy_turvy:['Renversement','ombre'],
+  crunch:['Mâchouille','ombre'], bite:['Morsure','ombre'],
+  fling:['Lancer','ombre'], snatch:['Pickpocket','ombre'],
+  // ── Dragon ──
+  dragon_rage:['Draco-Rage','dragon'], dragon_breath:['Dracosouffle','dragon'],
+  dragon_claw:['Draco-Griffe','dragon'], dragon_pulse:['Draco-Choc','dragon'],
+  outrage:['Colère','dragon'], dragon_dance:['Danse Draco','dragon'],
+  dragon_rush:['Danse-Charge','dragon'], draco_meteor:['Draco-Météore','dragon'],
+  spacial_rend:['Déchirure','dragon'], roar_of_time:['Rugissement Temps','dragon'],
+  // ── Gel ──
+  powder_snow:['Grésil','gel'], ice_beam:['Laser Glace','gel'],
+  blizzard:['Tempête Givrante','gel'], ice_punch:['Poing Glace','gel'],
+  ice_shard:['Éclats Glace','gel'], icicle_crash:['Chute Glace','gel'],
+  icicle_spear:['Lances Verglas','gel'], frost_breath:['Congélateur','gel'],
+  hail:['Grêle','gel'], aurora_beam:['Laser Aurore','gel'],
+  freeze_dry:['Cryo-Séchage','gel'],
+  // ── Combat ──
+  karate_chop:['Tranche','combat'], low_kick:['Balayette','combat'],
+  mach_punch:['Mach Punch','combat'], cross_chop:['Croix de Poing','combat'],
+  submission:['Sacrifice','combat'], seismic_toss:['Jet Amorphe','combat'],
+  close_combat:['Close Combat','combat'], high_jump_kick:['Pied Sauté','combat'],
+  jump_kick:['Pied Sauté','combat'], superpower:['Superpuissance','combat'],
+  bulk_up:['Gonflette','combat'], brick_break:['Casse-Brique','combat'],
+  drain_punch:['Vampi-Poing','combat'], focus_punch:['Mitra-Poing','combat'],
+  vacuum_wave:['Onde Vacuum','combat'], low_sweep:['Casse-Pied','combat'],
+  rock_smash:['Éclate-Roc','combat'], strength:['Force','combat'],
+  aura_sphere:['Aura Sphère','combat'], counter:['Riposte','combat'],
+  sacred_sword:['Porte-Bane','combat'], secret_sword:['Lame Secrète','combat'],
+  // ── Poison ──
+  toxic:['Toxik','poison'], poison_sting:['Dard-Venin','poison'],
+  sludge:['Boue','poison'], sludge_bomb:['Bombe Beurk','poison'],
+  gunk_shot:['Rafale Toxik','poison'], poison_jab:['Dard-Venin','poison'],
+  cross_poison:['Croix Poison','poison'], venoshock:['Venin-Choc','poison'],
+  acid:['Acide','poison'], toxic_spikes:['Piques Toxik','poison'],
+  // ── Sol ──
+  earthquake:['Séisme','sol'], dig:['Tunnel','sol'], magnitude:['Magnitude','sol'],
+  fissure:['Crevasse','sol'], bulldoze:['Bulldoze','sol'],
+  mud_slap:['Gadouille','sol'], sand_attack:['Sable-Attaque','sol'],
+  bone_rush:['Rush Os','sol'], bonemerang:['Boomerang Os','sol'],
+  bone_club:['Massue Os','sol'], sand_tomb:['Sablékraken','sol'],
+  spikes:['Pics','sol'], precipice_blades:['Lame Abrupte','sol'],
+  lands_wrath:['Colère du Sol','sol'], thousand_arrows:['Mille Flèches','sol'],
+  thousand_waves:['Mille Vagues','sol'],
+  // ── Granit ──
+  rock_throw:['Roc','granit'], rock_slide:['Éboulement','granit'],
+  rock_blast:['Multiroc','granit'], stone_edge:['Lame de Roc','granit'],
+  rock_tomb:['Tomberoche','granit'], ancient_power:['Pouvoir Antique','granit'],
+  power_gem:['Éclat de Gemme','granit'], smack_down:['Plouf Maous','granit'],
+  rollout:['Toupie Roc','granit'], rock_polish:['Ébauche','granit'],
+  stealth_rock:['Piège de Roc','granit'], sandstorm:['Tempête de Sable','granit'],
+  diamond_storm:['Tempête de Diamants','granit'],
+  // ── Métal ──
+  metal_claw:['Griffe Acier','metal'], iron_tail:['Queue de Fer','metal'],
+  iron_head:['Tête de Fer','metal'], flash_cannon:['Canon Éclair','metal'],
+  gyro_ball:['Gyroballe','metal'], bullet_punch:['Poing Bullet','metal'],
+  meteor_mash:['Météo-Poing','metal'], magnet_bomb:['Bombe Aimant','metal'],
+  mirror_shot:['Tir Miroir','metal'], iron_defense:['Défense Métal','metal'],
+  smart_strike:['Coup Précis','metal'], doom_desire:['Désir Funeste','metal'],
+  auto_tomize:['Allégement','metal'], metal_burst:['Métal Retour','metal'],
+  gear_grind:['Engrenage','metal'], sunsteel_strike:['Lame Solaire','metal'],
+  // ── Vol ──
+  fly:['Vol','vol'], wing_attack:['Aileron','vol'], aerial_ace:['Aéro-Tacle','vol'],
+  air_slash:['Tranche-Air Brid.','vol'], air_cutter:['Tranche-Air','vol'],
+  brave_bird:['Brouhaha','vol'], hurricane:['Ouragan','vol'],
+  acrobatics:['Acrobatie','vol'], peck:['Picodon','vol'],
+  drill_peck:['Becépieu','vol'], gust:['Tornade','vol'],
+  feather_dance:['Plum\'Armure','vol'], roost:['Posé','vol'],
+  tailwind:['Vent Arrière','vol'], defog:['Brume','vol'],
+  sky_attack:['Piqué','vol'], oblivion_wing:['Aile Oubli','vol'],
+  // ── Insect ──
+  x_scissor:['Cisaillement','insect'], bug_buzz:['Bourdonnement','insect'],
+  leech_life:['Vampirisme','insect'], megahorn:['Méga-Corne','insect'],
+  signal_beam:['Signal Optique','insect'], pin_missile:['Dard-Missile','insect'],
+  twineedle:['Dard-Double','insect'], bug_bite:['Gobe-Insecte','insect'],
+  quiver_dance:['Danse Papillon','insect'], fury_cutter:['Tranche Furieuse','insect'],
+  lunge:['Fléau Insecte','insect'], first_impression:['Frime-Attaque','insect'],
+  struggle_bug:['Lutte Bugg','insect'],
+  // ── Divin (Fairy) ──
+  moonblast:['Éclat Lunaire','divin'], dazzling_gleam:['Éclat Magique','divin'],
+  play_rough:['Câlinerie Brutale','divin'], fairy_wind:['Vent Féerique','divin'],
+  draining_kiss:['Bise Siphoneuse','divin'], charm:['Câlinerie','divin'],
+  baby_doll_eyes:['Regard Adorable','divin'], misty_terrain:['Champ Brumeux','divin'],
+  moongeist_beam:['Rayon Lunaire','ame'], photon_geyser:['Geyser Photon','esprit'],
+  spectral_thief:['Brigandine','ame'],
+  // ── Status universels ──
+  slash:['Tranche','normal'], mean_look:['Bloquant','normal'],
+  perish_song:['Chant Mortel','normal'], disable:['Muselage','normal'],
+  endure:['Endurance','normal'], wish:['Vœu','normal'],
+  recycle:['Recyclage','normal'], harden:['Armure','normal'],
+  minimize:['Minimax','normal'], covet:['Câlinerie','normal'],
+  bestow:['Générosité','normal'], entrainment:['Entraînement','normal'],
+  flash:['Flash','normal'], heal_bell:['Glas Guérisseur','normal'],
+  aromatherapy:['Aromathérapie','plante'], morning_sun:['Aurore','normal'],
+  moonlight:['Clair de Lune','normal'], softboiled:['Œufrais','normal'],
+  soft_boiled:['Œufrais','normal'], slack_off:['Flemme','normal'],
+  aqua_ring:['Anneau Eau','eau'], fake_tears:['Faux Sanglots','ombre'],
+  helping_hand:['Main Forte','normal'],
+};
+
+/* ══════════════════════════════════════════════════════════════
+   TRADUCTIONS TALENTS (abilities)
+   ══════════════════════════════════════════════════════════════ */
+const ABILITIES = {
+  blaze:'Brasier', torrent:'Torrent', overgrow:'Engrais',
+  solar_power:'Pouvoir Solaire', rain_dish:'Rigole', chlorophyll:'Chlorophylle',
+  intimidate:'Intimidation', run_away:'Fuite', shed_skin:'Mue',
+  speed_boost:'Turbo', static:'Statik', lightning_rod:'Paratonnerre',
+  motor_drive:'Moteur', flash_fire:'Torche', flame_body:'Corps Ardent',
+  drought:'Sécheresse', drizzle:'Pluie', sand_stream:'Sablégale',
+  snow_warning:'Négédène', thick_fat:'Isograisse', water_absorb:'Absorb-Eau',
+  volt_absorb:'Absorb-Choc', limber:'Élasticité', own_tempo:'Tempo Perso',
+  oblivious:'Insouciance', cloud_nine:'Neutre', compound_eyes:'Composé',
+  tinted_lens:'Œil Coloré', wonder_guard:'Immunité', levitate:'Lévitation',
+  effect_spore:'Effluvespore', natural_cure:'Soin Naturel', soundproof:'Anti-Bruit',
+  damp:'Moiteur', vital_spirit:'Ardeur', inner_focus:'Attention',
+  synchronize:'Synchro', clear_body:'Corps Sain', poison_point:'Point Poison',
+  serene_grace:'Grâce Naturelle', swift_swim:'Nage Rapide', hustle:'Bagarre',
+  cute_charm:'Joli Sourire', tangled_feet:'Étourdi', scrappy:'Insolent',
+  mold_breaker:'Brise-Moule', sand_veil:'Voile Sable', ice_body:'Corps Glace',
+  snow_cloak:'Voile Neige', pickup:'Pickpocket', technician:'Technicien',
+  trace:'Calque', forecast:'Météo', rough_skin:'Peau Dure', sturdy:'Fermeté',
+  suction_cups:'Ventouse', pure_power:'Puissance', guts:'Cœur de Fer',
+  marvel_scale:'Écailles Grâce', multitype:'Multicapacité', adaptability:'Adaptabilité',
+  download:'Téléchargement', pressure:'Pression', air_lock:'Verrou Ciel',
+  shadow_tag:'Piège Ombre', arena_trap:'Piège Terrain', magnet_pull:'Magnétisme',
+  battle_armor:'Armure', shell_armor:'Carapace', rock_head:'Tête Roc',
+  aftermath:'Bombe Départ', unburden:'Légèreté', no_guard:'Garde Nulle',
+  poison_heal:'Soin Toxik', anger_point:'Courroux', reckless:'Bagarreur',
+  sniper:'Sniper', stall:'Lambinage', unaware:'Naïveté', forewarn:'Prémonition',
+  anticipation:'Anticipation', frisk:'Fouille', super_luck:'Super Veine',
+  normalize:'Neutralisation', steadfast:'Détermination', shield_dust:'Poussière',
+  immunity:'Immunité', sand_rush:'Jet de Sable', big_pecks:'Coiffe',
+  defiant:'Téméraire', sand_force:'Force Sable', iron_fist:'Poing Fer',
+  justified:'Vertu', rivalry:'Rivalité', infiltrator:'Filtre',
+  cursed_body:'Corps Maudit', healer:'Soignant', friend_guard:'Garde Ami',
+  weak_armor:'Armure Légère', heavy_metal:'Métal Lourd', light_metal:'Métal Léger',
+  multiscale:'Multi-Écailles', toxic_boost:'Synchro Toxik', flare_boost:'Synchro Ardeur',
+  unnerve:'Stressant', defeatist:'Défaitisme', harvest:'Récolte',
+  illusion:'Illusion', zen_mode:'Mode Boudha', turboblaze:'Turbo Flamboyant',
+  teravolt:'Téravolt', victory_star:'Étoile Victoire', analytic:'Analyse',
+  regenerator:'Régénération', magic_bounce:'Rebond Magique', competitive:'Compétitivité',
+  protean:'Protéen', magician:'Pickpocket', gale_wings:'Vent Violent',
+  pixilate:'Féérie', aerilate:'Normaléro', refrigerate:'Frigorification',
+  flower_veil:'Voile Floral', sweet_veil:'Voile Sucré',
+  stance_change:'Changement de Forme', intrepid_sword:'Épée Audacieuse',
+  dauntless_shield:'Bouclier Valeureux', steely_spirit:'Esprit Acier',
+  soul_heart:'Cœur Âme', shadow_shield:'Bouclier Ombre',
+  turboblaze:'Turbo Flamboyant', full_metal_body:'Corps Métal',
+  beast_boost:'Instinct Outremonde', power_construct:'Forteresse',
+  wimp_out:'Couardise', emergency_exit:'Sortie d\'Urgence', schooling:'Banc',
+  water_bubble:'Hydro-Bulle', stamina:'Endurance', surge_surfer:'Surfe-Énergie',
+  long_reach:'Longue Portée', liquid_voice:'Voix Liquide', berserk:'Berserk',
+  power_spot:'Point d\'Énergie', mirror_armor:'Armure Miroir',
+  dragons_maw:'Mâchoires du Dragon', transistor:'Transistor',
+  chilling_neigh:'Cri Blizzard', grim_neigh:'Cri Funeste', as_one:'Fusion',
+};
+
+/* ══════════════════════════════════════════════════════════════
+   GROUPES ŒUFS
+   ══════════════════════════════════════════════════════════════ */
+const BREED_GROUPS = {
+  0:'Inconnu', 1:'Terrain', 2:'Plante', 3:'Insecte', 4:'Vol',
+  5:'Humanoïde', 6:'Eau 1', 7:'Fée', 8:'Minéral', 9:'Amorphe',
+  10:'Eau 3', 11:'Nécrozma', 12:'Eau 2', 13:'Chaos', 14:'Dragon', 15:'Non-Genré',
+};
+
+/* ══════════════════════════════════════════════════════════════
+   COURBES D'EXPÉRIENCE
+   ══════════════════════════════════════════════════════════════ */
+const EXP_CURVES = { 0:'Rapide', 1:'Mi-Rapide', 2:'Fluctuante', 3:'Mi-Lente', 4:'Lente', 5:'Erratique' };
+
+/* ══════════════════════════════════════════════════════════════
+   CONDITIONS D'ÉVOLUTION
+   ══════════════════════════════════════════════════════════════ */
+const EVO_CONDITIONS = {
+  minLevel: c => `Niv. ${c.value}`,
+  happiness: () => 'Bonheur élevé',
+  minLevelMorning: c => `Niv. ${c.value} (matin)`,
+  minLevelDay: c => `Niv. ${c.value} (jour)`,
+  minLevelNight: c => `Niv. ${c.value} (nuit)`,
+  trade: () => 'Échange',
+  tradeWithItem: () => 'Échange (objet)',
+  tradeWith: () => 'Échange',
+  stone: c => formatStone(c.value),
+  holdItem: c => `Objet tenu`,
+  gender: c => c.value === 0 ? 'Masculin' : 'Féminin',
+  location: () => 'Zone spéciale',
+  move: () => 'Capacité apprise',
+  weather: () => 'Météo spéciale',
+  other: () => 'Condition spéciale',
+};
+const STONES = {
+  fire_stone:'Pierre Feu', water_stone:'Pierre Eau', thunder_stone:'Pierre Foudre',
+  leaf_stone:'Pierre Plante', moon_stone:'Pierre Lune', sun_stone:'Pierre Solaire',
+  dawn_stone:'Pierre Aube', dusk_stone:'Pierre Nuit', shiny_stone:'Pierre Éclat',
+  ice_stone:'Pierre Glace',
+};
+function formatStone(s) { return STONES[s] || s.replace(/_/g,' '); }
+function formatConditions(conds) {
+  if (!conds || !conds.length) return '';
+  return conds.map(c => (EVO_CONDITIONS[c.type] || (() => c.type))(c)).join(' + ');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DONNÉES POKÉMON FRANÇAIS (230 entrées)
+   Clé = nom anglais normalisé (minuscules, sans accent, alphanum)
+   ══════════════════════════════════════════════════════════════ */
+const PKM_FR = {
+  charmander:   { fr:'Salamèche',     num:1,   sid:4,   cat:'Pokémon Lézard',   desc:'La flamme au bout de sa queue indique son état de santé. Si elle venait à s\'éteindre, sa vie prendrait fin.' },
+  charmeleon:   { fr:'Reptincel',     num:2,   sid:5,   cat:'Pokémon Lézard',   desc:'Très bagarreur, il attaque même des adversaires plus puissants sans la moindre hésitation.' },
+  charizard:    { fr:'Dracaufeu',     num:3,   sid:6,   cat:'Pokémon Flamme',   desc:'Il vole majestueusement dans les cieux. Sa flamme ardente peut fondre n\'importe quelle roche.' },
+  pidgey:       { fr:'Roucool',       num:4,   sid:16,  li:'016.png' },
+  pidgeotto:    { fr:'Roucoups',      num:5,   sid:17,  li:'017.png' },
+  pidgeot:      { fr:'Roucarnage',    num:6,   sid:18,  li:'018.png' },
+  ekans:        { fr:'Abo',           num:7,   sid:23  },
+  arbok:        { fr:'Arbok',         num:8,   sid:24  },
+  pinsir:       { fr:'Scarabrute',    num:9,   sid:127 },
+  meowth:       { fr:'Miaouss',       num:10,  sid:52  },
+  persian:      { fr:'Persian',       num:11,  sid:53  },
+  growlithe:    { fr:'Caninos',       num:12,  sid:58  },
+  arcanine:     { fr:'Arcanin',       num:13,  sid:59  },
+  magikarp:     { fr:'Magicarpe',     num:14,  sid:129 },
+  gyarados:     { fr:'Léviator',      num:15,  sid:130 },
+  onix:         { fr:'Onix',          num:16,  sid:95  },
+  steelix:      { fr:'Steelix',       num:17,  sid:208 },
+  geodude:      { fr:'Racaillou',     num:18,  sid:74  },
+  graveler:     { fr:'Gravalanch',    num:19,  sid:75  },
+  golem:        { fr:'Grolem',        num:20,  sid:76  },
+  gastly:       { fr:'Fantominus',    num:21,  sid:92,  li:'092.png' },
+  haunter:      { fr:'Spectrum',      num:22,  sid:93,  li:'093.png' },
+  gengar:       { fr:'Ectoplasma',    num:23,  sid:94,  li:'094.png' },
+  abra:         { fr:'Abra',          num:24,  sid:63  },
+  kadabra:      { fr:'Kadabra',       num:25,  sid:64  },
+  alakazam:     { fr:'Alakazam',      num:26,  sid:65  },
+  sandshrew:    { fr:'Sabelette',     num:27,  sid:27  },
+  sandslash:    { fr:'Sablaireau',    num:28,  sid:28,  li:'028.png' },
+  krabby:       { fr:'Krabby',        num:29,  sid:98  },
+  kingler:      { fr:'Krabboss',      num:30,  sid:99  },
+  diglett:      { fr:'Taupiqueur',    num:31,  sid:50  },
+  dugtrio:      { fr:'Triopikeur',    num:32,  sid:51  },
+  exeggcute:    { fr:'Noeunoeuf',     num:33,  sid:102 },
+  exeggutor:    { fr:'Noadkoko',      num:34,  sid:10114 },
+  cubone:       { fr:'Osselait',      num:35,  sid:104 },
+  marowak:      { fr:'Ossatueur',     num:36,  sid:10115 },
+  horsea:       { fr:'Hypotrempe',    num:37,  sid:116, li:'116.png' },
+  seadra:       { fr:'Hypocéan',      num:38,  sid:117, li:'117.png' },
+  kingdra:      { fr:'Hyporoi',       num:39,  sid:230 },
+  omanyte:      { fr:'Amonita',       num:40,  sid:138 },
+  omastar:      { fr:'Amonistar',     num:41,  sid:139 },
+  kabuto:       { fr:'Kabuto',        num:42,  sid:140 },
+  kabutops:     { fr:'Kabutops',      num:43,  sid:141 },
+  aerodactyl:   { fr:'Ptéra',         num:44,  sid:142 },
+  dratini:      { fr:'Minidraco',     num:45,  sid:147 },
+  dragonair:    { fr:'Draco',         num:46,  sid:148 },
+  dragonite:    { fr:'Dracolosse',    num:47,  sid:149 },
+  cyndaquil:    { fr:'Héricendre',    num:48,  sid:155 },
+  quilava:      { fr:'Feurisson',     num:49,  sid:156 },
+  typhlosion:   { fr:'Typhlosion',    num:50,  sid:157 },
+  totodile:     { fr:'Kaiminus',      num:51,  sid:158 },
+  croconaw:     { fr:'Crocrodil',     num:52,  sid:159 },
+  feraligatr:   { fr:'Aligatueur',    num:53,  sid:160 },
+  wooper:       { fr:'Axoloto',       num:54,  sid:194 },
+  quagsire:     { fr:'Maraïste',      num:55,  sid:195 },
+  ledyba:       { fr:'Coxy',          num:56,  sid:165 },
+  ledian:       { fr:'Coxyclaque',    num:57,  sid:166 },
+  spinarak:     { fr:'Mimigal',       num:58,  sid:167 },
+  ariados:      { fr:'Migalos',       num:59,  sid:168 },
+  heracross:    { fr:'Scarhino',      num:60,  sid:214 },
+  yanma:        { fr:'Yanma',         num:61,  sid:193 },
+  yanmega:      { fr:'Yanmega',       num:62,  sid:469 },
+  mantyke:      { fr:'Babimanta',     num:63,  sid:458 },
+  mantine:      { fr:'Démanta',       num:64,  sid:226 },
+  houndour:     { fr:'Malosse',       num:65,  sid:228 },
+  houndoom:     { fr:'Démolosse',     num:66,  sid:229 },
+  natu:         { fr:'Natu',          num:67,  sid:177 },
+  xatu:         { fr:'Xatu',          num:68,  sid:178 },
+  girafarig:    { fr:'Girafarig',     num:69,  sid:203 },
+  unown:        { fr:'Zarbi',         num:70,  sid:201 },
+  phanpy:       { fr:'Phanpy',        num:71,  sid:231 },
+  donphan:      { fr:'Donphan',       num:72,  sid:232 },
+  skarmory:     { fr:'Airmure',       num:73,  sid:227 },
+  larvitar:     { fr:'Embrylex',      num:74,  sid:246 },
+  pupitar:      { fr:'Ymphect',       num:75,  sid:247 },
+  tyranitar:    { fr:'Tyranocif',     num:76,  sid:248 },
+  treecko:      { fr:'Arcko',         num:77,  sid:252 },
+  grovyle:      { fr:'Massko',        num:78,  sid:253 },
+  sceptile:     { fr:'Jungko',        num:79,  sid:254 },
+  numel:        { fr:'Chamallot',     num:80,  sid:322 },
+  camerupt:     { fr:'Camérupt',      num:81,  sid:323 },
+  nincada:      { fr:'Ningale',       num:82,  sid:290 },
+  ninjask:      { fr:'Ninjask',       num:83,  sid:291 },
+  shedinja:     { fr:'Munja',         num:84,  sid:292 },
+  baltoy:       { fr:'Balbuto',       num:85,  sid:343 },
+  claydol:      { fr:'Kaorine',       num:86,  sid:344 },
+  tropius:      { fr:'Tropius',       num:87,  sid:357 },
+  absol:        { fr:'Absol',         num:88,  sid:359 },
+  zangoose:     { fr:'Mangriff',      num:89,  sid:335 },
+  seviper:      { fr:'Séviper',       num:90,  sid:336 },
+  trapinch:     { fr:'Kraknoix',      num:91,  sid:328 },
+  vibrava:      { fr:'Vibraninf',     num:92,  sid:329 },
+  flygon:       { fr:'Libégon',       num:93,  sid:330 },
+  cacnea:       { fr:'Cacnea',        num:94,  sid:331 },
+  cacturne:     { fr:'Cacturne',      num:95,  sid:332 },
+  poochyena:    { fr:'Medhyena',      num:96,  sid:261 },
+  mightyena:    { fr:'Grahyèna',      num:97,  sid:262 },
+  duskull:      { fr:'Skelénox',      num:98,  sid:355 },
+  dusclops:     { fr:'Téraclope',     num:99,  sid:356 },
+  dusknoir:     { fr:'Noctunoir',     num:100, sid:477 },
+  carvanha:     { fr:'Carvanha',      num:101, sid:318 },
+  sharpedo:     { fr:'Sharpedo',      num:102, sid:319 },
+  lileep:       { fr:'Lilia',         num:103, sid:345 },
+  cradily:      { fr:'Vacilys',       num:104, sid:346 },
+  anorith:      { fr:'Anorith',       num:105, sid:347 },
+  armaldo:      { fr:'Armaldo',       num:106, sid:348 },
+  feebas:       { fr:'Barpau',        num:107, sid:349 },
+  milotic:      { fr:'Milobellus',    num:108, sid:350 },
+  sableye:      { fr:'Ténéfix',       num:109, sid:302 },
+  snorunt:      { fr:'Stalgamin',     num:110, sid:361 },
+  glalie:       { fr:'Oniglali',      num:111, sid:362 },
+  froslass:     { fr:'Momartik',      num:112, sid:478 },
+  turtwig:      { fr:'Tortipouss',    num:113, sid:387 },
+  grotle:       { fr:'Boskara',       num:114, sid:388 },
+  torterra:     { fr:'Torterra',      num:115, sid:389 },
+  hippopotas:   { fr:'Hippopotas',    num:116, sid:449 },
+  hippowdon:    { fr:'Hippodocus',    num:117, sid:450 },
+  riolu:        { fr:'Indu',          num:118, sid:447 },
+  lucario:      { fr:'Anubis',        num:119, sid:448 },
+  gible:        { fr:'Griknot',       num:120, sid:443 },
+  gabite:       { fr:'Carmache',      num:121, sid:444 },
+  garchomp:     { fr:'Carchacrok',    num:122, sid:445 },
+  nosepass:     { fr:'Nosepass',      num:123, sid:299 },
+  probopass:    { fr:'Tarinorme',     num:124, sid:476 },
+  spiritomb:    { fr:'Spiritomb',     num:125, sid:442 },
+  shinx:        { fr:'Lixy',          num:126, sid:403 },
+  luxio:        { fr:'Luxio',         num:127, sid:404 },
+  luxray:       { fr:'Luxray',        num:128, sid:405 },
+  glameow:      { fr:'Chaglam',       num:129, sid:431 },
+  purugly:      { fr:'Chaffreux',     num:130, sid:432 },
+  sneasel:      { fr:'Farfuret',      num:131, sid:215 },
+  weavile:      { fr:'Dimoret',       num:132, sid:461 },
+  gligar:       { fr:'Scorplane',     num:133, sid:207 },
+  gliscor:      { fr:'Scorvol',       num:134, sid:472 },
+  skorupi:      { fr:'Rapion',        num:135, sid:451 },
+  drapion:      { fr:'Drascore',      num:136, sid:452 },
+  snover:       { fr:'Blizzi',        num:137, sid:459 },
+  abomasnow:    { fr:'Blizzaroi',     num:138, sid:460 },
+  swinub:       { fr:'Marcacrin',     num:139, sid:220 },
+  piloswine:    { fr:'Cochignon',     num:140, sid:221 },
+  mamoswine:    { fr:'Mammochon',     num:141, sid:473 },
+  snivy:        { fr:'Vipélierre',    num:142, sid:495 },
+  servine:      { fr:'Lianaja',       num:143, sid:496 },
+  serperior:    { fr:'Majaspic',      num:144, sid:497 },
+  tepig:        { fr:'Gruikui',       num:145, sid:498 },
+  pignite:      { fr:'Grotichon',     num:146, sid:499 },
+  emboar:       { fr:'Roitiflam',     num:147, sid:500 },
+  basculin:     { fr:'Bargantua',     num:148, sid:550 },
+  elgyem:       { fr:'Lewsor',        num:149, sid:605 },
+  beheeyem:     { fr:'Neitram',       num:150, sid:606 },
+  darumaka:     { fr:'Darumarond',    num:151, sid:554 },
+  darmanitan:   { fr:'Darumacho',     num:152, sid:555 },
+  dwebble:      { fr:'Crabicoque',    num:153, sid:557 },
+  crustle:      { fr:'Crabaraque',    num:154, sid:558 },
+  sandile:      { fr:'Mascaïman',     num:155, sid:551 },
+  krokorok:     { fr:'Escroco',       num:156, sid:552 },
+  krookodile:   { fr:'Crocorible',    num:157, sid:553 },
+  tutanis:      { fr:'Tutanis',       num:158, sid:562 },
+  tutankhamon:  { fr:'Tutânkhamon',   num:159, sid:563 },
+  vullaby:      { fr:'Vostourno',     num:160, sid:629 },
+  mandibuzz:    { fr:'Vaututrice',    num:161, sid:630 },
+  pawniard:     { fr:'Scalpion',      num:162, sid:624 },
+  bisharp:      { fr:'Scalproie',     num:163, sid:625 },
+  zorua:        { fr:'Zorua',         num:164, sid:570 },
+  zoroark:      { fr:'Zoroark',       num:165, sid:571 },
+  axew:         { fr:'Coupenotte',    num:166, sid:610 },
+  fraxure:      { fr:'Incisache',     num:167, sid:611 },
+  haxorus:      { fr:'Tranchodon',    num:168, sid:612 },
+  scraggy:      { fr:'Baggiguane',    num:169, sid:559 },
+  scrafty:      { fr:'Baggaïd',       num:170, sid:560 },
+  miou:         { fr:'Miou',          num:171, sid:509 },
+  bastet:       { fr:'Bastet',        num:172, sid:510 },
+  lillipup:     { fr:'Ponchiot',      num:173, sid:506 },
+  herdier:      { fr:'Ponchien',      num:174, sid:507 },
+  stoutland:    { fr:'Mastouffe',     num:175, sid:508 },
+  maractus:     { fr:'Maracachi',     num:176, sid:556 },
+  sigilyph:     { fr:'Cryptéro',      num:177, sid:561 },
+  tirtouga:     { fr:'Carapagos',     num:178, sid:564 },
+  carracosta:   { fr:'Mégapagos',     num:179, sid:565 },
+  archen:       { fr:'Arkéapti',      num:180, sid:566 },
+  archeops:     { fr:'Aéroptéryx',    num:181, sid:567 },
+  golett:       { fr:'Gringolem',     num:182, sid:622 },
+  golurk:       { fr:'Golemastoc',    num:183, sid:623 },
+  rufflet:      { fr:'Furaiglon',     num:184, sid:627 },
+  braviary:     { fr:'Gueriaigle',    num:185, sid:628 },
+  heatmor:      { fr:'Aflamanoir',    num:186, sid:631 },
+  durant:       { fr:'Fermite',       num:187, sid:632 },
+  larvesta:     { fr:'Pyronille',     num:188, sid:636 },
+  volcarona:    { fr:'Pyrax',         num:189, sid:637 },
+  chespin:      { fr:'Marisson',      num:190, sid:650 },
+  quilladin:    { fr:'Boguérisse',    num:191, sid:651, li:'651.png' },
+  chesnaught:   { fr:'Blindépique',   num:192, sid:652, li:'652.png' },
+  furfrou:      { fr:'Couafarel',     num:193, sid:676 },
+  honedge:      { fr:'Monorpale',     num:194, sid:679 },
+  doublade:     { fr:'Dimoclès',      num:195, sid:680 },
+  aegislash:    { fr:'Exagide',       num:196, sid:681 },
+  litleo:       { fr:'Hélionceau',    num:197, sid:667 },
+  pyroar:       { fr:'Némélios',      num:198, sid:668 },
+  fletchling:   { fr:'Passerouge',    num:199, sid:661 },
+  fletchinder:  { fr:'Braisillon',    num:200, sid:662 },
+  talonflame:   { fr:'Flambusard',    num:201, sid:663 },
+  espurr:       { fr:'Psystigri',     num:202, sid:677 },
+  meowstic:     { fr:'Mistigrix',     num:203, sid:678 },
+  helioptile:   { fr:'Galvaran',      num:204, sid:694 },
+  heliolisk:    { fr:'Iguolta',       num:205, sid:695 },
+  eevee:        { fr:'Évoli',         num:206, sid:133 },
+  vaporeon:     { fr:'Aquali',        num:207, sid:134 },
+  jolteon:      { fr:'Voltali',       num:208, sid:135 },
+  flareon:      { fr:'Pyroli',        num:209, sid:136 },
+  espeon:       { fr:'Mentali',       num:210, sid:196 },
+  umbreon:      { fr:'Noctali',       num:211, sid:197 },
+  leafeon:      { fr:'Phyllali',      num:212, sid:470 },
+  glaceon:      { fr:'Givrali',       num:213, sid:471 },
+  sylveon:      { fr:'Nymphali',      num:214, sid:700 },
+  raikou:       { fr:'Raikou',        num:215, sid:243 },
+  entei:        { fr:'Entei',         num:216, sid:244 },
+  suicune:      { fr:'Suicune',       num:217, sid:245 },
+  regirock:     { fr:'Regirock',      num:218, sid:377 },
+  darkrai:      { fr:'Darkrai',       num:219, sid:491 },
+  landorus:     { fr:'Démétéros',     num:220, sid:645 },
+  bennu:        { fr:'Bennu',         num:221, sid:146 },
+  ra:           { fr:'Râ',            num:222, sid:250, li:'250.png' },
+  groudon:      { fr:'Groudon',       num:223, sid:383 },
+  palkia:       { fr:'Palkia',        num:224, sid:484, li:'484.png' },
+  reshiram:     { fr:'Reshiram',      num:225, sid:643 },
+  yveltal:      { fr:'Yveltal',       num:226, sid:717 },
+  zygarde:      { fr:'Zygarde',       num:227, sid:718, li:'718.png' },
+  hoopa:        { fr:'Hoopa',         num:228, sid:720 },
+  mew:          { fr:'Mew',           num:229, sid:151 },
+  mewtwo:       { fr:'Mewtwo',        num:230, sid:150, li:'150.png' },
+};
+
+/* ══════════════════════════════════════════════════════════════
+   UTILITAIRES
+   ══════════════════════════════════════════════════════════════ */
+function norm(s) {
+  return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+}
+function pad3(n) { return String(n).padStart(3,'0'); }
+function typeBadge(t) {
+  const css = TYPE_TO_CSS[t] || 'normal';
+  return `<span class="tb t-${css}">${TYPE_LABEL[css] || css}</span>`;
+}
+function typeFromJson(t) { return TYPE_TO_CSS[t] || (t && t !== '__undef__' ? 'normal' : null); }
+function statClass(v) { return v >= 100 ? 'high' : v >= 60 ? 'mid' : 'low'; }
+
+function getSprite(d, form='pixel') {
+  const sid = d.sid;
+  if (d.li && form === 'pixel') return `../pokemon/${d.li}`;
+  if (d.li && form === 'art')   return `../pokemon/${d.li}`;
+  if (form === 'art') return `${ARTWORK_BASE}${sid}.png`;
+  return `${SPRITE_BASE}${sid}.png`;
+}
+function getSpriteFallback(d) {
+  return `${SPRITE_BASE}${d.sid}.png`;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — HERO
+   ══════════════════════════════════════════════════════════════ */
+function renderHero(data, form, fd) {
+  const frName = fd.fr || data.dbSymbol;
+  const dexNum = fd.num ? `#${pad3(fd.num)}` : `#${pad3(data.id)}`;
+  const t1css = typeFromJson(form.type1);
+  const t2css = typeFromJson(form.type2);
+
+  document.title = `${frName} | Codex de Khemis | Pokémon Cendres Antiques`;
+  document.getElementById('page-title').textContent = document.title;
+  document.getElementById('breadcrumb-name').textContent = frName;
+
+  const img = document.getElementById('hero-image');
+  img.src = getSprite(fd, 'art');
+  img.alt = frName;
+  img.onerror = () => { img.onerror=null; img.src = getSpriteFallback(fd); };
+
+  document.getElementById('hero-dex-num').textContent = dexNum;
+  document.getElementById('hero-name-fr').textContent = frName;
+  document.getElementById('hero-name-en').textContent =
+    data.dbSymbol.charAt(0).toUpperCase() + data.dbSymbol.slice(1);
+
+  let types = typeBadge(form.type1);
+  if (t2css && form.type2 !== '__undef__') types += typeBadge(form.type2);
+  document.getElementById('hero-types').innerHTML = types;
+
+  const desc = fd.desc || '';
+  const el = document.getElementById('hero-desc');
+  if (desc) { el.textContent = desc; el.style.display = ''; }
+  else { el.style.display = 'none'; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — INFOS GÉNÉRALES
+   ══════════════════════════════════════════════════════════════ */
+function renderInfos(data, form, fd) {
+  const t1css = typeFromJson(form.type1);
+  const t2css = typeFromJson(form.type2);
+  const dexNum = fd.num ? `#${pad3(fd.num)}` : `#${pad3(data.id)}`;
+  let types = typeBadge(form.type1);
+  if (t2css && form.type2 !== '__undef__') types += typeBadge(form.type2);
+
+  const groups = (form.breedGroups||[]).map(g => BREED_GROUPS[g] || `Gr. ${g}`).join(' · ');
+  const femRate = form.femaleRate === -1 ? 'Asexué' :
+                  form.femaleRate ===  0 ? '0 % (Mâle)' :
+                  form.femaleRate === 100 ? '100 % (Femelle)' :
+                  `${form.femaleRate} %`;
+
+  const rows = [
+    ['Numéro Pokédex', dexNum],
+    ['Catégorie', fd.cat || '—'],
+    ['Type', types],
+    ['Taille', `${form.height} m`],
+    ['Poids', `${form.weight} kg`],
+    ['Taux de capture', form.catchRate],
+    ['Bonheur de base', form.baseLoyalty],
+    ['Taux femelle', femRate],
+    ['Groupe Œuf', groups || '—'],
+    ['Pas d\'éclosion', `${form.hatchSteps.toLocaleString('fr-FR')} pas`],
+    ['Exp. de base', form.baseExperience],
+    ['Courbe de progression', EXP_CURVES[form.experienceType] || '—'],
+  ];
+
+  document.getElementById('infos-card').innerHTML =
+    rows.map(([l,v]) => `<div class="info-row"><span class="info-label">${l}</span><span class="info-value">${v}</span></div>`).join('');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — STATISTIQUES
+   ══════════════════════════════════════════════════════════════ */
+function renderStats(form) {
+  const stats = [
+    ['PV',          form.baseHp,  form.evHp ],
+    ['Attaque',     form.baseAtk, form.evAtk],
+    ['Défense',     form.baseDfe, form.evDfe],
+    ['Att. Spé.',   form.baseAts, form.evAts],
+    ['Déf. Spé.',   form.baseDfs, form.evDfs],
+    ['Vitesse',     form.baseSpd, form.evSpd],
+  ];
+  const total = stats.reduce((s,[,v]) => s+v, 0);
+
+  let html = stats.map(([name, val]) => `
+    <div class="stat-row">
+      <div class="stat-header"><span class="stat-name">${name}</span><span class="stat-num">${val}</span></div>
+      <div class="stat-bar-bg"><div class="stat-bar-fill ${statClass(val)}" data-target="${Math.min(val/255*100,100).toFixed(2)}" style="width:0"></div></div>
+    </div>`).join('');
+
+  html += `<div class="stat-total"><span class="stat-name">Total</span><span class="stat-num">${total}</span></div>`;
+
+  const evLabels = {evHp:'PV', evAtk:'Attaque', evDfe:'Défense', evAts:'Att. Spé.', evDfs:'Déf. Spé.', evSpd:'Vitesse'};
+  const evs = Object.entries(evLabels).filter(([k]) => form[k] > 0).map(([k,l]) => `<span style="font-family:var(--font-heading);font-size:.75rem;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:.2rem .6rem;">+${form[k]} ${l}</span>`);
+  if (evs.length) {
+    html += `<div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);">
+      <div class="info-label" style="margin-bottom:.5rem;">Points d'effort obtenus</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">${evs.join('')}</div></div>`;
+  }
+
+  document.getElementById('stats-card').innerHTML = html;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — TALENTS
+   ══════════════════════════════════════════════════════════════ */
+function renderAbilities(form) {
+  const abs = form.abilities || [];
+  let html = '';
+  abs.forEach((ab, i) => {
+    const isHidden = i === 2;
+    const name = ABILITIES[ab] || ab.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase());
+    const tag  = isHidden ? 'Capacité cachée' : (i === 1 && abs[0] === abs[1]) ? 'Capacité normale' : `Capacité normale${i===1?' (2)':''}`;
+    html += `<div class="ability-card${isHidden?' hidden-ability':''}">
+      <div class="ability-name">${name}</div>
+      <div class="ability-tag${isHidden?' hidden':''}">${isHidden?'✦ ':''} ${tag}</div>
+    </div>`;
+  });
+  document.getElementById('abilities-grid').innerHTML = html || '<div class="empty-tab">Aucun talent</div>';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — CHAÎNE D'ÉVOLUTION
+   ══════════════════════════════════════════════════════════════ */
+async function renderEvolutions(data, form, normalId) {
+  const evoSec = document.getElementById('evo-section');
+  const evoOrn = document.getElementById('evo-ornament');
+
+  try {
+    const rootSym  = form.babyDbSymbol || data.dbSymbol;
+    const rootNorm = norm(rootSym);
+    let rootData   = data;
+
+    // Si on n'est pas la racine, on la charge
+    if (rootNorm !== normalId) {
+      const r = await fetch(`${JSON_BASE_PATH}${rootSym}.json`);
+      if (!r.ok) throw new Error();
+      rootData = await r.json();
+    }
+
+    const rootForm = rootData.forms[0];
+
+    // Pas d'évolution du tout ?
+    if (!rootForm.evolutions || rootForm.evolutions.length === 0) {
+      evoSec.style.display = 'none'; return;
+    }
+
+    // Évolutions multiples (ex: Évoli, Stalgamin…)
+    if (rootForm.evolutions.length > 1) {
+      await renderBranchEvo(rootData, normalId);
+    } else {
+      // Chaîne linéaire
+      const chain = await buildLinearChain(rootData);
+      if (chain.length <= 1) { evoSec.style.display = 'none'; return; }
+      renderLinearEvo(chain, normalId);
+    }
+
+    evoOrn.style.display = '';
+  } catch(e) {
+    console.warn('Evo chain error:', e);
+    evoSec.style.display = 'none';
+  }
+}
+
+async function buildLinearChain(rootData) {
+  const chain = [{ sym: rootData.dbSymbol, id: rootData.id, cond: null }];
+  let cur = rootData;
+  while (cur.forms[0].evolutions && cur.forms[0].evolutions.length === 1) {
+    const evo = cur.forms[0].evolutions[0];
+    const cond = formatConditions(evo.conditions);
+    try {
+      const r = await fetch(`${JSON_BASE_PATH}${evo.dbSymbol}.json`);
+      if (!r.ok) break;
+      const next = await r.json();
+      chain.push({ sym: evo.dbSymbol, id: next.id, cond });
+      cur = next;
+    } catch(e) { break; }
+  }
+  return chain;
+}
+
+function evoStepHTML(sym, isCurrent, extraCss='') {
+  const n = norm(sym);
+  const fd = PKM_FR[n] || { fr: sym, sid: 0 };
+  const sprite = fd.li ? `../pokemon/${fd.li}` : `${SPRITE_BASE}${fd.sid}.png`;
+  const fallback= `${SPRITE_BASE}${fd.sid}.png`;
+  return `<div class="evo-step">
+    <a href="fiche.html?pokemon=${sym}">
+      <div class="evo-sprite-frame${isCurrent?' current':''}${extraCss}">
+        <img src="${sprite}" alt="${fd.fr}" onerror="this.onerror=null;this.src='${fallback}'" />
+      </div>
+    </a>
+    <div class="evo-name">${fd.fr}</div>
+    <div class="evo-en">${sym.charAt(0).toUpperCase()+sym.slice(1)}</div>
+  </div>`;
+}
+
+function renderLinearEvo(chain, normalId) {
+  let html = '<div class="evo-chain">';
+  chain.forEach((step, i) => {
+    if (i > 0) {
+      html += `<div class="evo-arrow"><div class="evo-condition">${step.cond||''}</div><span>→</span></div>`;
+    }
+    html += evoStepHTML(step.sym, norm(step.sym) === normalId);
+  });
+  html += '</div>';
+  document.getElementById('evo-chain').innerHTML = html;
+}
+
+async function renderBranchEvo(rootData, normalId) {
+  const rootSym   = rootData.dbSymbol;
+  const rootNorm  = norm(rootSym);
+  const evolutions = rootData.forms[0].evolutions;
+
+  let html = '<div class="evo-branch-wrap">';
+  html += `<div class="evo-branch-root">${evoStepHTML(rootSym, rootNorm === normalId)}</div>`;
+  html += '<div class="evo-branch-arrow">↓</div>';
+  html += '<div class="evo-branch-row">';
+  evolutions.forEach(evo => {
+    const n = norm(evo.dbSymbol);
+    const cond = formatConditions(evo.conditions);
+    const fd = PKM_FR[n] || { fr: evo.dbSymbol, sid: 0 };
+    const sprite = fd.li ? `../pokemon/${fd.li}` : `${SPRITE_BASE}${fd.sid}.png`;
+    html += `<div class="evo-step" style="max-width:110px;">
+      <a href="fiche.html?pokemon=${evo.dbSymbol}">
+        <div class="evo-sprite-frame${n===normalId?' current':''}">
+          <img src="${sprite}" alt="${fd.fr}" onerror="this.onerror=null;this.src='${SPRITE_BASE}${fd.sid}.png'" />
+        </div>
+      </a>
+      <div class="evo-name">${fd.fr}</div>
+      ${cond ? `<div class="evo-condition" style="margin-top:.2rem;">${cond}</div>` : ''}
+    </div>`;
+  });
+  html += '</div></div>';
+  document.getElementById('evo-chain').innerHTML = html;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDU — ATTAQUES
+   ══════════════════════════════════════════════════════════════ */
+function renderMoveset(form) {
+  const all = form.moveSet || [];
+  const level  = all.filter(m => m.klass==='LevelLearnableMove').sort((a,b)=>a.level-b.level);
+  const tutor  = all.filter(m => m.klass==='TutorLearnableMove');
+  const breed  = all.filter(m => m.klass==='BreedLearnableMove');
+  const tech   = all.filter(m => m.klass==='TechLearnableMove');
+
+  function moveRow(m, showLvl) {
+    const [fr, tClass] = MOVES[m.move] || [
+      m.move.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase()), 'normal'
+    ];
+    const lvlCell = showLvl ? `<td><span class="move-level">${m.level}</span></td>` : '';
+    return `<tr>${lvlCell}<td><span class="move-name">${fr}</span></td><td>${typeBadge(tClass)}</td></tr>`;
+  }
+
+  function buildTable(moves, showLvl) {
+    if (!moves.length) return `<div class="card"><div class="empty-tab">Aucune capacité dans cette catégorie</div></div>`;
+    const thLvl = showLvl ? '<th style="width:70px;">Niv.</th>' : '';
+    return `<div class="card" style="padding:0;overflow:hidden;">
+      <table class="move-table">
+        <thead><tr>${thLvl}<th>Capacité</th><th>Type</th></tr></thead>
+        <tbody>${moves.map(m=>moveRow(m,showLvl)).join('')}</tbody>
+      </table></div>`;
+  }
+
+  document.getElementById('tab-level').innerHTML = buildTable(level, true);
+  document.getElementById('tab-tutor').innerHTML = buildTable(tutor, false);
+  document.getElementById('tab-breed').innerHTML = buildTable(breed, false);
+  document.getElementById('tab-tech').innerHTML  = buildTable(tech, false);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ANIMATION BARRES DE STATS
+   ══════════════════════════════════════════════════════════════ */
+function animateStatBars() {
+  const bars = document.querySelectorAll('.stat-bar-fill');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = `${e.target.dataset.target}%`;
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  bars.forEach(b => obs.observe(b));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   POINT D'ENTRÉE
+   ══════════════════════════════════════════════════════════════ */
+async function loadPokemon() {
+  const params   = new URLSearchParams(location.search);
+  const rawId    = params.get('pokemon') || '';
+  const normalId = norm(rawId);
+
+  if (!rawId) { showError('Aucun Pokémon spécifié dans l\'URL.'); return; }
+
+  try {
+    const resp = await fetch(`${JSON_BASE_PATH}${rawId}.json`);
+    if (!resp.ok) throw new Error(`Fichier introuvable : ${rawId}.json (code ${resp.status})`);
+    const data = await resp.json();
+    const form = data.forms[0];
+    const fd   = PKM_FR[normalId] || { fr: data.dbSymbol, sid: data.id };
+
+    renderHero(data, form, fd);
+    renderInfos(data, form, fd);
+    renderStats(form);
+    renderAbilities(form);
+    renderMoveset(form);
+    await renderEvolutions(data, form, normalId);
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display  = 'block';
+    animateStatBars();
+
+  } catch(err) {
+    showError(`Impossible de charger « ${rawId} » : ${err.message}`);
+  }
+}
+
+function showError(msg) {
+  document.getElementById('loading').style.display  = 'none';
+  document.getElementById('error-msg').textContent  = msg;
+  document.getElementById('error-box').style.display = 'block';
+}
+
+loadPokemon();
+
+/* ══════════════════════════════════════════════════════════════
+   TABS
+   ══════════════════════════════════════════════════════════════ */
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BURGER MENU
+   ══════════════════════════════════════════════════════════════ */
+const burger    = document.querySelector('.burger');
+const mobileNav = document.getElementById('mobile-nav');
+const mobLinks  = mobileNav.querySelectorAll('a');
+
+function openMenu()  { burger.setAttribute('aria-expanded','true');  burger.setAttribute('aria-label','Fermer le menu');  mobileNav.classList.add('is-open');    document.body.style.overflow='hidden'; }
+function closeMenu() { burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','Ouvrir le menu'); mobileNav.classList.remove('is-open'); document.body.style.overflow=''; }
+
+burger.addEventListener('click', () => burger.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeMenu(); });
+window.addEventListener('resize',    () => { if (window.innerWidth>768) closeMenu(); });
+</script>
+</body>
+</html>
