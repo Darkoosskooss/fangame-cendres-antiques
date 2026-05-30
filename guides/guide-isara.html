@@ -254,7 +254,7 @@
     }
     .trainer-card > * { min-width: 0; }
     .trainer-card:hover { border-color: rgba(201,151,58,.4); background: rgba(201,151,58,.03); }
-    .trainer-icon { font-size: 2.2rem; }
+    .trainer-icon { width: auto; height: auto; }
     .trainer-role { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--turquoise); margin-bottom: .2rem; }
     .trainer-name { font-family: var(--font-heading); font-size: 1rem; color: var(--gold-pale); margin-bottom: .3rem; }
     .trainer-team { font-size: .96rem; color: var(--text-muted); }
@@ -503,7 +503,7 @@
       .zone-banner-inner::before { display: none; }
 
       .trainer-card { grid-template-columns: 1fr; }
-      .trainer-icon { display: none; }
+      
       .trainer-reward { text-align: left; grid-column: 1; }
 
       /* item-row : empile l'icône + info sur une ligne, qty en dessous */
@@ -683,7 +683,7 @@
         <div class="trainer-list" aria-label="Liste des dresseurs">
 
           <div class="trainer-card">
-            <span class="trainer-icon">🌾</span>
+            <span class="trainer-icon"><img src="../dresseurs/paysan.png"></span>
             <div>
               <h3>Agriculteur Goris</h3>
               <div class="poke-table-wrap">
@@ -756,7 +756,7 @@
           </div>
 
           <div class="trainer-card">
-            <span class="trainer-icon">🌾</span>
+            <span class="trainer-icon"><img src="../dresseurs/paysanne.png"></span>
             <div>
               <h3>Agricultrice Janis</h3>
               <div class="poke-table-wrap">
@@ -808,7 +808,7 @@
         <h2>Champion de l'arène d'Isara</h2>
 
           <div class="trainer-card">
-            <span class="trainer-icon">🌸​</span>
+            <span class="trainer-icon"><img src="../dresseurs/isarius.png"></span>
             <div>
               <h3>Champion Isarius</h3>
               <div class="poke-table-wrap">
@@ -893,8 +893,8 @@
         <div class="trainer-list" aria-label="Rival">
 
           <div class="trainer-card">
+            <span class="trainer-icon"><img src="../dresseurs/rival.png"></span>
             <div>
-              <p class="trainer-role">⚔️ Dresseur</p>
               <h3>Rival Phéno</h3>
               <p class="trainer-team">Si vous avez choisi <strong>Scalpion</strong>, <strong>Zorua</strong> ou <strong>Blizzi</strong><br />
                 <table class="poke-table" aria-label="Pokémon du Rival">
@@ -1012,8 +1012,8 @@
           <div class="trainer-reward">
               <p class="reward-label">Récompense</p>
               <p class="reward-val">13 P$</p>
-            </div>
-        </div>
+          </div>
+          </div>
 
         <!-- h2 — Objets -->
         <h2>Objets</h2>

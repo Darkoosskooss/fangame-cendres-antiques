@@ -254,7 +254,7 @@
     }
     .trainer-card > * { min-width: 0; }
     .trainer-card:hover { border-color: rgba(201,151,58,.4); background: rgba(201,151,58,.03); }
-    .trainer-icon { font-size: 2.2rem; }
+    .trainer-icon { width: auto; height: auto; }
     .trainer-role { font-family: var(--font-heading); font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--turquoise); margin-bottom: .2rem; }
     .trainer-name { font-family: var(--font-heading); font-size: 1rem; color: var(--gold-pale); margin-bottom: .3rem; }
     .trainer-team { font-size: .96rem; color: var(--text-muted); }
@@ -503,7 +503,6 @@
       .zone-banner-inner::before { display: none; }
 
       .trainer-card { grid-template-columns: 1fr; }
-      .trainer-icon { display: none; }
       .trainer-reward { text-align: left; grid-column: 1; }
 
       /* item-row : empile l'icône + info sur une ligne, qty en dessous */
@@ -698,8 +697,8 @@ C'est un village reculé, calme et accueillant qui n'abrite pas de mystère part
         <div class="trainer-list" aria-label="Liste des dresseurs">
 
           <div class="trainer-card">
+            <span class="trainer-icon"><img src="../dresseurs/rival.png"></span>
             <div>
-              <p class="trainer-role">⚔️ Dresseur</p>
               <h3>Rival Phéno</h3>
               <p class="trainer-team">Si vous avez choisi <strong>Scalpion</strong>, <strong>Zorua</strong> ou <strong>Blizzi</strong><br />
                 <table class="poke-table" aria-label="Pokémon du Rival">
@@ -780,7 +779,7 @@ C'est un village reculé, calme et accueillant qui n'abrite pas de mystère part
         <div class="trainer-reward">
               <p class="reward-label">Récompense</p>
               <p class="reward-val">5 P$</p>
-            </div>
+        </div>
         </div>
 
         <div class="tip-box">
