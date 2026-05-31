@@ -10,7 +10,11 @@
   <link rel="shortcut icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Traduction multilingue -->
+  <script src="i18n.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <!-- Système de traduction multilingue -->
+  <script src="i18n.js"></script>
   <style>
     :root {
       --gold:        #C9973A;
@@ -394,13 +398,13 @@
   <nav aria-label="Navigation principale">
     <a href="../index.html" class="nav-logo">
       <span class="nav-logo-main">Cendres Antiques</span>
-      <span class="nav-logo-sub">Pokémon Fangame</span>
+      <span class="nav-logo-sub" data-i18n="nav_subtitle">Pokémon Fangame</span>
     </a>
     <ul class="nav-links">
-      <li><a href="../guide.html">Guide</a></li>
-      <li><a href="../pokemon.html" class="active">Pokémon</a></li>
-      <li><a href="../objets.html">Objets</a></li>
-      <li><a href="../evolutions.html">Évolutions</a></li>
+      <li><a href="../guide.html" data-i18n="nav_guide">Guide</a></li>
+      <li><a href="../pokemon.html" class="active" data-i18n="nav_pokemon">Pokémon</a></li>
+      <li><a href="../objets.html" data-i18n="nav_objets">Objets</a></li>
+      <li><a href="../evolutions.html" data-i18n="nav_evolutions">Évolutions</a></li>
     </ul>
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
       <span class="burger-line"></span>
@@ -413,24 +417,24 @@
 <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu de navigation mobile">
   <span class="mobile-nav-ornament" aria-hidden="true">𓂀</span>
   <ul role="list">
-    <li><a href="../guide.html">Guide</a></li>
-    <li><a href="../pokemon.html" class="active">Pokémon</a></li>
-    <li><a href="../objets.html">Objets</a></li>
-    <li><a href="../evolutions.html">Évolutions</a></li>
+    <li><a href="../guide.html" data-i18n="nav_guide">Guide</a></li>
+    <li><a href="../pokemon.html" class="active" data-i18n="nav_pokemon">Pokémon</a></li>
+    <li><a href="../objets.html" data-i18n="nav_objets">Objets</a></li>
+    <li><a href="../evolutions.html" data-i18n="nav_evolutions">Évolutions</a></li>
   </ul>
 </div>
 
 <!-- ── LOADING STATE ── -->
 <div id="loading">
   <span class="loader-glyph">𓂀</span>
-  <span class="loader-text">Consultation du Codex…</span>
+  <span class="loader-text" data-i18n="loading_text">Consultation du Codex…</span>
 </div>
 
 <!-- ── ERROR STATE ── -->
 <div id="error-box">
-  <h2>Pokémon introuvable</h2>
+  <h2 data-i18n="error_title">Pokémon introuvable</h2>
   <p id="error-msg"></p>
-  <a href="../pokemon.html" style="display:inline-block;margin-top:1.2rem;font-family:var(--font-heading);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:.5rem 1.2rem;border-radius:3px;">← Retour au Codex</a>
+  <a href="../pokemon.html" style="display:inline-block;margin-top:1.2rem;font-family:var(--font-heading);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:.5rem 1.2rem;border-radius:3px;" data-i18n="error_back">← Retour au Codex</a>
 </div>
 
 <!-- ── MAIN CONTENT (populated by JS) ── -->
@@ -438,7 +442,7 @@
 
   <!-- Breadcrumb -->
   <div class="breadcrumb">
-    <a href="../pokemon.html">Codex de Khemis</a>
+    <a href="../pokemon.html" data-i18n="breadcrumb_codex">Codex de Khemis</a>
     <span class="breadcrumb-sep">𓂁</span>
     <span id="breadcrumb-name" style="color:var(--gold-pale)">…</span>
   </div>
@@ -466,11 +470,11 @@
     <!-- Infos + Stats -->
     <div class="two-col animate animate-d2">
       <div>
-        <div class="section-title">Informations générales</div>
+        <div class="section-title" data-i18n="section_infos">Informations générales</div>
         <div class="card" id="infos-card"></div>
       </div>
       <div>
-        <div class="section-title">Statistiques de base</div>
+        <div class="section-title" data-i18n="section_stats">Statistiques de base</div>
         <div class="card" id="stats-card"></div>
       </div>
     </div>
@@ -479,7 +483,7 @@
 
     <!-- Abilities -->
     <div class="animate animate-d2">
-      <div class="section-title">Capacités Spéciales</div>
+      <div class="section-title" data-i18n="section_abilities">Capacités Spéciales</div>
       <div class="ability-grid" id="abilities-grid"></div>
     </div>
 
@@ -487,7 +491,7 @@
 
     <!-- Evolutions -->
     <div id="evo-section" class="animate animate-d3">
-      <div class="section-title">Chaîne d'Évolution</div>
+      <div class="section-title" data-i18n="section_evo">Chaîne d'Évolution</div>
       <div class="card">
         <div id="evo-chain"></div>
       </div>
@@ -496,12 +500,12 @@
 
     <!-- Moveset -->
     <div class="animate">
-      <div class="section-title">Capacités apprenables</div>
+      <div class="section-title" data-i18n="section_moves">Capacités apprenables</div>
       <div class="tab-bar">
-        <button class="tab-btn active" onclick="showTab('level',this)">Par niveau</button>
-        <button class="tab-btn" onclick="showTab('tutor',this)">Tuteur</button>
-        <button class="tab-btn" onclick="showTab('breed',this)">Reproduction</button>
-        <button class="tab-btn" onclick="showTab('tech',this)">PE / Papyrus d'Enseignement</button>
+        <button class="tab-btn active" onclick="showTab('level',this)" data-i18n="tab_level">Par niveau</button>
+        <button class="tab-btn" onclick="showTab('tutor',this)" data-i18n="tab_tutor">Tuteur</button>
+        <button class="tab-btn" onclick="showTab('breed',this)" data-i18n="tab_breed">Reproduction</button>
+        <button class="tab-btn" onclick="showTab('tech',this)" data-i18n="tab_tech">PE / Papyrus</button>
       </div>
       <div id="tab-level" class="tab-panel active"></div>
       <div id="tab-tutor" class="tab-panel"></div>
@@ -1118,21 +1122,23 @@ function getSpriteFallback(d) {
    ══════════════════════════════════════════════════════════════ */
 function renderHero(data, form, fd) {
   const frName = fd.fr || data.dbSymbol;
+  // Nom traduit depuis names.csv (clé = dbSymbol anglais)
+  const i18nName = window.I18n ? (window.I18n.pokemonName(data.dbSymbol) || frName) : frName;
   const dexNum = fd.num ? `#${pad3(fd.num)}` : `#${pad3(data.id)}`;
   const t1css = typeFromJson(form.type1);
   const t2css = typeFromJson(form.type2);
 
-  document.title = `${frName} | Codex de Khemis | Pokémon Cendres Antiques`;
+  document.title = `${i18nName} | Codex de Khemis | Pokémon Cendres Antiques`;
   document.getElementById('page-title').textContent = document.title;
-  document.getElementById('breadcrumb-name').textContent = frName;
+  document.getElementById('breadcrumb-name').textContent = i18nName;
 
   const img = document.getElementById('hero-image');
   img.src = getSprite(fd, 'art');
-  img.alt = frName;
+  img.alt = i18nName;
   img.onerror = () => { img.onerror=null; img.src = getSpriteFallback(fd); };
 
   document.getElementById('hero-dex-num').textContent = dexNum;
-  document.getElementById('hero-name-fr').textContent = frName;
+  document.getElementById('hero-name-fr').textContent = i18nName;
   document.getElementById('hero-name-en').textContent =
     data.dbSymbol.charAt(0).toUpperCase() + data.dbSymbol.slice(1);
 
@@ -1156,25 +1162,32 @@ function renderInfos(data, form, fd) {
   let types = typeBadge(form.type1);
   if (t2css && form.type2 !== '__undef__') types += typeBadge(form.type2);
 
-  const groups = (form.breedGroups||[]).map(g => BREED_GROUPS[g] || `Gr. ${g}`).join(' · ');
-  const femRate = form.femaleRate === -1 ? 'Asexué' :
-                  form.femaleRate ===  0 ? '0 % (Mâle)' :
-                  form.femaleRate === 100 ? '100 % (Femelle)' :
+  const tr = window.I18n;
+  // Groupes œuf traduits
+  const eggGroupKeys = {0:'egg_unknown',1:'egg_terrain',2:'egg_plant',3:'egg_insect',4:'egg_fly',5:'egg_human',6:'egg_water1',7:'egg_fairy',8:'egg_mineral',9:'egg_amorphous',10:'egg_water3',11:'egg_necrozma',12:'egg_water2',13:'egg_chaos',14:'egg_dragon',15:'egg_ditto'};
+  const groups = (form.breedGroups||[]).map(g => (tr ? tr.t(eggGroupKeys[g]) : null) || BREED_GROUPS[g] || `Gr. ${g}`).join(' · ');
+  // Taux femelle traduit
+  const femRate = form.femaleRate === -1 ? (tr ? tr.t('gender_none')   : 'Asexué') :
+                  form.femaleRate ===  0 ? (tr ? tr.t('gender_male')   : '0 % (Mâle)') :
+                  form.femaleRate === 100 ? (tr ? tr.t('gender_female') : '100 % (Femelle)') :
                   `${form.femaleRate} %`;
+  // Courbe d'expérience traduite
+  const expKeys = ['exp_fast','exp_medium_fast','exp_fluctuating','exp_medium_slow','exp_slow','exp_erratic'];
+  const expLabel = (tr ? tr.t(expKeys[form.experienceType]) : null) || EXP_CURVES[form.experienceType] || '—';
 
   const rows = [
-    ['Numéro Pokédex', dexNum],
-    ['Catégorie', fd.cat || '—'],
-    ['Type', types],
-    ['Taille', `${form.height} m`],
-    ['Poids', `${form.weight} kg`],
-    ['Taux de capture', form.catchRate],
-    ['Bonheur de base', form.baseLoyalty],
-    ['Taux femelle', femRate],
-    ['Groupe Œuf', groups || '—'],
-    ['Pas d\'éclosion', `${form.hatchSteps.toLocaleString('fr-FR')} pas`],
-    ['Exp. de base', form.baseExperience],
-    ['Courbe de progression', EXP_CURVES[form.experienceType] || '—'],
+    [tr ? tr.t('info_dex')    : 'Numéro Pokédex',       dexNum],
+    [tr ? tr.t('info_cat')    : 'Catégorie',             fd.cat || '—'],
+    [tr ? tr.t('info_type')   : 'Type',                  types],
+    [tr ? tr.t('info_height') : 'Taille',                `${form.height} m`],
+    [tr ? tr.t('info_weight') : 'Poids',                 `${form.weight} kg`],
+    [tr ? tr.t('info_catch')  : 'Taux de capture',       form.catchRate],
+    [tr ? tr.t('info_loyalty'): 'Bonheur de base',       form.baseLoyalty],
+    [tr ? tr.t('info_female') : 'Taux femelle',          femRate],
+    [tr ? tr.t('info_egg')    : 'Groupe Œuf',            groups || '—'],
+    [tr ? tr.t('info_hatch')  : "Pas d'éclosion",        `${form.hatchSteps.toLocaleString()} pas`],
+    [tr ? tr.t('info_exp')    : 'Exp. de base',          form.baseExperience],
+    [tr ? tr.t('info_growth') : 'Courbe de progression', expLabel],
   ];
 
   document.getElementById('infos-card').innerHTML =
@@ -1185,13 +1198,14 @@ function renderInfos(data, form, fd) {
    RENDU — STATISTIQUES
    ══════════════════════════════════════════════════════════════ */
 function renderStats(form) {
+  const tr = window.I18n;
   const stats = [
-    ['PV',          form.baseHp,  form.evHp ],
-    ['Attaque',     form.baseAtk, form.evAtk],
-    ['Défense',     form.baseDfe, form.evDfe],
-    ['Att. Spé.',   form.baseAts, form.evAts],
-    ['Déf. Spé.',   form.baseDfs, form.evDfs],
-    ['Vitesse',     form.baseSpd, form.evSpd],
+    [tr ? tr.t('stat_hp')  : 'PV',        form.baseHp,  form.evHp ],
+    [tr ? tr.t('stat_atk') : 'Attaque',   form.baseAtk, form.evAtk],
+    [tr ? tr.t('stat_def') : 'Défense',   form.baseDfe, form.evDfe],
+    [tr ? tr.t('stat_spa') : 'Att. Spé.', form.baseAts, form.evAts],
+    [tr ? tr.t('stat_spd') : 'Déf. Spé.', form.baseDfs, form.evDfs],
+    [tr ? tr.t('stat_spe') : 'Vitesse',   form.baseSpd, form.evSpd],
   ];
   const total = stats.reduce((s,[,v]) => s+v, 0);
 
@@ -1201,13 +1215,24 @@ function renderStats(form) {
       <div class="stat-bar-bg"><div class="stat-bar-fill ${statClass(val)}" data-target="${Math.min(val/255*100,100).toFixed(2)}" style="width:0"></div></div>
     </div>`).join('');
 
-  html += `<div class="stat-total"><span class="stat-name">Total</span><span class="stat-num">${total}</span></div>`;
+  html += `<div class="stat-total"><span class="stat-name">${tr ? tr.t('stat_total') : 'Total'}</span><span class="stat-num">${total}</span></div>`;
 
-  const evLabels = {evHp:'PV', evAtk:'Attaque', evDfe:'Défense', evAts:'Att. Spé.', evDfs:'Déf. Spé.', evSpd:'Vitesse'};
-  const evs = Object.entries(evLabels).filter(([k]) => form[k] > 0).map(([k,l]) => `<span style="font-family:var(--font-heading);font-size:.75rem;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:.2rem .6rem;">+${form[k]} ${l}</span>`);
+  const evStatKeys = [
+    ['evHp',  'stat_hp',  'PV'],
+    ['evAtk', 'stat_atk', 'Attaque'],
+    ['evDfe', 'stat_def', 'Défense'],
+    ['evAts', 'stat_spa', 'Att. Spé.'],
+    ['evDfs', 'stat_spd', 'Déf. Spé.'],
+    ['evSpd', 'stat_spe', 'Vitesse'],
+  ];
+  const evs = evStatKeys.filter(([k]) => form[k] > 0).map(([k, i18nKey, fallback]) => {
+    const label = tr ? tr.t(i18nKey) : fallback;
+    return `<span style="font-family:var(--font-heading);font-size:.75rem;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:.2rem .6rem;">+${form[k]} ${label}</span>`;
+  });
   if (evs.length) {
+    const evTitle = tr ? tr.t('info_ev') : "Points d'effort obtenus";
     html += `<div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);">
-      <div class="info-label" style="margin-bottom:.5rem;">Points d'effort obtenus</div>
+      <div class="info-label" style="margin-bottom:.5rem;">${evTitle}</div>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">${evs.join('')}</div></div>`;
   }
 
@@ -1216,20 +1241,30 @@ function renderStats(form) {
 
 /* ══════════════════════════════════════════════════════════════
    RENDU — TALENTS
+   Nom  : CSV via I18n.abilityName() en priorité, puis ABILITIES local
+   Tags : UI traduit via I18n.t()
    ══════════════════════════════════════════════════════════════ */
 function renderAbilities(form) {
   const abs = form.abilities || [];
+  const t = window.I18n;
   let html = '';
   abs.forEach((ab, i) => {
     const isHidden = i === 2;
-    const name = ABILITIES[ab] || ab.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase());
-    const tag  = isHidden ? 'Capacité cachée' : (i === 1 && abs[0] === abs[1]) ? 'Capacité normale' : `Capacité normale${i===1?' (2)':''}`;
+    // Nom du talent
+    let name;
+    if (t) name = t.abilityName(ab);
+    if (!name) name = ABILITIES[ab] || ab.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase());
+    // Tag traduit
+    const tagNormal = t ? t.t('ability_normal') : 'Capacité normale';
+    const tagHidden = t ? t.t('ability_hidden') : 'Capacité cachée';
+    const tag = isHidden ? tagHidden : (i === 1 && abs[0] === abs[1]) ? tagNormal : `${tagNormal}${i===1?' (2)':''}`;
     html += `<div class="ability-card${isHidden?' hidden-ability':''}">
       <div class="ability-name">${name}</div>
       <div class="ability-tag${isHidden?' hidden':''}">${isHidden?'✦ ':''} ${tag}</div>
     </div>`;
   });
-  document.getElementById('abilities-grid').innerHTML = html || '<div class="empty-tab">Aucun talent</div>';
+  const noAbility = t ? t.t('no_ability') : 'Aucun talent';
+  document.getElementById('abilities-grid').innerHTML = html || `<div class="empty-tab">${noAbility}</div>`;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1295,15 +1330,17 @@ async function buildLinearChain(rootData) {
 function evoStepHTML(sym, isCurrent, extraCss='') {
   const n = norm(sym);
   const fd = PKM_FR[n] || { fr: sym, sid: 0 };
+  const langName = window.I18n ? window.I18n.pokemonName(sym) : null;
+  const displayName = langName || fd.fr;
   const sprite = fd.li ? `../pokemon/${fd.li}` : `${SPRITE_BASE}${fd.sid}.png`;
   const fallback= `${SPRITE_BASE}${fd.sid}.png`;
   return `<div class="evo-step">
     <a href="fiche.html?pokemon=${sym}">
       <div class="evo-sprite-frame${isCurrent?' current':''}${extraCss}">
-        <img src="${sprite}" alt="${fd.fr}" onerror="this.onerror=null;this.src='${fallback}'" />
+        <img src="${sprite}" alt="${displayName}" onerror="this.onerror=null;this.src='${fallback}'" />
       </div>
     </a>
-    <div class="evo-name">${fd.fr}</div>
+    <div class="evo-name">${displayName}</div>
     <div class="evo-en">${sym.charAt(0).toUpperCase()+sym.slice(1)}</div>
   </div>`;
 }
@@ -1340,7 +1377,7 @@ async function renderBranchEvo(rootData, normalId) {
           <img src="${sprite}" alt="${fd.fr}" onerror="this.onerror=null;this.src='${SPRITE_BASE}${fd.sid}.png'" />
         </div>
       </a>
-      <div class="evo-name">${fd.fr}</div>
+      <div class="evo-name">${(window.I18n ? window.I18n.pokemonName(evo.dbSymbol) : null) || fd.fr}</div>
       ${cond ? `<div class="evo-condition" style="margin-top:.2rem;">${cond}</div>` : ''}
     </div>`;
   });
@@ -1350,6 +1387,8 @@ async function renderBranchEvo(rootData, normalId) {
 
 /* ══════════════════════════════════════════════════════════════
    RENDU — ATTAQUES
+   - Nom  : CSV via I18n.moveName() en priorité, puis MOVES local
+   - Type : MOVES local TOUJOURS (source de vérité pour les types)
    ══════════════════════════════════════════════════════════════ */
 function renderMoveset(form) {
   const all = form.moveSet || [];
@@ -1358,20 +1397,33 @@ function renderMoveset(form) {
   const breed  = all.filter(m => m.klass==='BreedLearnableMove');
   const tech   = all.filter(m => m.klass==='TechLearnableMove');
 
-  function moveRow(m, showLvl) {
-    const [fr, tClass] = MOVES[m.move] || [
-      m.move.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase()), 'normal'
-    ];
-    const lvlCell = showLvl ? `<td><span class="move-level">${m.level}</span></td>` : '';
-    return `<tr>${lvlCell}<td><span class="move-name">${fr}</span></td><td>${typeBadge(tClass)}</td></tr>`;
+  function getMoveDisplay(key) {
+    // Type : toujours depuis le dictionnaire local MOVES (source de vérité)
+    const localData = MOVES[key];
+    const tClass = localData ? localData[1] : 'normal';
+    // Nom : CSV (multilingue) en priorité, puis MOVES local (fr), puis formatage brut
+    let moveName;
+    if (window.I18n) {
+      moveName = window.I18n.moveName(key);
+    }
+    if (!moveName && localData) moveName = localData[0];
+    if (!moveName) moveName = key.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase());
+    return [moveName, tClass];
   }
 
+  function moveRow(m, showLvl) {
+    const [moveName, tClass] = getMoveDisplay(m.move);
+    const lvlCell = showLvl ? `<td><span class="move-level">${m.level}</span></td>` : '';
+    return `<tr>${lvlCell}<td><span class="move-name">${moveName}</span></td><td>${typeBadge(tClass)}</td></tr>`;
+  }
+
+  const t = window.I18n;
   function buildTable(moves, showLvl) {
-    if (!moves.length) return `<div class="card"><div class="empty-tab">Aucune capacité dans cette catégorie</div></div>`;
-    const thLvl = showLvl ? '<th style="width:70px;">Niv.</th>' : '';
+    if (!moves.length) return `<div class="card"><div class="empty-tab">${t ? t.t('empty_moves') : 'Aucune capacité dans cette catégorie'}</div></div>`;
+    const thLvl = showLvl ? `<th style="width:70px;">${t ? t.t('move_th_level') : 'Niv.'}</th>` : '';
     return `<div class="card" style="padding:0;overflow:hidden;">
       <table class="move-table">
-        <thead><tr>${thLvl}<th>Capacité</th><th>Type</th></tr></thead>
+        <thead><tr>${thLvl}<th>${t ? t.t('move_th_move') : 'Capacité'}</th><th>${t ? t.t('move_th_type') : 'Type'}</th></tr></thead>
         <tbody>${moves.map(m=>moveRow(m,showLvl)).join('')}</tbody>
       </table></div>`;
   }
@@ -1425,6 +1477,8 @@ async function loadPokemon() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('content').style.display  = 'block';
     animateStatBars();
+    // Traduit les textes générés dynamiquement
+    if (window.I18n && window.I18n.lang !== 'fr') window.I18n.rescan(document.getElementById('content'));
 
   } catch(err) {
     showError(`Impossible de charger « ${rawId} » : ${err.message}`);
@@ -1437,7 +1491,24 @@ function showError(msg) {
   document.getElementById('error-box').style.display = 'block';
 }
 
-loadPokemon();
+// Attend que les CSV soient chargés avant d'afficher
+if (window.I18n) {
+  window.I18n.onReady(loadPokemon);
+} else {
+  loadPokemon();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RECHARGEMENT LIVE lors d'un changement de langue
+   Exposé globalement pour i18n.js
+   ══════════════════════════════════════════════════════════════ */
+window.reloadPokemonData = function() {
+  if (document.getElementById('content').style.display !== 'none') {
+    loadPokemon();
+  }
+};
+
+document.addEventListener('langchange', () => window.reloadPokemonData());
 
 /* ══════════════════════════════════════════════════════════════
    TABS
