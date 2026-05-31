@@ -10,6 +10,9 @@
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
   <link rel="shortcut icon" href="favicon.ico">
+
+  <script src="fiche-pokemon/i18n.js"></script>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
@@ -940,7 +943,7 @@ function buildTable() {
         <td class="center sprite-cell">
           <div class="sprite-wrap">${spriteHTML}</div>
         </td>
-        <td><span class="poke-fr">${fr}</span></td>
+        <td><span class="poke-fr" data-name-fr="${fr}">${fr}</span></td>
         <td><span class="poke-en">${en}</span></td>
         <td class="type-cell">${typeBadges}</td>
         <td>${RARITY_HTML[rarity]}</td>
@@ -949,6 +952,8 @@ function buildTable() {
 
   tbody.innerHTML = html;
   updateCount();
+  // Signal i18n que le tableau est prêt (traduction des noms Pokémon)
+  document.dispatchEvent(new CustomEvent('pokemonTableBuilt'));
 }
 
 let currentFilter = 'all';
@@ -969,8 +974,9 @@ function filterTable() {
     const fr = row.dataset.fr || '';
     const en = row.dataset.en || '';
     const rarity = row.dataset.rarity;
-
-    const matchSearch = !q || fr.includes(q) || en.includes(q) || row.dataset.num.includes(q);
+    // Cherche aussi dans le nom affiché (traduit)
+    const displayedName = (row.querySelector('.poke-fr')?.textContent || '').toLowerCase();
+    const matchSearch = !q || fr.includes(q) || en.includes(q) || displayedName.includes(q) || row.dataset.num.includes(q);
     const matchFilter = currentFilter === 'all' || rarity === currentFilter;
 
     if (matchSearch && matchFilter) {

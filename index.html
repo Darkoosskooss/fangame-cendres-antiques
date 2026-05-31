@@ -13,6 +13,8 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#C9973A" />
 
+  <script src="fiche-pokemon/i18n.js"></script>
+
   <!-- Open Graph (Facebook, Discord, etc.) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Pokémon Cendres Antiques" />
@@ -352,23 +354,6 @@
     }
 
     /* Scroll hint */
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      animation: heroReveal 1.4s 1.3s ease both;
-    }
-    .hero-scroll span {
-      font-family: var(--font-heading);
-      font-size: .6rem;
-      letter-spacing: .35em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
     .scroll-line {
       width: 1px;
       height: 40px;
@@ -1021,11 +1006,6 @@
           </a>
         </div>
       </div>
-
-      <div class="hero-scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
     </section>
 
     <!-- ═══════════════════════════════════════════
@@ -1160,10 +1140,7 @@
         <!-- Marque -->
         <div class="footer-brand">
           <h2>Cendres Antiques</h2>
-          <p>
-            Un fangame Pokémon amateur créé avec passion,
-            plongé dans la magie et le mystère de l'Égypte Antique.
-          </p>
+          <p>Un fangame Pokémon amateur créé avec passion, plongé dans la magie et le mystère de l'Égypte Antique.</p>
         </div>
 
         <!-- Navigation -->
@@ -1300,6 +1277,7 @@ C20.565 21.795 24 17.295 24 12
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) closeMenu();
     });
+
   </script>
 
 </body>
