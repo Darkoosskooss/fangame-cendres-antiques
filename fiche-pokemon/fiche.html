@@ -505,7 +505,7 @@
         <button class="tab-btn active" onclick="showTab('level',this)" data-i18n="tab_level">Par niveau</button>
         <button class="tab-btn" onclick="showTab('tutor',this)" data-i18n="tab_tutor">Tuteur</button>
         <button class="tab-btn" onclick="showTab('breed',this)" data-i18n="tab_breed">Reproduction</button>
-        <button class="tab-btn" onclick="showTab('tech',this)" data-i18n="tab_tech">PE / Papyrus</button>
+        <button class="tab-btn" onclick="showTab('tech',this)" data-i18n="tab_tech">PE / Papyrus d'Enseignement</button>
       </div>
       <div id="tab-level" class="tab-panel active"></div>
       <div id="tab-tutor" class="tab-panel"></div>
@@ -749,6 +749,152 @@ const MOVES = {
   soft_boiled:['Œufrais','normal'], slack_off:['Flemme','normal'],
   aqua_ring:['Anneau Eau','eau'], fake_tears:['Faux Sanglots','ombre'],
   helping_hand:['Main Forte','normal'],
+  // ── Normales supplémentaires ──
+  pound:['Écras\'Face','normal'], double_slap:['Gifle','normal'],
+  comet_punch:['Poing Comète','normal'], mega_punch:['Mégapoing','normal'],
+  pay_day:['Jackpot','normal'], mega_kick:['Mégapied','normal'],
+  vice_grip:['Étreinte','normal'], guillotine:['Guillotine','normal'],
+  bind:['Étreinte','normal'], stomp:['Piétisol','normal'],
+  doubleslap:['Gifle','normal'], slam:['Éclair','normal'],
+  jump_kick:['Pied Sauté','combat'], rolling_kick:['Coup de Pied','combat'],
+  horn_drill:['Koud\'Korne','normal'], horn_attack:['Koud\'Korne','normal'],
+  peck_attack:['Picodon','vol'], constrict:['Ligotage','normal'],
+  twineedle_normal:['Dard-Double','insect'],
+  rage:['Rage','normal'], telekinesis:['Télékinésie','esprit'],
+  conversion:['Conversion','normal'], conversion_2:['Conversion 2','normal'],
+  tri_attack:['Multi-Tacle','normal'], super_fang_2:['Super Crocs','normal'],
+  false_swipe:['Fausse Griffe','normal'], spikes_normal:['Pics','sol'],
+  foresight:['Lecture Aura','normal'], mud_sport:['Boue','sol'],
+  water_sport:['Jet d\'Eau','eau'], camouflage:['Camouflage','normal'],
+  tail_glow:['Queue Lumineuse','insect'], charge:['Charge','foudre'],
+  odor_sleuth:['Nez Creux','normal'], knock_off_normal:['Jackpot','ombre'],
+  secret_power:['Pouvoir Caché','normal'], refresh:['Détente','normal'],
+  lucky_chant:['Porte-Bonheur','normal'], me_first:['Copier','normal'],
+  trump_card:['Atout','normal'], heal_block:['Blocage Soin','esprit'],
+  power_swap:['Permutapuissance','esprit'], guard_swap:['Permutadéfense','esprit'],
+  punishment:['Punition','ombre'], last_resort:['Dernier Recours','normal'],
+  worry_seed:['Graine Souci','plante'], sucker_punch_2:['Jackpot','ombre'],
+  captivate:['Ensorcellement','normal'], stealth_rock_2:['Piège de Roc','granit'],
+  chatter:['Bavardage','vol'], judgment:['Raison Suprême','normal'],
+  natural_gift_2:['Don Nature','normal'], cut:['Tranche','normal'],
+  strength_2:['Force','normal'], rock_climb:['Grimpé-Rocher','normal'],
+  defog_2:['Brume','vol'], trick_room_2:['Espace Vital','esprit'],
+  wide_guard:['Garde Large','granit'], after_you:['Après Toi','normal'],
+  quash:['Retardement','ombre'], electroweb:['Toile Électrique','foudre'],
+  snarl_2:['Cri Féroce','ombre'], echoed_voice:['Voix Répétée','normal'],
+  chip_away:['Tir Précis','normal'], sky_drop:['Parachute','vol'],
+  stored_power:['Pouvoir Stasis','esprit'], heal_pulse:['Soin Pulsé','esprit'],
+  shift_gear:['Mécanisme','metal'], circle_throw:['Lance-Cercle','combat'],
+  incinerate_2:['Calcination','feu'], quiver_dance_2:['Danse Papillon','insect'],
+  heavy_slam:['Écrasement','metal'], synchronoise:['Synchronoise','esprit'],
+  electro_ball_2:['Élector-Bille','foudre'], soak:['Trempage','eau'],
+  flame_charge_2:['Nitrocharge','feu'], coil:['Enroulement','poison'],
+  low_sweep_2:['Casse-Pied','combat'], acid_spray:['Jet Acide','poison'],
+  foul_play_2:['Trahison','ombre'], simple_beam:['Rayon Simple','normal'],
+  entrainment_2:['Entraînement','normal'], after_you_2:['Après Toi','normal'],
+  round_2:['Chœur','normal'], echoed_voice_2:['Voix Répétée','normal'],
+  v_create:['V-Estoc','feu'], fusion_flare:['Fusion Flamboyante','feu'],
+  fusion_bolt:['Fusion Électrique','foudre'],
+  freeze_shock:['Gel Fulgurant','gel'], ice_burn:['Brûlure Verglas','gel'],
+  glaciate:['Congélation','gel'], bolt_strike:['Choc Violent','foudre'],
+  blue_flare:['Flamme Bleue','feu'], fiery_dance:['Danse Ardente','feu'],
+  techno_blast:['Techno-Choc','normal'], relic_song:['Chant Ancestral','normal'],
+  secret_sword_2:['Lame Secrète','combat'], sacred_sword_2:['Porte-Bane','combat'],
+  razor_shell:['Tranche Coquille','eau'], heat_crash:['Écrasé-Bouilli','feu'],
+  leaf_tornado:['Tornade Feuilles','plante'], steamroller:['Roue de Feu','insect'],
+  cotton_guard:['Protection Coton','plante'], night_daze_2:['Noctacide','ombre'],
+  psystrike:['Frappe Psy','esprit'], tail_slap:['Gifle Queue','normal'],
+  hurricane_2:['Ouragan','vol'], head_charge:['Choc Tête','normal'],
+  gear_grind_2:['Engrenage','metal'], searing_shot:['Tir Brûlant','feu'],
+  tail_end:['Queue','normal'], work_up_2:['Travail','normal'],
+  retaliate:['Revanche','normal'], final_gambit:['Dévotion','combat'],
+  bestow_2:['Générosité','normal'], inferno_2:['Flammes Infernales','feu'],
+  water_pledge_2:['Vague Aquatique','eau'], fire_pledge_2:['Aire de Feu','feu'],
+  grass_pledge:['Tapis de Plantes','plante'], volt_switch_2:['Voltiplomb','foudre'],
+  struggle:['Lutte','normal'],
+  // ── Eau supplémentaires ──
+  clamp:['Claquoir','eau'], crabhammer:['Tenaille','eau'],
+  brine:['Eau Salée','eau'], octazooka:['Jet Pieuvre','eau'],
+  whirlpool:['Tourbillon','eau'], dive:['Plongeon','eau'],
+  water_pulse:['Hydro-Pulse','eau'], water_shuriken:['Shuriken d\'Eau','eau'],
+  sparkling_aria:['Aria Pétillant','eau'], aqua_cutter:['Aqua-Cutter','eau'],
+  // ── Plante supplémentaires ──
+  petal_blizzard:['Blizzard de Pétales','plante'], flower_shield:['Bouclier Floral','divin'],
+  grassy_terrain:['Champ Herbeux','plante'], horn_leech:['Corne Sangsue','plante'],
+  wood_hammer:['Marteau Bois','plante'], power_whip:['Fouet Puissant','plante'],
+  bullet_seed:['Graine Missile','plante'], magical_leaf:['Feuille Magique','plante'],
+  cotton_spore:['Spore Coton','plante'], needle_arm:['Bras Épineux','plante'],
+  grass_whistle:['Flûte Herbe','plante'], worry_seed_2:['Graine Souci','plante'],
+  gastro_acid:['Acide Gastrique','poison'],
+  // ── Foudre supplémentaires ──
+  thunder_fang:['Crocs Éclair','foudre'], charge_beam:['Rayon Chargé','foudre'],
+  magnetic_flux:['Flux Magnétique','foudre'], ion_deluge:['Déluge d\'Ions','foudre'],
+  parabolic_charge:['Charge Parabolique','foudre'], nuzzle:['Câlin Électrique','foudre'],
+  plasma_fists:['Poings Plasma','foudre'], zippy_zap:['Zap Rapide','foudre'],
+  // ── Esprit supplémentaires ──
+  miracle_eye:['Œil Miracle','esprit'], healing_wish:['Vœu Guérisseur','esprit'],
+  lunar_dance:['Danse Lunaire','esprit'], power_split:['Partage Force','esprit'],
+  guard_split:['Partage Défense','esprit'], wonder_room:['Chambre des Merveilles','esprit'],
+  magic_room:['Salle Magique','esprit'], ally_switch:['Échange Allié','esprit'],
+  psycho_shift:['Psyko-Transfert','esprit'], meta_pulse:['Méta-Pulse','esprit'],
+  psych_up:['Mental+','normal'], meditate:['Méditation','esprit'],
+  // ── Âme supplémentaires ──
+  lick:['Léchage','ame'], astonish:['Stupéfixion','ame'],
+  shadow_sneak:['Ombre Portée','ame'], trick_or_treat:['Farce ou Friandise','ame'],
+  spirit_shackle:['Entraves Spectrales','ame'], shadow_bone:['Os Fantôme','ame'],
+  poltergeist:['Poltergeist','ame'], misty_explosion:['Explosion Brumeuse','divin'],
+  // ── Ombre supplémentaires ──
+  embargo:['Embargo','ombre'], payback:['Représaille','ombre'],
+  assurance:['Assurance','ombre'], hyper_voice_2:['Éclat Sonore','normal'],
+  flatter:['Flatterie','ombre'], torment:['Tourment','ombre'],
+  memento_2:['Mémento','ombre'], switcheroo:['Passe-Passe','ombre'],
+  // ── Combat supplémentaires ──
+  detect:['Détection','combat'], endure_2:['Endurance','normal'],
+  reversal:['Contre-Attaque','combat'], vital_throw:['Lancer Vital','combat'],
+  superpower_2:['Superpuissance','combat'], sky_uppercut:['Uppercut Aérien','combat'],
+  hammer_arm:['Bras Marteau','combat'], force_palm:['Paume Choc','combat'],
+  wake_up_slap:['Gifle Réveil','combat'], storm_throw:['Lancer Tempête','combat'],
+  chip_away_2:['Tir Précis','normal'], power_up_punch:['Poing Puissant','combat'],
+  mat_block:['Tatami','combat'], flying_press:['Presse Volante','combat'],
+  topsy_turvy_2:['Renversement','ombre'], disarming_voice:['Voix Désarmante','divin'],
+  baby_doll_eyes_2:['Regard Adorable','divin'], nuzzle_2:['Câlin Électrique','foudre'],
+  hold_back:['Retenue','normal'], infestation:['Infestation','insect'],
+  // ── Poison supplémentaires ──
+  poison_gas:['Gaz Toxik','poison'], smog:['Smog','poison'],
+  clear_smog:['Smog Propre','poison'], acid_armor:['Armure Acide','poison'],
+  poison_tail:['Queue Venimeuse','poison'], coil_2:['Enroulement','poison'],
+  venom_drench:['Trempe Venin','poison'], baneful_bunker:['Bunker Putride','poison'],
+  purify:['Purification','poison'],
+  // ── Sol supplémentaires ──
+  mud_bomb:['Boue Bombe','sol'], earth_power:['Telluriforce','sol'],
+  shore_up:['Terrassement','sol'], stomping_tantrum:['Tantrum','sol'],
+  // ── Granit supplémentaires ──
+  head_smash:['Brise-Tête','granit'], stone_axe:['Hache de Pierre','granit'],
+  tar_shot:['Tir Goudron','granit'],
+  // ── Métal supplémentaires ──
+  steel_wing:['Aile d\'Acier','metal'], magnetic_flux_2:['Flux Magnétique','metal'],
+  anchor_shot:['Tir Ancre','metal'], steel_beam:['Rayon Acier','metal'],
+  steel_roller:['Rouleau Acier','metal'], behemoth_blade:['Lame Béhémoth','metal'],
+  behemoth_bash:['Choc Béhémoth','metal'], hard_press:['Press Hard','metal'],
+  // ── Vol supplémentaires ──
+  bounce:['Saut Rebond','vol'], sky_drop_2:['Parachute','vol'],
+  chatter_2:['Bavardage','vol'], heat_wave_2:['Canicule','feu'],
+  floaty_fall:['Chute Flottante','vol'], beak_blast:['Bec Brûlant','vol'],
+  // ── Insect supplémentaires ──
+  attack_order:['Ordre d\'Attaque','insect'], defend_order:['Ordre de Défense','insect'],
+  heal_order:['Ordre de Soin','insect'], fell_stinger:['Dard Fatal','insect'],
+  pollen_puff:['Pompon Pollen','insect'], powder:['Poudre','insect'],
+  // ── Divin supplémentaires ──
+  crafty_shield:['Bouclier Rusé','divin'], aromatic_mist:['Brume Aromatique','divin'],
+  geomancy:['Géomancie','divin'], twinkle_tackle:['Blizzard Féérique','divin'],
+  light_of_ruin:['Lumière Ruineuse','divin'],
+  // ── Dragon supplémentaires ──
+  twister:['Tornade Dragon','dragon'], scale_shot:['Écailles Missiles','dragon'],
+  breaking_swipe:['Balayage','dragon'], clangorous_soul:['Clang Forcené','dragon'],
+  dynamax_cannon:['Canon Dynamax','dragon'], eternabeam:['Rayon Eternatus','dragon'],
+  // ── Gel supplémentaires ──
+  mist:['Brume','gel'], aurora_veil:['Voile Aurora','gel'],
+  triple_axel:['Triple Axel','gel'], freezing_glare:['Regard Glaçant','gel'],
 };
 
 /* ══════════════════════════════════════════════════════════════
@@ -860,9 +1006,9 @@ function formatConditions(conds) {
    Clé = nom anglais normalisé (minuscules, sans accent, alphanum)
    ══════════════════════════════════════════════════════════════ */
 const PKM_FR = {
-  charmander:   { fr:'Salamèche',     num:1,   sid:4,   cat:'Pokémon Lézard',   desc:'La flamme au bout de sa queue indique son état de santé. Si elle venait à s\'éteindre, sa vie prendrait fin.' },
-  charmeleon:   { fr:'Reptincel',     num:2,   sid:5,   cat:'Pokémon Lézard',   desc:'Très bagarreur, il attaque même des adversaires plus puissants sans la moindre hésitation.' },
-  charizard:    { fr:'Dracaufeu',     num:3,   sid:6,   cat:'Pokémon Flamme',   desc:'Il vole majestueusement dans les cieux. Sa flamme ardente peut fondre n\'importe quelle roche.' },
+  charmander:   { fr:'Salamèche',     num:1,   sid:4,  },
+  charmeleon:   { fr:'Reptincel',     num:2,   sid:5,  },
+  charizard:    { fr:'Dracaufeu',     num:3,   sid:6,  },
   pidgey:       { fr:'Roucool',       num:4,   sid:16,  li:'016.png' },
   pidgeotto:    { fr:'Roucoups',      num:5,   sid:17,  li:'017.png' },
   pidgeot:      { fr:'Roucarnage',    num:6,   sid:18,  li:'018.png' },
@@ -1164,30 +1310,29 @@ function renderInfos(data, form, fd) {
 
   const tr = window.I18n;
   // Groupes œuf traduits
-  const eggGroupKeys = {0:'egg_unknown',1:'egg_terrain',2:'egg_plant',3:'egg_insect',4:'egg_fly',5:'egg_human',6:'egg_water1',7:'egg_fairy',8:'egg_mineral',9:'egg_amorphous',10:'egg_water3',11:'egg_necrozma',12:'egg_water2',13:'egg_chaos',14:'egg_dragon',15:'egg_ditto'};
-  const groups = (form.breedGroups||[]).map(g => (tr ? tr.t(eggGroupKeys[g]) : null) || BREED_GROUPS[g] || `Gr. ${g}`).join(' · ');
+  const eggGroupKeys = {0:'Inconnu',1:'Terrain',2:'Plante',3:'Insecte',4:'Vol',5:'Humanoïde',6:'Eau 1',7:'Fée',8:'Minéral',9:'Amorphe',10:'Eau 3',11:'Nécrozma',12:'Eau 2',13:'Chaos',14:'Dragon',15:'Non-Genré'};
+  const groups = [...new Set(form.breedGroups||[])].map(g => (tr ? tr.t(eggGroupKeys[g]) : null) || BREED_GROUPS[g] || `Gr. ${g}`).join(' · ');
   // Taux femelle traduit
-  const femRate = form.femaleRate === -1 ? (tr ? tr.t('gender_none')   : 'Asexué') :
-                  form.femaleRate ===  0 ? (tr ? tr.t('gender_male')   : '0 % (Mâle)') :
-                  form.femaleRate === 100 ? (tr ? tr.t('gender_female') : '100 % (Femelle)') :
+  const femRate = form.femaleRate === -1 ? (tr ? tr.t('Asexué')         : 'Asexué') :
+                  form.femaleRate ===  0 ? (tr ? tr.t('0 % (Mâle)')    : '0 % (Mâle)') :
+                  form.femaleRate === 100 ? (tr ? tr.t('100 % (Femelle)'): '100 % (Femelle)') :
                   `${form.femaleRate} %`;
   // Courbe d'expérience traduite
-  const expKeys = ['exp_fast','exp_medium_fast','exp_fluctuating','exp_medium_slow','exp_slow','exp_erratic'];
+  const expKeys = ['Rapide','Mi-Rapide','Fluctuante','Mi-Lente','Lente','Erratique'];
   const expLabel = (tr ? tr.t(expKeys[form.experienceType]) : null) || EXP_CURVES[form.experienceType] || '—';
 
   const rows = [
-    [tr ? tr.t('info_dex')    : 'Numéro Pokédex',       dexNum],
-    [tr ? tr.t('info_cat')    : 'Catégorie',             fd.cat || '—'],
-    [tr ? tr.t('info_type')   : 'Type',                  types],
-    [tr ? tr.t('info_height') : 'Taille',                `${form.height} m`],
-    [tr ? tr.t('info_weight') : 'Poids',                 `${form.weight} kg`],
-    [tr ? tr.t('info_catch')  : 'Taux de capture',       form.catchRate],
-    [tr ? tr.t('info_loyalty'): 'Bonheur de base',       form.baseLoyalty],
-    [tr ? tr.t('info_female') : 'Taux femelle',          femRate],
-    [tr ? tr.t('info_egg')    : 'Groupe Œuf',            groups || '—'],
-    [tr ? tr.t('info_hatch')  : "Pas d'éclosion",        `${form.hatchSteps.toLocaleString()} pas`],
-    [tr ? tr.t('info_exp')    : 'Exp. de base',          form.baseExperience],
-    [tr ? tr.t('info_growth') : 'Courbe de progression', expLabel],
+    [tr ? tr.t('Numéro Pokédex')       : 'Numéro Pokédex',       dexNum],
+    [tr ? tr.t('Type')                 : 'Type',                  types],
+    [tr ? tr.t('Taille')               : 'Taille',                `${form.height} m`],
+    [tr ? tr.t('Poids')                : 'Poids',                 `${form.weight} kg`],
+    [tr ? tr.t('Taux de capture')      : 'Taux de capture',       form.catchRate],
+    [tr ? tr.t('Bonheur de base')      : 'Bonheur de base',       form.baseLoyalty],
+    [tr ? tr.t('Taux femelle')         : 'Taux femelle',          femRate],
+    [tr ? tr.t('Groupe Œuf')           : 'Groupe Œuf',            groups || '—'],
+    [tr ? tr.t("Pas d'éclosion")       : "Pas d'éclosion",        `${form.hatchSteps.toLocaleString()} pas`],
+    [tr ? tr.t('Exp. de base')         : 'Exp. de base',          form.baseExperience],
+    [tr ? tr.t('Courbe de progression'): 'Courbe de progression', expLabel],
   ];
 
   document.getElementById('infos-card').innerHTML =
@@ -1200,12 +1345,12 @@ function renderInfos(data, form, fd) {
 function renderStats(form) {
   const tr = window.I18n;
   const stats = [
-    [tr ? tr.t('stat_hp')  : 'PV',        form.baseHp,  form.evHp ],
-    [tr ? tr.t('stat_atk') : 'Attaque',   form.baseAtk, form.evAtk],
-    [tr ? tr.t('stat_def') : 'Défense',   form.baseDfe, form.evDfe],
-    [tr ? tr.t('stat_spa') : 'Att. Spé.', form.baseAts, form.evAts],
-    [tr ? tr.t('stat_spd') : 'Déf. Spé.', form.baseDfs, form.evDfs],
-    [tr ? tr.t('stat_spe') : 'Vitesse',   form.baseSpd, form.evSpd],
+    [tr ? tr.t('PV')         : 'PV',        form.baseHp,  form.evHp ],
+    [tr ? tr.t('Attaque')    : 'Attaque',   form.baseAtk, form.evAtk],
+    [tr ? tr.t('Défense')    : 'Défense',   form.baseDfe, form.evDfe],
+    [tr ? tr.t('Att. Spé.')  : 'Att. Spé.', form.baseAts, form.evAts],
+    [tr ? tr.t('Déf. Spé.')  : 'Déf. Spé.', form.baseDfs, form.evDfs],
+    [tr ? tr.t('Vitesse')    : 'Vitesse',   form.baseSpd, form.evSpd],
   ];
   const total = stats.reduce((s,[,v]) => s+v, 0);
 
@@ -1215,22 +1360,22 @@ function renderStats(form) {
       <div class="stat-bar-bg"><div class="stat-bar-fill ${statClass(val)}" data-target="${Math.min(val/255*100,100).toFixed(2)}" style="width:0"></div></div>
     </div>`).join('');
 
-  html += `<div class="stat-total"><span class="stat-name">${tr ? tr.t('stat_total') : 'Total'}</span><span class="stat-num">${total}</span></div>`;
+  html += `<div class="stat-total"><span class="stat-name">${tr ? tr.t('Total') : 'Total'}</span><span class="stat-num">${total}</span></div>`;
 
   const evStatKeys = [
-    ['evHp',  'stat_hp',  'PV'],
-    ['evAtk', 'stat_atk', 'Attaque'],
-    ['evDfe', 'stat_def', 'Défense'],
-    ['evAts', 'stat_spa', 'Att. Spé.'],
-    ['evDfs', 'stat_spd', 'Déf. Spé.'],
-    ['evSpd', 'stat_spe', 'Vitesse'],
+    ['evHp',  'PV',         'PV'],
+    ['evAtk', 'Attaque',    'Attaque'],
+    ['evDfe', 'Défense',    'Défense'],
+    ['evAts', 'Att. Spé.',  'Att. Spé.'],
+    ['evDfs', 'Déf. Spé.',  'Déf. Spé.'],
+    ['evSpd', 'Vitesse',    'Vitesse'],
   ];
   const evs = evStatKeys.filter(([k]) => form[k] > 0).map(([k, i18nKey, fallback]) => {
     const label = tr ? tr.t(i18nKey) : fallback;
     return `<span style="font-family:var(--font-heading);font-size:.75rem;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:3px;padding:.2rem .6rem;">+${form[k]} ${label}</span>`;
   });
   if (evs.length) {
-    const evTitle = tr ? tr.t('info_ev') : "Points d'effort obtenus";
+    const evTitle = tr ? tr.t("Points d'effort obtenus") : "Points d'effort obtenus";
     html += `<div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);">
       <div class="info-label" style="margin-bottom:.5rem;">${evTitle}</div>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">${evs.join('')}</div></div>`;
@@ -1255,15 +1400,15 @@ function renderAbilities(form) {
     if (t) name = t.abilityName(ab);
     if (!name) name = ABILITIES[ab] || ab.replace(/_/g,' ').replace(/\b\w/g, l=>l.toUpperCase());
     // Tag traduit
-    const tagNormal = t ? t.t('ability_normal') : 'Capacité normale';
-    const tagHidden = t ? t.t('ability_hidden') : 'Capacité cachée';
+    const tagNormal = t ? t.t('Capacité normale') : 'Capacité normale';
+    const tagHidden = t ? t.t('Capacité cachée') : 'Capacité cachée';
     const tag = isHidden ? tagHidden : (i === 1 && abs[0] === abs[1]) ? tagNormal : `${tagNormal}${i===1?' (2)':''}`;
     html += `<div class="ability-card${isHidden?' hidden-ability':''}">
       <div class="ability-name">${name}</div>
       <div class="ability-tag${isHidden?' hidden':''}">${isHidden?'✦ ':''} ${tag}</div>
     </div>`;
   });
-  const noAbility = t ? t.t('no_ability') : 'Aucun talent';
+  const noAbility = t ? t.t('Aucun talent') : 'Aucun talent';
   document.getElementById('abilities-grid').innerHTML = html || `<div class="empty-tab">${noAbility}</div>`;
 }
 
@@ -1419,11 +1564,11 @@ function renderMoveset(form) {
 
   const t = window.I18n;
   function buildTable(moves, showLvl) {
-    if (!moves.length) return `<div class="card"><div class="empty-tab">${t ? t.t('empty_moves') : 'Aucune capacité dans cette catégorie'}</div></div>`;
-    const thLvl = showLvl ? `<th style="width:70px;">${t ? t.t('move_th_level') : 'Niv.'}</th>` : '';
+    if (!moves.length) return `<div class="card"><div class="empty-tab">${t ? t.t('Aucune capacité dans cette catégorie') : 'Aucune capacité dans cette catégorie'}</div></div>`;
+    const thLvl = showLvl ? `<th style="width:70px;">${t ? t.t('Niv.') : 'Niv.'}</th>` : '';
     return `<div class="card" style="padding:0;overflow:hidden;">
       <table class="move-table">
-        <thead><tr>${thLvl}<th>${t ? t.t('move_th_move') : 'Capacité'}</th><th>${t ? t.t('move_th_type') : 'Type'}</th></tr></thead>
+        <thead><tr>${thLvl}<th>${t ? t.t('Capacité') : 'Capacité'}</th><th>${t ? t.t('Type') : 'Type'}</th></tr></thead>
         <tbody>${moves.map(m=>moveRow(m,showLvl)).join('')}</tbody>
       </table></div>`;
   }
