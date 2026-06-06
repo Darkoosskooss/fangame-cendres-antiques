@@ -245,10 +245,6 @@
         },
         {
           "klass": "TechLearnableMove",
-          "move": "steel_wing"
-        },
-        {
-          "klass": "TechLearnableMove",
           "move": "iron_tail"
         },
         {
