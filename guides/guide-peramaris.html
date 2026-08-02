@@ -161,6 +161,29 @@
     .zone-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem; overflow-wrap: break-word; word-break: break-word; }
     .zone-content strong { color: var(--gold-light); font-weight: 400; }
 
+            /* FIGURE / IMAGE DE ZONE */
+    .zone-content figure {
+      margin: 1.8rem 0 2rem;
+      text-align: center;
+    }
+    .zone-content figure img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .zone-content figcaption {
+      margin-top: .7rem;
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     /* TIP BOX */
     .tip-box {
       background: rgba(42,173,164,.06); border: 1px solid rgba(42,173,164,.25);
@@ -609,6 +632,13 @@
         <p>Le <strong>Port de Peramaris</strong> est réputé dans la <strong>région de Khemis</strong> pour les réceptions répétées de marchandises venant de l’Est. 
           Il y a également beaucoup de voyageurs qui traversent la <strong>mer Rubea</strong> pour découvrir de nouveaux lieux.</p>
 
+        <figure>
+          <picture>
+            <source srcset="images/Peramaris.png">
+            <img src="images/peramaris.png" alt="Capture d'écran de la ville portuaire Peramaris" loading="lazy">
+            <p>Capture d'écran de la ville portuaire Peramaris</p>
+          </picture>
+        </figure>
 
         <div class="tip-box">
           <span class="tip-label">💡 Conseil du Guide</span>

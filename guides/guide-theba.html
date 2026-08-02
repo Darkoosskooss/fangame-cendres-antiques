@@ -161,6 +161,29 @@
     .zone-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem; overflow-wrap: break-word; word-break: break-word; }
     .zone-content strong { color: var(--gold-light); font-weight: 400; }
 
+            /* FIGURE / IMAGE DE ZONE */
+    .zone-content figure {
+      margin: 1.8rem 0 2rem;
+      text-align: center;
+    }
+    .zone-content figure img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .zone-content figcaption {
+      margin-top: .7rem;
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     /* TIP BOX */
     .tip-box {
       background: rgba(42,173,164,.06); border: 1px solid rgba(42,173,164,.25);
@@ -609,6 +632,14 @@
           Malgré le <strong>dynamisme</strong> qui règne, les rumeurs courent que les <strong>esprits</strong> hantent cette ville.
           Si vous entrez dans <strong>l’arène</strong>, les esprits ne se contenteront pas d’entrer dans votre tête… ils y resteront.
         </p>
+
+        <figure>
+          <picture>
+            <source srcset="images/theba.png">
+            <img src="images/theba.png" alt="Capture d'écran de la Capitale Thèba" loading="lazy">
+            <p>Capture d'écran de la Capitale Thèba</p>
+          </picture>
+        </figure>
 
 
         <div class="tip-box">
