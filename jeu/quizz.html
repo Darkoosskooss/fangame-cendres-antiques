@@ -1,1 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soirée quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nuit: #2A1D3D;
+    --nuit-clair: #3A2A52;
+    --lampe: #FFB86B;
+    --creme: #FFF6E9;
+    --texte: #F4ECFF;
+    --texte-doux: #BFAED6;
 
+    /* Les 5 couleurs du jeu */
+    --c1: #E8473C; /* rouge tomate */
+    --c2: #F5C211; /* jaune moutarde */
+    --c3: #2BB673; /* vert menthe */
+    --c4: #2F7FE0; /* bleu azur */
+    --c5: #D94FC0; /* rose fuchsia */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: "Fredoka", "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--texte);
+    background:
+      radial-gradient(circle at 15% 0%, rgba(255,184,107,.28), transparent 45%),
+      radial-gradient(circle at 90% 100%, rgba(217,79,192,.18), transparent 50%),
+      var(--nuit);
+    padding: 10px 14px 14px;
+  }
+
+  /* La page occupe exactement la hauteur de l'écran : la grille s'adapte */
+  .page {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header { text-align: center; }
+
+  h1 {
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--creme);
+    text-shadow: 0 0 24px rgba(255,184,107,.45);
+    line-height: 1.1;
+  }
+
+  .sous-titre {
+    color: var(--texte-doux);
+    font-size: clamp(.8rem, 1.6vw, 1rem);
+  }
+
+  /* Barre de contrôle */
+  .controles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 14px;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: transform .15s ease, opacity .2s ease;
+  }
+  button:hover:not(:disabled) { transform: translateY(-2px); }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  button:focus-visible, .carte:focus-visible, input:focus-visible + .interrupteur {
+    outline: 3px solid var(--lampe);
+    outline-offset: 3px;
+  }
+
+  #btn-commencer, #btn-decompte {
+    background: var(--lampe);
+    color: var(--nuit);
+    box-shadow: 0 6px 20px rgba(255,184,107,.35);
+  }
+  #btn-reset {
+    background: transparent;
+    color: var(--texte);
+    border: 2px solid var(--texte-doux);
+  }
+
+  .option-numeros {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--texte-doux);
+  }
+  .option-numeros input { position: absolute; opacity: 0; pointer-events: none; }
+  .interrupteur {
+    width: 44px; height: 24px;
+    border-radius: 999px;
+    background: var(--nuit-clair);
+    border: 2px solid var(--texte-doux);
+    position: relative;
+    transition: background .2s;
+  }
+  .interrupteur::after {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--texte-doux);
+    transition: transform .2s, background .2s;
+  }
+  .option-numeros input:checked + .interrupteur { background: var(--lampe); border-color: var(--lampe); }
+  .option-numeros input:checked + .interrupteur::after { transform: translateX(20px); background: var(--nuit); }
+
+  /* Statut + légende des joueurs */
+  .statut {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    background: var(--nuit-clair);
+    border-radius: 14px;
+    padding: 8px 16px;
+  }
+  #message { font-size: 1.05rem; }
+  #message strong { color: var(--lampe); font-weight: 600; }
+
+  .palette { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .joueur-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: .95rem;
+  }
+  .pastille {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.6);
+    flex-shrink: 0;
+  }
+
+  /* Grille 10 colonnes x 5 lignes, qui remplit la hauteur disponible */
+  .grille {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .carte {
+    perspective: 700px;
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 10px;
+    cursor: default;
+    min-height: 0;
+  }
+  .carte:hover { transform: none !important; }
+  .grille.jouable .carte:not(.retournee) { cursor: pointer; }
+  .grille.jouable .carte:not(.retournee):hover .interieur { transform: translateY(-3px); }
+
+  .interieur {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .55s cubic-bezier(.3,.7,.3,1);
+  }
+  .carte.retournee .interieur { transform: rotateY(180deg); }
+  .grille.jouable .carte.retournee:hover .interieur { transform: rotateY(180deg); }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(.85rem, 2.2vw, 1.6rem);
+    font-weight: 700;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+  }
+  .dos {
+    background: #FFFFFF;
+    color: var(--nuit);
+  }
+  .recto {
+    transform: rotateY(180deg);
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  }
+  .recto.texte-sombre { color: var(--nuit); text-shadow: none; }
+
+  body.sans-numeros .numero { visibility: hidden; }
+
+  /* Écran de présentation des joueurs */
+  .voile {
+    position: fixed;
+    inset: 0;
+    background: rgba(42,29,61,.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 10;
+  }
+  .voile.visible { display: flex; }
+  .modale {
+    background: var(--nuit-clair);
+    border-radius: 22px;
+    padding: 24px 28px;
+    width: min(440px, 100%);
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  }
+  .modale h2 {
+    font-size: 1.6rem;
+    color: var(--creme);
+    margin-bottom: 4px;
+  }
+  .modale p { color: var(--texte-doux); margin-bottom: 16px; }
+  .attributions {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .attributions li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  }
+  .attributions li.texte-sombre { color: var(--nuit); text-shadow: none; }
+  .attributions .nom { flex: 1; text-align: left; }
+
+  @media (max-width: 600px) {
+    .grille { gap: 4px; }
+    .face, .carte { border-radius: 6px; }
+    .sous-titre { display: none; }
+    button { padding: 7px 14px; font-size: .9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .interieur, button, .interrupteur::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Soirée Quizz</h1>
+    <p class="sous-titre">Une minute pour retenir, puis à vous de retrouver vos couleurs.</p>
+  </header>
+
+  <div class="controles">
+    <button id="btn-commencer" type="button">Commencer le jeu</button>
+    <button id="btn-reset" type="button">Reset le jeu</button>
+    <label class="option-numeros">
+      <input type="checkbox" id="chk-numeros" checked>
+      <span class="interrupteur" aria-hidden="true"></span>
+      Afficher les numéros
+    </label>
+  </div>
+
+  <div class="statut">
+    <p id="message" aria-live="polite">Appuyez sur « Commencer le jeu ».</p>
+    <div class="palette" id="palette" aria-label="Joueurs et couleurs en jeu"></div>
+  </div>
+
+  <div class="grille" id="grille"></div>
+</div>
+
+<!-- Présentation des joueurs avant le décompte -->
+<div class="voile" id="voile" role="dialog" aria-modal="true" aria-labelledby="titre-modale">
+  <div class="modale">
+    <h2 id="titre-modale">Qui a quelle couleur ?</h2>
+    <p>Retenez bien votre couleur avant de lancer le décompte.</p>
+    <ul class="attributions" id="attributions"></ul>
+    <button id="btn-decompte" type="button">Lancer le décompte (1 min)</button>
+  </div>
+</div>
+
+<script>
+  const COULEURS = [
+    { valeur: "var(--c1)", sombre: false },
+    { valeur: "var(--c2)", sombre: true  },
+    { valeur: "var(--c3)", sombre: false },
+    { valeur: "var(--c4)", sombre: false },
+    { valeur: "var(--c5)", sombre: false }
+  ];
+  const JOUEURS = ["Thomas", "Alexis", "Mathis", "Aymeric", "Louis"];
+  const DUREE_MEMO = 60; // secondes
+
+  const grille = document.getElementById("grille");
+  const message = document.getElementById("message");
+  const btnCommencer = document.getElementById("btn-commencer");
+  const btnReset = document.getElementById("btn-reset");
+  const btnDecompte = document.getElementById("btn-decompte");
+  const chkNumeros = document.getElementById("chk-numeros");
+  const palette = document.getElementById("palette");
+  const voile = document.getElementById("voile");
+  const listeAttributions = document.getElementById("attributions");
+
+  let cartes = [];
+  let minuteur = null;
+  let etat = "attente"; // attente | attribution | memorisation | jeu
+  let attribution = []; // attribution[i] = nom du joueur ayant la couleur i
+
+  // Mélange de Fisher-Yates
+  function melanger(tab) {
+    for (let i = tab.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tab[i], tab[j]] = [tab[j], tab[i]];
+    }
+    return tab;
+  }
+
+  // Légende (pastilles, avec les noms une fois la partie lancée)
+  function majPalette() {
+    palette.innerHTML = "";
+    COULEURS.forEach((c, i) => {
+      const chip = document.createElement("span");
+      chip.className = "joueur-chip";
+      const p = document.createElement("span");
+      p.className = "pastille";
+      p.style.background = c.valeur;
+      chip.appendChild(p);
+      if (attribution[i]) chip.appendChild(document.createTextNode(attribution[i]));
+      palette.appendChild(chip);
+    });
+  }
+
+  // Un nom différent pour chaque couleur, tiré au sort à chaque partie
+  function attribuerNoms() {
+    attribution = melanger(JOUEURS.slice());
+  }
+
+  function afficherAttributions() {
+    listeAttributions.innerHTML = "";
+    COULEURS.forEach((c, i) => {
+      const li = document.createElement("li");
+      li.style.background = c.valeur;
+      if (c.sombre) li.className = "texte-sombre";
+      const nom = document.createElement("span");
+      nom.className = "nom";
+      nom.textContent = attribution[i];
+      li.appendChild(nom);
+      listeAttributions.appendChild(li);
+    });
+  }
+
+  // 5 couleurs x 10 cases chacune, réparties aléatoirement
+  function tirerCouleurs() {
+    const liste = [];
+    COULEURS.forEach((c, i) => { for (let k = 0; k < 10; k++) liste.push(i); });
+    return melanger(liste);
+  }
+
+  function construireGrille() {
+    grille.innerHTML = "";
+    cartes = [];
+    const tirage = tirerCouleurs();
+
+    for (let n = 1; n <= 50; n++) {
+      const couleur = COULEURS[tirage[n - 1]];
+      const carte = document.createElement("button");
+      carte.type = "button";
+      carte.className = "carte";
+      carte.setAttribute("aria-label", "Case " + n);
+      carte.innerHTML =
+        '<div class="interieur">' +
+          '<div class="face dos"><span class="numero">' + n + '</span></div>' +
+          '<div class="face recto' + (couleur.sombre ? ' texte-sombre' : '') + '" style="background:' + couleur.valeur + '">' +
+            '<span class="numero">' + n + '</span>' +
+          '</div>' +
+        '</div>';
+      carte.addEventListener("click", () => retournerCarte(carte));
+      grille.appendChild(carte);
+      cartes.push(carte);
+    }
+  }
+
+  function retournerCarte(carte) {
+    if (etat !== "jeu" || carte.classList.contains("retournee")) return;
+    carte.classList.add("retournee");
+    majCompteur();
+  }
+
+  function majCompteur() {
+    const nb = cartes.filter(c => c.classList.contains("retournee")).length;
+    message.innerHTML = "À vous de jouer : <strong>" + nb + " / 50</strong> cases retournées.";
+  }
+
+  // Étape 1 : tirage des noms + affichage de qui a quelle couleur
+  function commencer() {
+    if (etat !== "attente") return;
+    construireGrille(); // nouvelle répartition des couleurs à chaque partie
+    attribuerNoms();    // nouveaux noms à chaque partie
+    majPalette();
+    afficherAttributions();
+    etat = "attribution";
+    btnCommencer.disabled = true;
+    message.textContent = "Découvrez qui a quelle couleur !";
+    voile.classList.add("visible");
+    btnDecompte.focus();
+  }
+
+  // Étape 2 : retournement des cartes et décompte d'une minute
+  function lancerDecompte() {
+    if (etat !== "attribution") return;
+    voile.classList.remove("visible");
+    etat = "memorisation";
+
+    // petit délai pour que l'animation de retournement soit visible
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => cartes.forEach(c => c.classList.add("retournee")));
+    });
+
+    let restant = DUREE_MEMO;
+    afficherTemps(restant);
+    minuteur = setInterval(() => {
+      restant--;
+      if (restant > 0) {
+        afficherTemps(restant);
+      } else {
+        clearInterval(minuteur);
+        minuteur = null;
+        cartes.forEach(c => c.classList.remove("retournee"));
+        etat = "jeu";
+        grille.classList.add("jouable");
+        majCompteur();
+      }
+    }, 1000);
+  }
+
+  function afficherTemps(s) {
+    message.innerHTML = "Mémorisez les couleurs : <strong>" + s + " s</strong>";
+  }
+
+  function reset() {
+    if (minuteur) { clearInterval(minuteur); minuteur = null; }
+    etat = "attente";
+    attribution = [];
+    voile.classList.remove("visible");
+    grille.classList.remove("jouable");
+    btnCommencer.disabled = false;
+    construireGrille();
+    majPalette();
+    message.textContent = "Appuyez sur « Commencer le jeu ».";
+  }
+
+  chkNumeros.addEventListener("change", () => {
+    document.body.classList.toggle("sans-numeros", !chkNumeros.checked);
+  });
+  btnCommencer.addEventListener("click", commencer);
+  btnDecompte.addEventListener("click", lancerDecompte);
+  btnReset.addEventListener("click", reset);
+
+  majPalette();
+  construireGrille();
+</script>
+</body>
+</html>
